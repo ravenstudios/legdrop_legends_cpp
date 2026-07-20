@@ -2,6 +2,8 @@
 #include "raylib.h"
 #include <vector>
 #include "Layer.h"
+#include <tinyxml2.h>
+
 
 struct MapSize{
     int w;
@@ -15,7 +17,7 @@ class Map{
         void Update();
         void Draw();
         MapSize GetMapSize() const;
-
+        std::vector<Rectangle> GetBlockingRects();
 
     private:
         const char* m_Path;
@@ -27,6 +29,7 @@ class Map{
         std::vector<Rectangle> m_BlockingRects;
         // std::vector<Door> m_Doors;
         // std::vector<NPCSpawn> m_NPCs;
+        void LoadBlocking(tinyxml2::XMLElement* map);
 
 
 

@@ -5,8 +5,8 @@
 
 MainState::MainState()
 
-    : m_Player(100, 100),
-    m_Map("src/assets/maps/town1.tmx")
+    : m_Map("src/assets/maps/town1.tmx"),
+    m_Player(250, 250)
     
 {  
    
@@ -20,7 +20,7 @@ MainState::MainState()
 
 
 void MainState::Update(){
-    m_Player.Update();
+    m_Player.Update(&m_Map);
 
     Vector2 target = m_Player.GetPosition();
 

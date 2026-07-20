@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "../core/Timer.h"
+#include "../Map.h"
 
 
 
@@ -8,12 +9,12 @@ class MainEntity{
     public:
         MainEntity(const char* path, float x, float y);
         ~MainEntity();
-        virtual void Update() = 0;
+        virtual void Update(Map* map) = 0;
         void Draw();
         Rectangle GetRect();
         void SetCanAnimate(bool b);
         void Input();
-        void Move(float x, float y);
+        void Move(float dx, float dy);
         
     private:
 
@@ -28,6 +29,7 @@ class MainEntity{
         Timer m_AnimationTimer;
         int m_MaxFrames = 4;
         float m_Speed = 5;
+        Map* m_Map;
         
 
 };

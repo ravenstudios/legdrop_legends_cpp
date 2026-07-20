@@ -1,5 +1,4 @@
 #include "Map.h"
-#include <tinyxml2.h>
 #include "Constants.h"
 #include <sstream>
  #include <filesystem>
@@ -22,6 +21,8 @@ void Map::LoadMap(){
     }
 
     XMLElement* map = doc.FirstChildElement("map");
+
+    LoadBlocking(map);
 
     m_MapWidth = map->IntAttribute("width");
     m_MapHeight = map->IntAttribute("height");
@@ -123,9 +124,41 @@ void Map::Update(){
 void Map::Draw(){
     for(Layer& layer : m_Layers){
         layer.Draw();
-    }
+    } 
 }
 
 MapSize Map::GetMapSize() const{
     return {m_MapWidth, m_MapHeight};
+}
+
+void Map::LoadBlocking(XMLElement* map){
+    XMLElement* objectGroup = map->FirstChildElement("objectgroup");
+
+    while (objectGroup)
+    {
+        const char* name = objectGroup->Attribute("name");
+
+        if (name && std::string(name) == "Blocking")
+        {
+            XMLElement* object = objectGroup->FirstChildElement("object");
+
+            while (object)
+            {
+                m_BlockingRects.push_back({
+                    object->FloatAttribute("x") * SCALE,
+                    object->FloatAttribute("y") * SCALE,
+                    object->FloatAttribute("width") * SCALE,
+                    object->FloatAttribute("height") * SCALE
+                });
+
+                object = object->NextSiblingElement("object");
+            }
+        }
+
+        objectGroup = objectGroup->NextSiblingElement("objectgroup");
+    }
+}
+
+std::vector<Rectangle> Map::GetBlockingRects(){
+    return m_BlockingRects;
 }

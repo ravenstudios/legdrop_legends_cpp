@@ -6,8 +6,10 @@ class Timer{
         void Update(float deltaTime);
         bool Finished();
         void Reset();
+        void SetPause(bool p);
     private:
         float m_Duration = 0;
         float m_TimeRemaining = 0;
+        bool m_IsPaused = false;
 
 };

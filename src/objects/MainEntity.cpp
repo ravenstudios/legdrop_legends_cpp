@@ -1,5 +1,6 @@
 #include "MainEntity.h"
 #include "../Constants.h"
+#include "../Map.h"
 
 
 MainEntity::MainEntity(const char* path, float x, float y)
@@ -20,15 +21,35 @@ MainEntity::~MainEntity(){
 }
 
 
-void MainEntity::Update(){
+void MainEntity::Update(Map* map){
+    m_Map = map;
     Animate();
 }
 
 
-void MainEntity::Move(float x, float y){
-    m_Rect.x += x;
-    m_Rect.y += y;
+void MainEntity::Move(float dx, float dy){
+    float nextX = m_Rect.x + dx;
+    float nextY = m_Rect.y + dy;
+    MapSize mapSize = m_Map->GetMapSize();
+    Rectangle nextRect = m_Rect;
+    nextRect.x += dx;
+    nextRect.y += dy;
 
+    for (const Rectangle& block : m_Map->GetBlockingRects()){
+        if (CheckCollisionRecs(nextRect, block)){
+            return;
+        }
+    }
+
+    if (nextX >= 0 &&
+        nextX + m_Rect.width <= mapSize.w * BLOCK_SIZE){
+        m_Rect.x = nextX;
+    }
+
+    if (nextY >= 0 &&
+        nextY + m_Rect.height <= mapSize.h * BLOCK_SIZE){
+        m_Rect.y = nextY;
+    }
 }
 
 void MainEntity::Draw()

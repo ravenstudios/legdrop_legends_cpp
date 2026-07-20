@@ -8,6 +8,7 @@ Timer::Timer(float duration){
 
 
 void Timer::Update(float deltaTime){
+    if(m_IsPaused)return;
     m_TimeRemaining -= deltaTime;
 }
 
@@ -20,3 +21,6 @@ void Timer::Reset(){
     m_TimeRemaining = m_Duration;
 }
 
+void Timer::SetPause(bool p){
+    m_IsPaused = p;
+}
