@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="17" nextobjectid="31">
+ <tileset firstgid="1" source="bar.tsx"/>
+ <tileset firstgid="65" source="clinic.tsx"/>
+ <layer id="1" name="floor" width="18" height="18">
+  <data encoding="csv">
+29,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,31,
+37,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,39,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,
+18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18
+</data>
+ </layer>
+ <layer id="3" name="objects" width="18" height="18">
+  <data encoding="csv">
+44,45,46,0,0,42,0,0,0,0,42,0,6,7,8,0,0,0,
+52,53,54,0,0,50,0,0,0,0,50,0,14,15,16,0,0,0,
+60,61,62,0,57,58,59,0,0,57,58,59,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+21,22,22,22,22,22,22,22,23,0,0,0,0,0,21,22,22,23,
+20,0,20,0,20,0,20,0,20,0,0,0,0,0,20,0,20,20,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,113,0,0,0,0,0,0,98,98,0,0,0,0,0,0,113,0,
+0,121,0,0,0,0,0,0,98,98,0,0,0,0,0,0,121,0
+</data>
+ </layer>
+ <layer id="5" name="beer" width="18" height="18">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,2,3,0,0,3,1,0,0,0,0,0,1,5,1,5,
+0,9,10,10,11,0,0,11,9,0,0,0,0,0,9,13,9,13,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup id="11" name="song">
+  <object id="20" x="-16.0743" y="-18.7533">
+   <properties>
+    <property name="song_file" value="bar.mp3"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="6" name="spawn">
+  <object id="1" x="160.69" y="71.944" width="16" height="16">
+   <properties>
+    <property name="spawn_point" value=""/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="7" name="door">
+  <object id="2" x="128" y="282" width="32" height="2">
+   <properties>
+    <property name="door" type="bool" value="true"/>
+    <property name="exit" type="bool" value="true"/>
+    <property name="map_file" value="town1.tmx"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="npcs">
+  <object id="15" x="118.572" y="172.595">
+   <properties>
+    <property name="can_walk" type="bool" value="true"/>
+    <property name="npc_type" value="crawdaddy"/>
+   </properties>
+  </object>
+  <object id="16" x="255.664" y="90.3123">
+   <properties>
+    <property name="can_walk" type="bool" value="true"/>
+    <property name="npc_type" value="brother"/>
+   </properties>
+  </object>
+  <object id="18" x="185.926" y="173.998">
+   <properties>
+    <property name="can_walk" type="bool" value="true"/>
+    <property name="npc_type" value="clown"/>
+   </properties>
+  </object>
+  <object id="22" x="234.402" y="164.168">
+   <properties>
+    <property name="can_walk" type="bool" value="true"/>
+    <property name="npc_type" value="bad_jim"/>
+   </properties>
+  </object>
+  <object id="23" x="81.0065" y="225.353">
+   <properties>
+    <property name="can_walk" type="bool" value="true"/>
+    <property name="npc_type" value="angel"/>
+   </properties>
+  </object>
+  <object id="27" x="65.841" y="75.2469">
+   <properties>
+    <property name="can_walk" type="bool" value="true"/>
+    <property name="npc_type" value="mr_murica"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="16" name="jukebox">
+  <object id="30" x="0" y="0" width="48" height="48">
+   <properties>
+    <property name="can_walk" type="bool" value="false"/>
+    <property name="npc_type" value="jukebox"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="dart board">
+  <object id="24" x="212" y="16" width="16" height="16">
+   <properties>
+    <property name="can_walk" type="bool" value="false"/>
+    <property name="npc_type" value="dart_board"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="4" name="wall tops" width="18" height="18">
+  <data encoding="csv">
+116,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,119,117,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+93,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,92,
+124,103,103,103,103,103,103,125,0,0,124,103,103,103,103,103,103,125
+</data>
+ </layer>
+ <objectgroup id="9" name="blocking">
+  <object id="3" x="160.881" y="284.928" width="126.588" height="2.54022">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="4" x="283.762" y="-5.25486" width="9.63391" height="297.775">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="5" x="-6.13067" y="-8.7581" width="10.5097" height="298.651">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="7" x="0.400064" y="285.246" width="126.82" height="3.20051">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="8" x="1.60026" y="113.218" width="144.823" height="12.402">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="9" x="224.836" y="110" width="59.6095" height="16">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="10" x="6.00096" y="2.00032" width="276.044" height="21.2034">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="11" x="9.20147" y="23.6038" width="29.2047" height="22.4036">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="12" x="81.213" y="19.2031" width="12.0019" height="20.0032">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="13" x="160.026" y="20.4033" width="14.8024" height="18.4029">
+   <properties>
+    <property name="block" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="14" name="animation">
+  <object id="28" x="160" y="16" width="16" height="16">
+   <properties>
+    <property name="can_walk" type="bool" value="false"/>
+    <property name="npc_type" value="bounce_mania"/>
+   </properties>
+  </object>
+  <object id="29" x="80" y="16" width="16" height="16">
+   <properties>
+    <property name="can_walk" type="bool" value="false"/>
+    <property name="npc_type" value="bounce_mania"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
