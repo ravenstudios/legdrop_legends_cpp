@@ -30,15 +30,13 @@
         },
         "bar.tmx": {
             "expandedObjectLayers": [
-                10,
-                7,
-                6
+                10
             ],
             "scale": 1.8967013888888886,
-            "selectedLayer": 10,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 65.64027459954237,
-                "y": 75.13043478260872
+                "x": 142.6160183066362,
+                "y": 160.01464530892451
             }
         },
         "bar.tmx#bar": {
@@ -94,7 +92,7 @@
                 6
             ],
             "scale": 4.267578125,
-            "selectedLayer": 5,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 73.69519450800915,
                 "y": 83.3025171624714
