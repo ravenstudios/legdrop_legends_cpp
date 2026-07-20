@@ -15,6 +15,7 @@ class MainEntity{
         void SetCanAnimate(bool b);
         void Input();
         void Move(float dx, float dy);
+        void SetSpawnPoint(Vector2 spawnPoint);
         
     private:
 

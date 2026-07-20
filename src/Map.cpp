@@ -138,12 +138,10 @@ void Map::LoadBlocking(XMLElement* map){
     {
         const char* name = objectGroup->Attribute("name");
 
-        if (name && std::string(name) == "Blocking")
-        {
+        if (name && std::string(name) == "Blocking"){
             XMLElement* object = objectGroup->FirstChildElement("object");
 
-            while (object)
-            {
+            while (object){
                 m_BlockingRects.push_back({
                     object->FloatAttribute("x") * SCALE,
                     object->FloatAttribute("y") * SCALE,
@@ -154,10 +152,27 @@ void Map::LoadBlocking(XMLElement* map){
                 object = object->NextSiblingElement("object");
             }
         }
+        if (name && std::string(name) == "Player Spawn Point"){
+            XMLElement* object = objectGroup->FirstChildElement("object");
+            m_PlayerSpawnPoint.x = object->FloatAttribute("x") * SCALE;
+            m_PlayerSpawnPoint.y = object->FloatAttribute("y") * SCALE;
+        }
+
 
         objectGroup = objectGroup->NextSiblingElement("objectgroup");
     }
 }
+
+
+
+ 
+       
+
+        
+        
+
+
+Vector2 Map::GetPlayerSpawnPoint(){return m_PlayerSpawnPoint;}
 
 std::vector<Rectangle> Map::GetBlockingRects(){
     return m_BlockingRects;

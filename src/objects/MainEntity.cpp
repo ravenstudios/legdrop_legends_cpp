@@ -95,3 +95,8 @@ void MainEntity::Animate(){
 void MainEntity::SetCanAnimate(bool b){
     m_CanAnimate = b;
 }
+
+void MainEntity::SetSpawnPoint(Vector2 spawnPoint){
+    m_Rect.x = spawnPoint.x;
+    m_Rect.y = spawnPoint.y;
+}

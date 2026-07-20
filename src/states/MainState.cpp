@@ -6,11 +6,11 @@
 MainState::MainState()
 
     : m_Map("src/assets/maps/town1.tmx"),
-    m_Player(250, 250)
+    m_Player(0, 0)
     
 {  
-   
-    
+//    GetPlayerSpawnPoint
+    m_Player.SetSpawnPoint(m_Map.GetPlayerSpawnPoint());
 
     m_Camera.target = m_Player.GetPosition();
     m_Camera.offset = { GAME_WIDTH / 2.0f, GAME_HEIGHT / 2.0f };

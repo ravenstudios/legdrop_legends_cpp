@@ -18,6 +18,7 @@ class Map{
         void Draw();
         MapSize GetMapSize() const;
         std::vector<Rectangle> GetBlockingRects();
+        Vector2 GetPlayerSpawnPoint();
 
     private:
         const char* m_Path;
@@ -30,6 +31,7 @@ class Map{
         // std::vector<Door> m_Doors;
         // std::vector<NPCSpawn> m_NPCs;
         void LoadBlocking(tinyxml2::XMLElement* map);
+        Vector2 m_PlayerSpawnPoint;
 
 
 
