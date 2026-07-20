@@ -8,17 +8,38 @@
     ],
     "fileStates": {
         "Town1_tileset.tsx": {
-            "dynamicWrapping": false
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "Zombie Apocalypse Tileset Reference.tsx": {
             "dynamicWrapping": true,
             "scaleInDock": 1,
             "scaleInEditor": 4.74
         },
+        "_building.tsx": {
+            "scaleInDock": 1
+        },
+        "backyard.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "clinic.tsx": {
+            "scaleInEditor": 1
+        },
+        "gym_building.tsx": {
+            "scaleInDock": 1
+        },
+        "store building.tsx": {
+            "scaleInDock": 1
+        },
         "test_tileset.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1.3539,
             "scaleInEditor": 1.73
+        },
+        "town1.tmx#backyard": {
+            "scaleInEditor": 1
         }
     },
     "last.exportedFilePath": "/Users/ravenstudios/Documents/python_projects/skateboarding_game_python/assets/maps",
@@ -32,6 +53,9 @@
     ],
     "project": "town1.tiled-project",
     "recentFiles": [
+        "backyard.tsx",
+        "Town1_tileset.tsx",
+        "clinic.tsx",
         "Zombie Apocalypse Tileset Reference.tsx",
         "test_tileset.tsx"
     ],
