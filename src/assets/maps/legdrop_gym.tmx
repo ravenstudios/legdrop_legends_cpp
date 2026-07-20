@@ -70,7 +70,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="5" name="Blocks">
+ <objectgroup id="5" name="Blocking">
   <object id="20" x="80.9524" y="125.132" width="47.619" height="1.85185">
    <properties>
     <property name="block" type="bool" value="true"/>

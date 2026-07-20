@@ -99,7 +99,7 @@
   </object>
  </objectgroup>
  <objectgroup id="10" name="npcs">
-  <object id="15" x="118.572" y="172.595">
+  <object id="15" x="118.572" y="220">
    <properties>
     <property name="can_walk" type="bool" value="true"/>
     <property name="npc_type" value="crawdaddy"/>
@@ -174,7 +174,7 @@
 124,103,103,103,103,103,103,125,0,0,124,103,103,103,103,103,103,125
 </data>
  </layer>
- <objectgroup id="9" name="blocking">
+ <objectgroup id="9" name="Blocking">
   <object id="3" x="160.881" y="284.928" width="126.588" height="2.54022">
    <properties>
     <property name="block" type="bool" value="true"/>

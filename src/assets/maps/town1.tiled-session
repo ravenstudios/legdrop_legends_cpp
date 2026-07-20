@@ -30,13 +30,15 @@
         },
         "bar.tmx": {
             "expandedObjectLayers": [
+                10,
+                7,
                 6
             ],
             "scale": 1.8967013888888886,
-            "selectedLayer": 5,
+            "selectedLayer": 10,
             "viewCenter": {
-                "x": 144.1977116704806,
-                "y": 282.8594965675058
+                "x": 65.64027459954237,
+                "y": 75.13043478260872
             }
         },
         "bar.tmx#bar": {
@@ -49,9 +51,6 @@
             "scaleInDock": 1
         },
         "clinic.tmx": {
-            "expandedObjectLayers": [
-                7
-            ],
             "scale": 2.845052083333333,
             "selectedLayer": 4,
             "viewCenter": {
@@ -74,7 +73,7 @@
                 4
             ],
             "scale": 4.267578125,
-            "selectedLayer": 4,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 64.08787185354691,
                 "y": 103.92311212814647
@@ -95,7 +94,7 @@
                 6
             ],
             "scale": 4.267578125,
-            "selectedLayer": 3,
+            "selectedLayer": 5,
             "viewCenter": {
                 "x": 73.69519450800915,
                 "y": 83.3025171624714
@@ -141,7 +140,7 @@
                 6
             ],
             "scale": 1.47,
-            "selectedLayer": 9,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 581.9727891156463,
                 "y": 92.85714285714286

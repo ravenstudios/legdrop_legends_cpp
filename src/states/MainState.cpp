@@ -20,6 +20,7 @@ MainState::MainState()
 
 
 void MainState::Update(){
+    m_Map.Update();
     m_Player.Update(&m_Map);
 
     Vector2 target = m_Player.GetPosition();

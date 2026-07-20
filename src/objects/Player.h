@@ -2,6 +2,7 @@
 #include "MainEntity.h"
 
 
+class Map;
 
 class Player : public MainEntity{
     public:

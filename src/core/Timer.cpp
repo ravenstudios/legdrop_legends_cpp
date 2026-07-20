@@ -6,6 +6,10 @@ Timer::Timer(float duration){
     m_TimeRemaining = duration;
 }
 
+void Timer::SetDuration(float duration){
+    m_Duration = duration;
+    m_TimeRemaining = duration;
+}
 
 void Timer::Update(float deltaTime){
     if(m_IsPaused)return;

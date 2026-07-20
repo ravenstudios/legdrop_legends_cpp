@@ -7,6 +7,7 @@ class Timer{
         bool Finished();
         void Reset();
         void SetPause(bool p);
+        void SetDuration(float duration);
     private:
         float m_Duration = 0;
         float m_TimeRemaining = 0;

@@ -15,6 +15,7 @@ bool Map::LoadMap(const char* path){
     m_Layers.clear();
     m_BlockingRects.clear();
     m_Doors.clear();
+    m_NPCs.clear();
     m_Path = path;
     XMLDocument doc;
 
@@ -114,9 +115,9 @@ void Map::LoadTiles(XMLElement* map){
 
 
 void Map::Update(){
-    // for(NPC& npc : m_NPCs){
-    //     npc.Update(this);
-    // } 
+    for (const auto& npc : m_NPCs){
+        npc->Update(this);
+    } 
 }
 
 
@@ -124,8 +125,8 @@ void Map::Draw(){
     for(Layer& layer : m_Layers){
         layer.Draw();
     }
-    for(NPC& npc : m_NPCs){
-        npc.Draw();
+    for (const auto& npc : m_NPCs){
+        npc->Draw();
     } 
 }
 
@@ -231,9 +232,9 @@ void Map::LoadNPCs(XMLElement* objectGroup){
     XMLElement* object = objectGroup->FirstChildElement("object");
     
     while (object){
-        const char* path;
+        const char* npcType;
         float x = object->FloatAttribute("x") * SCALE;
-        float y = object->FloatAttribute("x") * SCALE;
+        float y = object->FloatAttribute("y") * SCALE;
         bool canWalk;
 
         XMLElement* properties = object->FirstChildElement("properties");
@@ -248,15 +249,17 @@ void Map::LoadNPCs(XMLElement* objectGroup){
                     canWalk = property->Attribute("value");
                 }
                 if (name && std::string(name) == "npc_type"){
-                    path = property->Attribute("value");
+                    npcType = property->Attribute("value");
                 }
                 
                 property = property->NextSiblingElement("property");
             }
             
         }
-
-        m_NPCs.push_back(NPC(x, y, path, canWalk));
+        // NPC npc = NPC(k);
+        
+        
+        m_NPCs.push_back(std::make_unique<NPC>(x, y, npcType, canWalk));
 
         object = object->NextSiblingElement("object");
     }

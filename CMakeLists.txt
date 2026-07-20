@@ -9,7 +9,7 @@ find_package(raylib REQUIRED)
 find_package(tinyxml2 CONFIG REQUIRED)
 
 file(GLOB_RECURSE SOURCES
-    "src/*.cpp"
+   "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
 )
 
 add_executable(LegdropLegends ${SOURCES})

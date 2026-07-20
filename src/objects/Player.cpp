@@ -1,8 +1,8 @@
 #include "Player.h"
-
+#include "../Map.h"
 
 Player::Player(float x, float y)
-    : MainEntity("src/assets/images/Brother16x16-Sheet.png", x, y)
+    : MainEntity("player", x, y)
 {
 
 }

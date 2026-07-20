@@ -5,6 +5,7 @@
 #include <tinyxml2.h>
 #include <string>
 #include "objects/NPC.h"
+#include <memory>
 
 struct MapSize{
     int w;
@@ -39,7 +40,7 @@ class Map{
         std::vector<Layer> m_Layers;
         std::vector<Rectangle> m_BlockingRects;
         std::vector<Door> m_Doors;
-        std::vector<NPC> m_NPCs;
+        std::vector<std::unique_ptr<NPC>> m_NPCs;
         void LoadObjects(tinyxml2::XMLElement* map);
         Vector2 m_PlayerSpawnPoint;
         void LoadTiles(tinyxml2::XMLElement* map);

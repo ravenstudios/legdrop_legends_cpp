@@ -1,7 +1,9 @@
 #pragma once
 #include "raylib.h"
 #include "../core/Timer.h"
-#include "../Map.h"
+
+
+class Map;
 
 struct Directions{
     bool up = false;
@@ -12,16 +14,17 @@ struct Directions{
 
 class MainEntity{
     public:
-        MainEntity(const char* path, float x, float y);
+        MainEntity(const char* npcType, float x, float y);
         ~MainEntity();
         virtual void Update(Map* map) = 0;
         void Draw();
         Rectangle GetRect();
         void SetCanAnimate(bool b);
-        void Input();
+        // void Input();
         void Move(float dx, float dy);
         void SetSpawnPoint(Vector2 spawnPoint);
         Vector2 GetPosition();
+        void SetMaxFrames(int maxFrames);
         
     private:
 
