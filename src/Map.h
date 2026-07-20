@@ -3,6 +3,7 @@
 #include <vector>
 #include "Layer.h"
 #include <tinyxml2.h>
+#include <string>
 
 
 struct MapSize{
@@ -10,15 +11,24 @@ struct MapSize{
     int h;
 };
 
+struct Door{
+    const char* path;
+    Rectangle rect;
+    bool isEntrance;
+    bool isExit;
+};
+
 class Map{
     public:
         Map(const char* path);
-        void LoadMap();
+        bool LoadMap(const char* path);
         void Update();
         void Draw();
         MapSize GetMapSize() const;
         std::vector<Rectangle> GetBlockingRects();
+        std::vector<Door> GetDoors();
         Vector2 GetPlayerSpawnPoint();
+
 
     private:
         const char* m_Path;
@@ -28,11 +38,13 @@ class Map{
         int m_TileHeight;
         std::vector<Layer> m_Layers;
         std::vector<Rectangle> m_BlockingRects;
-        // std::vector<Door> m_Doors;
+        std::vector<Door> m_Doors;
         // std::vector<NPCSpawn> m_NPCs;
-        void LoadBlocking(tinyxml2::XMLElement* map);
+        void LoadObjects(tinyxml2::XMLElement* map);
         Vector2 m_PlayerSpawnPoint;
-
+        void LoadTiles(tinyxml2::XMLElement* map);
+        void LoadDoors(tinyxml2::XMLElement* objectGroup);
+        void LoadBlocking(tinyxml2::XMLElement* objectGroup);
 
 
 };

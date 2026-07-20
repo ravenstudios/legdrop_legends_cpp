@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="18" height="18" tilewidth="16" tileheight="16" infinite="0" nextlayerid="17" nextobjectid="31">
- <tileset firstgid="1" source="bar.tsx"/>
- <tileset firstgid="65" source="clinic.tsx"/>
+ <tileset firstgid="1" name="bar" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="../images/bar.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="65" name="clinic" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="../images/clinic.png" width="128" height="128"/>
+ </tileset>
+ <tileset firstgid="129" name="clinic" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="../images/clinic.png" width="128" height="128"/>
+ </tileset>
  <layer id="1" name="floor" width="18" height="18">
   <data encoding="csv">
 29,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,31,
@@ -75,14 +82,14 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="6" name="spawn">
-  <object id="1" x="160.69" y="71.944" width="16" height="16">
+ <objectgroup id="6" name="Player Spawn Point">
+  <object id="1" name="Player Spawn Point" x="160.69" y="71.944" width="16" height="16">
    <properties>
     <property name="spawn_point" value=""/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="7" name="door">
+ <objectgroup id="7" name="doors">
   <object id="2" x="128" y="282" width="32" height="2">
    <properties>
     <property name="door" type="bool" value="true"/>

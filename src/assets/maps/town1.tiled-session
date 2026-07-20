@@ -7,6 +7,10 @@
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "Town1_tileset.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
@@ -24,22 +28,137 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "bar.tmx": {
+            "expandedObjectLayers": [
+                6
+            ],
+            "scale": 1.8967013888888886,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 144.1977116704806,
+                "y": 282.8594965675058
+            }
+        },
+        "bar.tmx#bar": {
+            "scaleInDock": 1
+        },
+        "bar.tmx#clinic": {
+            "scaleInDock": 1
+        },
+        "bar.tsx": {
+            "scaleInDock": 1
+        },
+        "clinic.tmx": {
+            "scale": 2.845052083333333,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 96.13180778032039,
+                "y": 167.83524027459956
+            }
+        },
+        "clinic.tmx#clinic": {
+            "scaleInDock": 1
+        },
         "clinic.tsx": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "gym_building.tsx": {
             "scaleInDock": 1
         },
+        "legdrop_gym.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 4.267578125,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 64.08787185354691,
+                "y": 103.92311212814647
+            }
+        },
+        "legdrop_gym.tmx#Legdrop gym ": {
+            "scaleInDock": 1
+        },
+        "legdrop_gym.tmx#clinic": {
+            "scaleInDock": 1
+        },
         "store building.tsx": {
             "scaleInDock": 1
+        },
+        "store.tmx": {
+            "expandedObjectLayers": [
+                7,
+                6
+            ],
+            "scale": 4.267578125,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 73.69519450800915,
+                "y": 83.3025171624714
+            }
+        },
+        "store.tmx#clinic": {
+            "scaleInDock": 1
+        },
+        "store.tmx#store": {
+            "scaleInDock": 1
+        },
+        "store.tsx": {
+            "scaleInDock": 1
+        },
+        "test_indoor_map.tmx": {
+            "scale": 3.4140625,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 80.10983981693363,
+                "y": 80.10983981693364
+            }
         },
         "test_tileset.tsx": {
             "dynamicWrapping": false,
             "scaleInDock": 1.3539,
             "scaleInEditor": 1.73
         },
+        "town1 2.tmx": {
+            "scale": 0.7759232954545454,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 352.483295194508,
+                "y": 307.3757437070938
+            }
+        },
+        "town1 2.tmx#Town1_tileset": {
+            "scaleInDock": 1
+        },
+        "town1.tmx": {
+            "expandedObjectLayers": [
+                3,
+                7,
+                6
+            ],
+            "scale": 1.47,
+            "selectedLayer": 9,
+            "viewCenter": {
+                "x": 581.9727891156463,
+                "y": 92.85714285714286
+            }
+        },
+        "town1.tmx#Town1_tileset": {
+            "scaleInDock": 1
+        },
         "town1.tmx#backyard": {
+            "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "town1.tmx#clinic": {
+            "scaleInDock": 1
+        },
+        "town1.tmx#gym_building": {
+            "scaleInDock": 1
+        },
+        "town1.tmx#store building": {
+            "scaleInDock": 1
         }
     },
     "last.exportedFilePath": "/Users/ravenstudios/Documents/python_projects/skateboarding_game_python/assets/maps",

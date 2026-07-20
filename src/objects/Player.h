@@ -17,4 +17,5 @@ class Player : public MainEntity{
         
     private:
         Directions m_Directions;
+        Vector2 m_LastPOS;
 };

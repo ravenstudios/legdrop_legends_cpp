@@ -3,7 +3,9 @@
  <tileset firstgid="1" name="Legdrop gym " tilewidth="16" tileheight="16" tilecount="64" columns="8">
   <image source="../images/legdropgym.png" width="128" height="128"/>
  </tileset>
- <tileset firstgid="65" source="clinic.tsx"/>
+ <tileset firstgid="65" name="clinic" tilewidth="16" tileheight="16" tilecount="64" columns="8">
+  <image source="../images/clinic.png" width="128" height="128"/>
+ </tileset>
  <layer id="1" name="Floor" width="8" height="8">
   <data encoding="csv">
 25,26,26,26,26,26,26,27,
@@ -52,7 +54,7 @@
 124,103,125,0,0,124,103,125
 </data>
  </layer>
- <objectgroup id="3" name="Door">
+ <objectgroup id="3" name="doors">
   <object id="17" x="56.4103" y="120.513" width="15.3846" height="8.20513">
    <properties>
     <property name="door" type="bool" value="true"/>
@@ -61,8 +63,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="4" name="Spawn">
-  <object id="16" x="56" y="96" width="16" height="16">
+ <objectgroup id="4" name="Player Spawn Point">
+  <object id="16" name="Player Spawn Point" x="56" y="96" width="16" height="16">
    <properties>
     <property name="spawn_point" value=""/>
    </properties>

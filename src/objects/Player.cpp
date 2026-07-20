@@ -24,7 +24,21 @@ void Player::Update(Map* map){
     else{
         m_CanAnimate = false;
     }
-    
+    for (const Door& door : map->GetDoors()){
+        if (CheckCollisionRecs(m_Rect, door.rect)){
+            // LOG(door.path);
+            std::string path = std::string("src/assets/maps/") + door.path;
+            if(door.isEntrance){
+                m_LastPOS = {m_Rect.x, m_Rect.y + BLOCK_SIZE};
+                map->LoadMap(path.c_str());
+                SetSpawnPoint(map->GetPlayerSpawnPoint());
+            }
+            if(door.isExit){
+                map->LoadMap(path.c_str());
+                SetSpawnPoint(m_LastPOS);
+            }
+        }
+    }
 }
 
 
