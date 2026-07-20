@@ -49,8 +49,11 @@
             "scaleInDock": 1
         },
         "clinic.tmx": {
+            "expandedObjectLayers": [
+                7
+            ],
             "scale": 2.845052083333333,
-            "selectedLayer": 5,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 96.13180778032039,
                 "y": 167.83524027459956

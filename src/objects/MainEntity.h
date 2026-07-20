@@ -3,7 +3,12 @@
 #include "../core/Timer.h"
 #include "../Map.h"
 
-
+struct Directions{
+    bool up = false;
+    bool down = false;
+    bool left = false;
+    bool right = false;
+};
 
 class MainEntity{
     public:
@@ -16,6 +21,7 @@ class MainEntity{
         void Input();
         void Move(float dx, float dy);
         void SetSpawnPoint(Vector2 spawnPoint);
+        Vector2 GetPosition();
         
     private:
 
@@ -31,6 +37,7 @@ class MainEntity{
         int m_MaxFrames = 4;
         float m_Speed = 5;
         Map* m_Map;
+        Directions m_Directions;
         
 
 };

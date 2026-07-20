@@ -114,13 +114,18 @@ void Map::LoadTiles(XMLElement* map){
 
 
 void Map::Update(){
-
+    // for(NPC& npc : m_NPCs){
+    //     npc.Update(this);
+    // } 
 }
 
 
 void Map::Draw(){
     for(Layer& layer : m_Layers){
         layer.Draw();
+    }
+    for(NPC& npc : m_NPCs){
+        npc.Draw();
     } 
 }
 
@@ -150,6 +155,10 @@ void Map::LoadObjects(XMLElement* map){
         if (name && std::string(name) == "doors"){
             LoadDoors(objectGroup);
         }
+
+        if (name && std::string(name) == "npcs"){
+                    LoadNPCs(objectGroup);
+                }
 
         objectGroup = objectGroup->NextSiblingElement("objectgroup");
     }
@@ -205,6 +214,8 @@ void Map::LoadDoors(XMLElement* objectGroup){
                     d.isExit = true;
                 }
 
+                
+
                 property = property->NextSiblingElement("property");
             }
         }
@@ -214,6 +225,43 @@ void Map::LoadDoors(XMLElement* objectGroup){
         object = object->NextSiblingElement("object");
     }
 }
+
+
+void Map::LoadNPCs(XMLElement* objectGroup){
+    XMLElement* object = objectGroup->FirstChildElement("object");
+    
+    while (object){
+        const char* path;
+        float x = object->FloatAttribute("x") * SCALE;
+        float y = object->FloatAttribute("x") * SCALE;
+        bool canWalk;
+
+        XMLElement* properties = object->FirstChildElement("properties");
+
+        if (properties){
+            XMLElement* property = properties->FirstChildElement("property");
+
+            while (property){
+                const char* name = property->Attribute("name");
+
+                if (name && std::string(name) == "can_walk"){
+                    canWalk = property->Attribute("value");
+                }
+                if (name && std::string(name) == "npc_type"){
+                    path = property->Attribute("value");
+                }
+                
+                property = property->NextSiblingElement("property");
+            }
+            
+        }
+
+        m_NPCs.push_back(NPC(x, y, path, canWalk));
+
+        object = object->NextSiblingElement("object");
+    }
+}
+
 
 
 

@@ -101,3 +101,8 @@ void MainEntity::SetSpawnPoint(Vector2 spawnPoint){
     m_Rect.x = spawnPoint.x;
     m_Rect.y = spawnPoint.y;
 }
+
+
+Vector2 MainEntity::GetPosition(){
+    return {m_Rect.x, m_Rect.y};
+}
