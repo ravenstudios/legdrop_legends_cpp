@@ -27,7 +27,7 @@ class MainEntity{
         bool m_CanAnimate = true;
         Timer m_AnimationTimer;
         int m_MaxFrames = 4;
-        float m_Speed = 3;
+        float m_Speed = 5;
         
 
 };

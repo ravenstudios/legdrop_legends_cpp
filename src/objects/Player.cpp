@@ -34,3 +34,6 @@ void Player::Input(){
     }
 }
 
+Vector2 Player::GetPosition(){
+    return {m_Rect.x, m_Rect.y};
+}

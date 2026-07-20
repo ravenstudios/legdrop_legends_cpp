@@ -6,6 +6,7 @@ class Player : public MainEntity{
         Player(float x, float y);
         void Update() override;
         void Input();
+        Vector2 GetPosition();
     private:
         
 };

@@ -126,3 +126,6 @@ void Map::Draw(){
     }
 }
 
+MapSize Map::GetMapSize() const{
+    return {m_MapWidth, m_MapHeight};
+}

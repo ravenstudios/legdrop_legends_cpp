@@ -3,6 +3,10 @@
 #include <vector>
 #include "Layer.h"
 
+struct MapSize{
+    int w;
+    int h;
+};
 
 class Map{
     public:
@@ -10,6 +14,8 @@ class Map{
         void LoadMap();
         void Update();
         void Draw();
+        MapSize GetMapSize() const;
+
 
     private:
         const char* m_Path;

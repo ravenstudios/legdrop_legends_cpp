@@ -11,6 +11,7 @@ class MainState : public State{
     private:
         Player m_Player;
         Map m_Map;
+        Camera2D m_Camera;
         
 };
 
