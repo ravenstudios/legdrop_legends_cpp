@@ -29,6 +29,7 @@ class Map{
         std::vector<Rectangle> GetBlockingRects();
         std::vector<Door> GetDoors();
         Vector2 GetPlayerSpawnPoint();
+        const std::vector<std::unique_ptr<NPC>>& GetNPCs() const;
 
 
     private:

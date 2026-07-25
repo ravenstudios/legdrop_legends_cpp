@@ -17,7 +17,7 @@ class MainEntity{
         MainEntity(const char* npcType, float x, float y);
         ~MainEntity();
         virtual void Update(Map* map) = 0;
-        void Draw();
+        virtual void Draw();
         Rectangle GetRect();
         void SetCanAnimate(bool b);
         // void Input();
@@ -25,7 +25,7 @@ class MainEntity{
         void SetSpawnPoint(Vector2 spawnPoint);
         Vector2 GetPosition();
         void SetMaxFrames(int maxFrames);
-        
+
     private:
 
     protected:
@@ -41,6 +41,6 @@ class MainEntity{
         float m_Speed = 5;
         Map* m_Map;
         Directions m_Directions;
-        
+
 
 };

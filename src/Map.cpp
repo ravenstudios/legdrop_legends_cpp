@@ -12,6 +12,7 @@ Map::Map(const char* path){
 
 
 bool Map::LoadMap(const char* path){
+  LOG(path);
     m_Layers.clear();
     m_BlockingRects.clear();
     m_Doors.clear();
@@ -27,7 +28,7 @@ bool Map::LoadMap(const char* path){
 
     XMLElement* map = doc.FirstChildElement("map");
 
-    
+
     LoadTiles(map);
     LoadObjects(map);
 
@@ -71,7 +72,7 @@ void Map::LoadTiles(XMLElement* map){
 
             ts.firstGid = tileset->IntAttribute("firstgid");
             ts.columns = tileset->IntAttribute("columns");
-           
+
             std::filesystem::path source = image->Attribute("source");
             std::filesystem::path texturePath;
 
@@ -99,7 +100,7 @@ void Map::LoadTiles(XMLElement* map){
 
         TileLayer tileLayer;
         tileLayer.name = layer->Attribute("name");
-        
+
         std::stringstream ss(csv);
         std::string value;
 
@@ -107,7 +108,7 @@ void Map::LoadTiles(XMLElement* map){
             int id = std::stoi(value);
             tileLayer.tiles.push_back(id);
         }
-        
+
         newLayer.LoadLayer(tileLayer);
         m_Layers.emplace_back(newLayer);
     }
@@ -117,7 +118,7 @@ void Map::LoadTiles(XMLElement* map){
 void Map::Update(){
     for (const auto& npc : m_NPCs){
         npc->Update(this);
-    } 
+    }
 }
 
 
@@ -127,7 +128,7 @@ void Map::Draw(){
     }
     for (const auto& npc : m_NPCs){
         npc->Draw();
-    } 
+    }
 }
 
 MapSize Map::GetMapSize() const{
@@ -184,7 +185,7 @@ void Map::LoadBlocking(XMLElement* objectGroup){
 
 void Map::LoadDoors(XMLElement* objectGroup){
     XMLElement* object = objectGroup->FirstChildElement("object");
-    
+
     while (object){
         Door d;
 
@@ -205,6 +206,7 @@ void Map::LoadDoors(XMLElement* objectGroup){
 
                 if (name && std::string(name) == "map_file"){
                     d.path = property->Attribute("value");
+                    LOG(d.path);
                 }
                 if (name && std::string(name) == "entrance"){
                     d.isEntrance = true;
@@ -215,7 +217,7 @@ void Map::LoadDoors(XMLElement* objectGroup){
                     d.isExit = true;
                 }
 
-                
+
 
                 property = property->NextSiblingElement("property");
             }
@@ -230,7 +232,7 @@ void Map::LoadDoors(XMLElement* objectGroup){
 
 void Map::LoadNPCs(XMLElement* objectGroup){
     XMLElement* object = objectGroup->FirstChildElement("object");
-    
+
     while (object){
         const char* npcType;
         float x = object->FloatAttribute("x") * SCALE;
@@ -251,14 +253,14 @@ void Map::LoadNPCs(XMLElement* objectGroup){
                 if (name && std::string(name) == "npc_type"){
                     npcType = property->Attribute("value");
                 }
-                
+
                 property = property->NextSiblingElement("property");
             }
-            
+
         }
         // NPC npc = NPC(k);
-        
-        
+
+
         m_NPCs.push_back(std::make_unique<NPC>(x, y, npcType, canWalk));
 
         object = object->NextSiblingElement("object");
@@ -275,6 +277,10 @@ std::vector<Rectangle> Map::GetBlockingRects(){
 }
 
 
-std::vector<Door> Map::GetDoors(){    
+std::vector<Door> Map::GetDoors(){
     return m_Doors;
+}
+
+const std::vector<std::unique_ptr<NPC>>& Map::GetNPCs() const {
+    return m_NPCs;
 }

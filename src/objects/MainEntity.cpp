@@ -45,7 +45,7 @@ MainEntity::MainEntity(const char* npcType, float x, float y)
     m_Rect.y = y;
     m_Rect.width = BLOCK_SIZE;
     m_Rect.height = BLOCK_SIZE;
-    
+
 }
 
 
@@ -72,6 +72,13 @@ void MainEntity::Move(float dx, float dy){
         if (CheckCollisionRecs(nextRect, block)){
             return;
         }
+    }
+
+    for (const auto& npc : m_Map->GetNPCs()) {
+      if(npc.get() == this)continue;
+      if (CheckCollisionRecs(nextRect, npc->GetRect())) {
+          return;
+      }
     }
 
     if (nextX >= 0 &&
