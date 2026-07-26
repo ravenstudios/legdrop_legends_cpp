@@ -6,6 +6,9 @@
 #include "../core/Input.h"
 
 
+class StateManager;
+
+
 enum class InputMode{
     World,
     Dialog,
@@ -15,24 +18,25 @@ enum class InputMode{
 
 class MainState : public State{
     public:
-        MainState();
+        MainState(StateManager* stateManager);
         void Update() override;
         void Draw() override;
-        void UpdateInput();
+        void UpdateInput(InputState* inputState) override;
         
     private:
+        StateManager* m_StageManagerPtr;
         Player m_Player;
         Map m_Map;
         Camera2D m_Camera;
         DialogWindow m_DialogWindow;
         InputMode m_CurrentInputMode = InputMode::World;
         void Camera();
-        InputState m_InputState;
-        Input m_Input;
-        void WorldInput();
-        void DialogInput();
-        void BattleInput();
-        void MenuInput();
+        
+        void GetAction();
+        void WorldInput(InputState* inputState);
+        void DialogInput(InputState* inputState);
+        void BattleInput(InputState* inputState);
+        void MenuInput(InputState* inputState);
         
 };
 

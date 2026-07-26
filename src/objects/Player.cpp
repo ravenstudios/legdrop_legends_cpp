@@ -25,11 +25,11 @@ void Player::Draw(){
     // }
 }
 
-void Player::Input(InputState inputState){
-      m_Directions.up = inputState.up;
-      m_Directions.down = inputState.down;
-      m_Directions.left = inputState.left;
-      m_Directions.right = inputState.right;
+void Player::Input(InputState* inputState){
+      m_Directions.up = inputState->up;
+      m_Directions.down = inputState->down;
+      m_Directions.left = inputState->left;
+      m_Directions.right = inputState->right;
 }
 
 void Player::ClearInput(){

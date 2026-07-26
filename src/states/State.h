@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib.h"
+#include "../core/Input.h"
 
 
 class State{
@@ -7,5 +8,9 @@ class State{
         virtual ~State() = default;
         virtual void Draw() = 0;
         virtual void Update() = 0;
-    private:
+        virtual void UpdateInput(InputState* inputState) = 0;
+
+    protected:
+        InputState m_InputState;
+        Input m_Input;
 };

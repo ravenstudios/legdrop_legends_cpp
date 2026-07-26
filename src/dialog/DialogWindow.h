@@ -22,9 +22,11 @@ class DialogWindow{
     public:
         void Update();
         void Draw();
-        void Input(InputState inputState);
+        void Input(InputState* inputState);
         void Start(Player* player, NPC* npc);
         bool GetCanExit() const;
+        std::string GetAction() const;
+        void ClearAction();
 
     private:
         const int fontSize = 35;
@@ -57,5 +59,5 @@ class DialogWindow{
         void LoadNode(const std::string& nodeName);
         void HandleNodeAction(const std::string& action);
         std::vector<std::string> WrapText(const std::string& text, int maxWidth, int fontSize);
-        
+        std::string m_Action;
 };

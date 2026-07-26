@@ -1,15 +1,17 @@
-#include "MainState.h"
 #include "../Constants.h"
+#include "MainState.h"
 #include "raymath.h"
 #include "../dialog/DialogWindow.h"
 #include "../core/Input.h"
+#include "../StateManager.h"
 
 
-MainState::MainState()
+MainState::MainState(StateManager* stateManager)
     : m_Map("src/assets/maps/town1.tmx"),
       m_Player(0, 0),
       m_DialogWindow(),
-      m_Input()
+    //   m_Input(),
+      m_StageManagerPtr(stateManager)
 {
     m_Player.SetSpawnPoint(m_Map.GetPlayerSpawnPoint());
 
@@ -24,7 +26,18 @@ void MainState::Update(){
     m_Map.Update();
     m_Player.Update(&m_Map);
     Camera();
-    UpdateInput();
+    // UpdateInput(InputState inputState);
+    GetAction();
+}
+
+
+void MainState::GetAction(){
+    std::string action = m_DialogWindow.GetAction();
+    if(action == "start_battle"){
+        m_DialogWindow.ClearAction();
+        m_CurrentInputMode = InputMode::World;
+        m_StageManagerPtr->SwitchToBattleState();
+    }
 }
 
 
@@ -73,18 +86,16 @@ void MainState::Camera(){
 }
 
 
-void MainState::UpdateInput(){
-    m_InputState = m_Input.GetInputState();
-
+void MainState::UpdateInput(InputState* inputState){
     switch (m_CurrentInputMode){
         case InputMode::World:
-            WorldInput();
+            WorldInput(inputState);
 
         case InputMode::Battle:
             break;
         
         case InputMode::Dialog:
-           DialogInput();
+           DialogInput(inputState);
         
         default:
             break;
@@ -92,15 +103,17 @@ void MainState::UpdateInput(){
 }
 
 
-void MainState::WorldInput(){
-    m_Player.Input(m_InputState);
+void MainState::WorldInput(InputState* inputState){
+    m_Player.Input(inputState);
 
-    if (m_InputState.action){
+    if (inputState->action){
         
         m_Player.Talk();
         NPC* npc = m_Player.GetCurrentNPC();
+        
 
         if(npc){
+            npc->SetInDialog(true);
             m_Player.ClearInput();
             m_DialogWindow.Start(&m_Player, m_Player.GetCurrentNPC());
             m_CurrentInputMode = InputMode::Dialog;
@@ -108,8 +121,13 @@ void MainState::WorldInput(){
     }
 }
 
-void MainState::DialogInput(){
-    m_DialogWindow.Input(m_InputState);
+void MainState::DialogInput(InputState* inputState){
+    m_DialogWindow.Input(inputState);
 
-    if(m_DialogWindow.GetCanExit())m_CurrentInputMode = InputMode::World;
+    if(m_DialogWindow.GetCanExit()){
+        m_CurrentInputMode = InputMode::World;
+        NPC* npc = m_Player.GetCurrentNPC();
+        if(npc)npc->SetInDialog(false);
+        
+    }
 }

@@ -25,6 +25,7 @@ class MainEntity{
         void SetSpawnPoint(Vector2 spawnPoint);
         Vector2 GetPosition();
         void SetMaxFrames(int maxFrames);
+        void SetInDialog(bool b);
 
     private:
 
@@ -41,6 +42,7 @@ class MainEntity{
         float m_Speed = 5;
         Map* m_Map;
         Directions m_Directions;
+        bool m_InDialog = false;
 
 
 };

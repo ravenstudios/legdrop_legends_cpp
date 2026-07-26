@@ -12,7 +12,7 @@ class Player : public MainEntity{
         Player(float x, float y);
         void Update(Map* map) override;
         void Draw() override;
-        void Input(InputState inputState);
+        void Input(InputState* inputState);
         bool GetInDialog() const;
         void Talk();
         void ClearInput();

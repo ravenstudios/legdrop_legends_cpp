@@ -30,6 +30,7 @@ void MainEntity::Update(Map* map){
 
 
 void MainEntity::Move(float dx, float dy){
+    if(m_InDialog)return;
     float nextX = m_Rect.x + dx;
     float nextY = m_Rect.y + dy;
     MapSize mapSize = m_Map->GetMapSize();
@@ -113,6 +114,12 @@ Vector2 MainEntity::GetPosition(){
     return {m_Rect.x, m_Rect.y};
 }
 
+
 void MainEntity::SetMaxFrames(int maxFrames){
     m_MaxFrames = maxFrames;
+}
+
+
+void MainEntity::SetInDialog(bool b){
+    m_InDialog = b;
 }

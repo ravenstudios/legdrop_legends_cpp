@@ -71,13 +71,13 @@ void DialogWindow::Draw(){
 }
 
 
-void DialogWindow::Input(InputState inputState){
+void DialogWindow::Input(InputState* inputState){
     if (!m_CanDraw){
         return;
     }
 
     if (!m_DialogOptions.empty()){
-        if (inputState.upPressed){
+        if (inputState->upPressed){
             m_SelectionIndex--;
 
             if (m_SelectionIndex < 0){
@@ -86,7 +86,7 @@ void DialogWindow::Input(InputState inputState){
             }
         }
 
-        if (inputState.downPressed){
+        if (inputState->downPressed){
             m_SelectionIndex++;
 
             if (m_SelectionIndex >= static_cast<int>(m_DialogOptions.size())){
@@ -94,7 +94,7 @@ void DialogWindow::Input(InputState inputState){
             }
         }
 
-        if (inputState.action){
+        if (inputState->action){
             std::string nextNode = m_DialogOptions[m_SelectionIndex].next;
             LoadNode(nextNode);
         }
@@ -102,7 +102,7 @@ void DialogWindow::Input(InputState inputState){
         return;
     }
 
-    if (inputState.action){
+    if (inputState->action){
         if (!m_Dialogue.contains(m_CurrentNode)){
             LOG("Current dialogue node does not exist");
             return;
@@ -216,10 +216,8 @@ void DialogWindow::HandleNodeAction(const std::string& action){
         m_CanDraw = false;
         m_CanExit = true;
 
-        /*
-            Later, this should signal your StateManager
-            or BattleState to begin combat.
-        */
+        m_Action = "start_battle";
+
 
         return;
     }
@@ -272,4 +270,12 @@ std::vector<std::string> DialogWindow::WrapText(const std::string& text,
     }
 
     return lines;
+}
+
+std::string DialogWindow::GetAction() const{
+    return m_Action;
+}
+
+void DialogWindow::ClearAction(){
+    m_Action = "";
 }
