@@ -168,7 +168,8 @@ void NPC::LoadNPC(std::string& npcType){
     m_Name = data["name"];
     m_Class = data["class"];
     std::string battleSprite = "src/assets/images/" + data["battle_sprite"].get<std::string>();
-    m_BattleSprite = battleSprite;
+    m_BattleImagePath = battleSprite;
+    m_BattleSpriteMaxFrames = data["max_frame"];
 }
 
 
@@ -197,4 +198,8 @@ std::string NPC::GetNPC(const std::string& npcName){
 
 nlohmann::json NPC::GetDialog()const {
     return m_Dialogue;
+}
+
+int NPC::GetBattleSpriteMaxFrames() const{
+    return m_BattleSpriteMaxFrames;
 }

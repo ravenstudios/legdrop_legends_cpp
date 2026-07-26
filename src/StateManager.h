@@ -3,7 +3,7 @@
 #include "states/MainState.h"
 #include "states/BattleState.h"
 #include "core/Input.h"
-
+#include "objects/Player.h"
 
 class StateManager{
     public:
@@ -15,16 +15,19 @@ class StateManager{
         void SwitchToMainState();
         void SwitchToPauseState();
         void UpdateInput();
+        Player* GetPlayer();
         
 
 
     private:
         InputState m_InputState;
         Input m_Input;
+        Player m_player;
         MainState m_MainState;
         State* m_CurrentState = nullptr;
         State* m_ParrentState = nullptr;
         BattleState m_BattleState;
+       
 
 
 };

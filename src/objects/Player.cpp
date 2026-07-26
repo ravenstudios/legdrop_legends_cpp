@@ -1,10 +1,11 @@
 #include "Player.h"
 #include "../Map.h"
 
-Player::Player(float x, float y)
-    : MainEntity("src/assets/images/manager-Sheet.png", x, y)
+Player::Player()
+    : MainEntity("src/assets/images/manager-Sheet.png"),
+    m_CurrentWrestler(NPC(0, 0, "bad_jim", false))
 {
-
+  m_BattleImagePath = "src/assets/images/crawdaddy_32x32-Sheet.png";
 }
 
 
@@ -143,3 +144,7 @@ NPC* Player::GetCurrentNPC(){
  bool Player::GetInDialog() const{
   return m_InDialog;
  }
+
+  NPC* Player::GetCurrentWrestler(){
+    return &m_CurrentWrestler;
+  }

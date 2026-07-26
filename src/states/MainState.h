@@ -25,7 +25,7 @@ class MainState : public State{
         
     private:
         StateManager* m_StageManagerPtr;
-        Player m_Player;
+        Player* m_Player;
         Map m_Map;
         Camera2D m_Camera;
         DialogWindow m_DialogWindow;

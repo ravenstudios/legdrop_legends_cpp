@@ -8,14 +8,14 @@
 
 MainState::MainState(StateManager* stateManager)
     : m_Map("src/assets/maps/town1.tmx"),
-      m_Player(0, 0),
+      m_Player(stateManager->GetPlayer()),
       m_DialogWindow(),
     //   m_Input(),
       m_StageManagerPtr(stateManager)
 {
-    m_Player.SetSpawnPoint(m_Map.GetPlayerSpawnPoint());
+    m_Player->SetSpawnPoint(m_Map.GetPlayerSpawnPoint());
 
-    m_Camera.target = m_Player.GetPosition();
+    m_Camera.target = m_Player->GetPosition();
     m_Camera.offset = {GAME_WIDTH / 2.0f, GAME_HEIGHT / 2.0f};
     m_Camera.rotation = 0.0f;
     m_Camera.zoom = 1.0f;
@@ -24,7 +24,7 @@ MainState::MainState(StateManager* stateManager)
 
 void MainState::Update(){
     m_Map.Update();
-    m_Player.Update(&m_Map);
+    m_Player->Update(&m_Map);
     Camera();
     // UpdateInput(InputState inputState);
     GetAction();
@@ -44,7 +44,7 @@ void MainState::GetAction(){
 void MainState::Draw(){
     BeginMode2D(m_Camera);
     m_Map.Draw();
-    m_Player.Draw();
+    m_Player->Draw();
     
     EndMode2D();
     m_DialogWindow.Draw();
@@ -52,7 +52,7 @@ void MainState::Draw(){
 
 
 void MainState::Camera(){
-    Vector2 target = m_Player.GetPosition();
+    Vector2 target = m_Player->GetPosition();
 
     float halfScreenWidth = GAME_WIDTH / 2.0f;
     float halfScreenHeight = GAME_HEIGHT / 2.0f;
@@ -104,18 +104,18 @@ void MainState::UpdateInput(InputState* inputState){
 
 
 void MainState::WorldInput(InputState* inputState){
-    m_Player.Input(inputState);
+    m_Player->Input(inputState);
 
     if (inputState->action){
         
-        m_Player.Talk();
-        NPC* npc = m_Player.GetCurrentNPC();
+        m_Player->Talk();
+        NPC* npc = m_Player->GetCurrentNPC();
         
 
         if(npc){
             npc->SetInDialog(true);
-            m_Player.ClearInput();
-            m_DialogWindow.Start(&m_Player, m_Player.GetCurrentNPC());
+            m_Player->ClearInput();
+            m_DialogWindow.Start(m_Player, m_Player->GetCurrentNPC());
             m_CurrentInputMode = InputMode::Dialog;
         }
     }
@@ -126,7 +126,7 @@ void MainState::DialogInput(InputState* inputState){
 
     if(m_DialogWindow.GetCanExit()){
         m_CurrentInputMode = InputMode::World;
-        NPC* npc = m_Player.GetCurrentNPC();
+        NPC* npc = m_Player->GetCurrentNPC();
         if(npc)npc->SetInDialog(false);
         
     }

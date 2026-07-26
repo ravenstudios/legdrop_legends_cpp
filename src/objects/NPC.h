@@ -10,6 +10,7 @@ class NPC : public MainEntity{
         NPC(float x, float y, std::string path, bool canWalk);
         void Update(Map* map) override;
         nlohmann::json GetDialog() const;
+        int GetBattleSpriteMaxFrames() const;
         
     private:
         
@@ -34,6 +35,7 @@ class NPC : public MainEntity{
         std::string m_Name;
         std::string m_Class;
         std::string m_BattleSprite;
+        int m_BattleSpriteMaxFrames;
         
 
 };      

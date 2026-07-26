@@ -9,7 +9,7 @@ class Map;
 
 class Player : public MainEntity{
     public:
-        Player(float x, float y);
+        Player();
         void Update(Map* map) override;
         void Draw() override;
         void Input(InputState* inputState);
@@ -19,6 +19,7 @@ class Player : public MainEntity{
        
         Rectangle GetTalkHitBox();
         NPC* GetCurrentNPC();
+        NPC* GetCurrentWrestler();
 
     private:
         void Walk();
@@ -29,6 +30,8 @@ class Player : public MainEntity{
         Rectangle m_TalkHitBox;
         Map* m_Map;
         NPC* m_CurrentNPC;
+        NPC m_CurrentWrestler;
+
 
 
 

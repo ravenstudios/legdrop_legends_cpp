@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "../core/Timer.h"
+#include <string>
 
 
 class Map;
@@ -15,6 +16,7 @@ struct Directions{
 class MainEntity{
     public:
         MainEntity(const char* npcType, float x, float y);
+        MainEntity(const char* npcType);
         ~MainEntity();
         virtual void Update(Map* map) = 0;
         virtual void Draw();
@@ -26,6 +28,7 @@ class MainEntity{
         Vector2 GetPosition();
         void SetMaxFrames(int maxFrames);
         void SetInDialog(bool b);
+        std::string GetBattleImagePath() const;
 
     private:
 
@@ -43,6 +46,7 @@ class MainEntity{
         Map* m_Map;
         Directions m_Directions;
         bool m_InDialog = false;
+        std::string m_BattleImagePath;
 
 
 };

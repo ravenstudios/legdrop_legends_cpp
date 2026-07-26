@@ -17,6 +17,15 @@ MainEntity::MainEntity(const char* imagePath, float x, float y)
 
 }
 
+MainEntity::MainEntity(const char* imagePath)
+    : m_AnimationTimer(m_AnimationSpeed)
+{
+    m_Texture = LoadTexture(imagePath);
+    m_Rect.width = BLOCK_SIZE;
+    m_Rect.height = BLOCK_SIZE;
+
+}
+
 
 MainEntity::~MainEntity(){
     UnloadTexture(m_Texture);
@@ -122,4 +131,9 @@ void MainEntity::SetMaxFrames(int maxFrames){
 
 void MainEntity::SetInDialog(bool b){
     m_InDialog = b;
+}
+
+std::string MainEntity::GetBattleImagePath() const{
+    return m_BattleImagePath;
+
 }
