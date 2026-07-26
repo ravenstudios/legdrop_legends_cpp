@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(raylib REQUIRED)
 find_package(tinyxml2 CONFIG REQUIRED)
+find_package(nlohmann_json REQUIRED)
 
 file(GLOB_RECURSE SOURCES
    "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp"
@@ -21,4 +22,5 @@ target_include_directories(LegdropLegends PRIVATE
 target_link_libraries(LegdropLegends PRIVATE
     raylib
     tinyxml2::tinyxml2
+    nlohmann_json::nlohmann_json
 )

@@ -1,0 +1,109 @@
+{
+  "name": "Brother",
+  "class": "Grappler",
+  "sprite": "Brother16x16-Sheet.png",
+  "battle_sprite": "brother_32x32-Sheet.png",
+  "song": "brother_theme.mp3",
+  "max_frame": 20,
+  "can_walk": false,
+  "stats": {
+    "level": 1,
+    "exp": 0,
+    "speed": 50,
+    "power": 51,
+    "defense": 53,
+    "technique": 56,
+    "charisma": 50,
+    "luck": 10,
+    "powder_rate": 30,
+    "exp_to_give": 100
+  },
+  "moveset": {
+    "Attacks": [
+      {
+        "name": "Leg Drop",
+        "power": 10,
+        "cost": 2,
+        "type": "attack"
+      },
+      {
+        "name": "Clothesline",
+        "power": 15,
+        "cost": 16,
+        "type": "attack"
+      }
+    ],
+    "Items": [
+      {
+        "name": "Bandaid - HP+25",
+        "hp": 25,
+        "type": "restore_hp",
+        "message": "Player used Bandaid",
+        "qty": 3
+      },
+      {
+        "name": "Beer - MP+10",
+        "mp": 25,
+        "type": "restore_mp",
+        "message": "Player used Beer",
+        "qty": 3
+      }
+    ],
+    "Tag Partner": [
+      {
+        "name": "Tag Partner",
+        "type": "tag",
+        "message": "Player tagged"
+      }
+    ],
+    "Run": [
+      {
+        "name": "Run",
+        "type": "run",
+        "message": "Player tried running"
+      }
+    ]
+  },
+  "dialog": {
+    "start": {
+      "text": "Brother stares you down.",
+      "next": "options"
+    },
+    "options": {
+      "options": {
+        "1": {
+          "text": "I'm here to fight. Let's do this.",
+          "next": "fight"
+        },
+        "2": {
+          "text": "Not lookin' for trouble.",
+          "next": "no_fight"
+        },
+        "3": {
+          "text": "Who are you, anyway?",
+          "next": "who"
+        },
+        "4": {
+          "text": "What is this place?",
+          "next": "where"
+        }
+      }
+    },
+    "who": {
+      "text": "Brother: 'Name's Brother. King of the Backyard. Ain't nobody throws a slam like me.'",
+      "next": "options"
+    },
+    "where": {
+      "text": "Brother: 'This here's The Yard. Broken fences, busted dreams, and a whole lotta bruised egos.'",
+      "next": "options"
+    },
+    "fight": {
+      "text": "Brother: 'HA! Now you're speakin' my language!'",
+      "action": "start_battle"
+    },
+    "no_fight": {
+      "text": "Brother: 'Tch... Figures. Come back when you grow a spine.'",
+      "action": "end_dialogue"
+    }
+  }
+}

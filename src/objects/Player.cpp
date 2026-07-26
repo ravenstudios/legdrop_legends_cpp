@@ -2,7 +2,7 @@
 #include "../Map.h"
 
 Player::Player(float x, float y)
-    : MainEntity("player", x, y)
+    : MainEntity("src/assets/images/manager-Sheet.png", x, y)
 {
 
 }

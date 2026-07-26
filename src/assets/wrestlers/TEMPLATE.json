@@ -1,0 +1,98 @@
+{
+  "id": "",
+  "name": "",
+  "class": "",
+
+  "sprite": "",
+  "battle_sprite": "",
+
+  "song": "",
+
+  "max_frame": 4,
+  "can_walk": false,
+
+  "stats": {
+    "level": 1,
+    "exp": 0,
+    "speed": 0,
+    "power": 0,
+    "defense": 0,
+    "technique": 0,
+    "charisma": 0,
+    "luck": 0,
+    "powder_rate": 0,
+    "exp_to_give": 0
+  },
+
+  "moveset": {
+    "Attacks": [
+      {
+        "name": "",
+        "power": 0,
+        "cost": 0,
+        "type": "attack"
+      }
+    ],
+
+    "Items": [
+      {
+        "name": "",
+        "hp": 0,
+        "mp": 0,
+        "type": "",
+        "message": "",
+        "qty": 0
+      }
+    ],
+
+    "Tag Partner": [
+      {
+        "name": "Tag Partner",
+        "type": "tag",
+        "message": ""
+      }
+    ],
+
+    "Run": [
+      {
+        "name": "Run",
+        "type": "run",
+        "message": ""
+      }
+    ]
+  },
+
+  "dialog": {
+    "start": {
+      "text": "",
+      "next": "options"
+    },
+
+    "options": {
+      "options": {
+        "1": {
+          "text": "",
+          "next": ""
+        },
+        "2": {
+          "text": "",
+          "next": ""
+        },
+        "3": {
+          "text": "",
+          "next": ""
+        }
+      }
+    },
+
+    "node_name": {
+      "text": "",
+      "next": ""
+    },
+
+    "action_node": {
+      "text": "",
+      "action": ""
+    }
+  }
+}

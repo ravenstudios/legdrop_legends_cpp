@@ -1,0 +1,102 @@
+{
+  "id": "angel",
+  "name": "Angel",
+  "class": "Brawler",
+  "sprite": "Angel16x16-Sheet.png",
+  "battle_sprite": "Angel32x32-Sheet.png",
+  "song": "Angel_theme.mp3",
+  "max_frame": 15,
+  "can_walk": false,
+  "stats": {
+    "level": 1,
+    "exp": 0,
+    "speed": 50,
+    "power": 51,
+    "defense": 53,
+    "technique": 56,
+    "charisma": 50,
+    "luck": 10,
+    "powder_rate": 30,
+    "exp_to_give": 100
+  },
+  "moveset": {
+    "Attacks": [
+      {
+        "name": "Angel Drop",
+        "power": 10,
+        "cost": 2,
+        "type": "attack"
+      },
+      {
+        "name": "Winged Lariat",
+        "power": 15,
+        "cost": 16,
+        "type": "attack"
+      }
+    ],
+    "Items": [
+      {
+        "name": "Bandaid - HP+25",
+        "hp": 25,
+        "type": "restore_hp",
+        "message": "Player used Bandaid",
+        "qty": 3
+      },
+      {
+        "name": "Beer - MP+10",
+        "mp": 25,
+        "type": "restore_mp",
+        "message": "Player used Beer",
+        "qty": 3
+      }
+    ],
+    "Tag Partner": [
+      {
+        "name": "Tag Partner",
+        "type": "tag",
+        "message": "Player tagged"
+      }
+    ],
+    "Run": [
+      {
+        "name": "Run",
+        "type": "run",
+        "message": "Player tried running"
+      }
+    ]
+  },
+  "dialog": {
+    "start": {
+      "text": "Angel stares you down.",
+      "next": "options"
+    },
+    "options": {
+      "options": {
+        "1": {
+          "text": "I'm sending you back to heaven.",
+          "next": "fight"
+        },
+        "2": {
+          "text": "Yeah, I'm gonna go...",
+          "next": "no_fight"
+        },
+        "3": {
+          "text": "Who or what are you, anyway?",
+          "next": "who"
+        }
+      }
+    },
+    "who": {
+      "text": "Angel: 'I'm Angel. Did yoots know I only graduated fifth grade?'",
+      "next": "options"
+    },
+    "fight": {
+      "text": "Angel: 'This ass-kicking has wings, boy!'",
+      "action": "start_battle"
+    },
+    "no_fight": {
+      "text": "Angel: 'Fly away now.'",
+      "action": "end_dialogue"
+    }
+  }
+}

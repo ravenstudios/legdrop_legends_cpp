@@ -1,0 +1,44 @@
+{
+  "id": "clerk",
+  "name": "Clerk",
+  "sprite": "clerk-Sheet.png",
+  "can_walk": false,
+  "song": "",
+  "class": "",
+  "battle_sprite": "",
+  "max_frame": "",
+  "dialog": {
+    "start": {
+      "text": "Clerk: Uhh... like... can I... uh... like, what do you want?",
+      "next": "options"
+    },
+    "options": {
+      "options": {
+        "1": {
+          "text": "Show me what you're selling.",
+          "next": "store"
+        },
+        "2": {
+          "text": "You good, bro?",
+          "next": "good"
+        },
+        "3": {
+          "text": "Thanks, I'll be going now.",
+          "next": "leave"
+        }
+      }
+    },
+    "store": {
+      "text": "Clerk: Yeah, man. Here's what we got.",
+      "action": "store"
+    },
+    "good": {
+      "text": "Clerk: I think so, but my bump card is full.",
+      "next": "options"
+    },
+    "leave": {
+      "text": "Clerk: Remember, man... tuck your chin.",
+      "action": "end_dialogue"
+    }
+  }
+}

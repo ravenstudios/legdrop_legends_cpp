@@ -1,13 +1,16 @@
 #pragma once
 #include "MainEntity.h"
+#include <string>
+#include <nlohmann/json.hpp>
 
 class Map;
 
 class NPC : public MainEntity{
     public:
-        NPC(float x, float y, const char* path, bool canWalk);
+        NPC(float x, float y, std::string path, bool canWalk);
         void Update(Map* map) override;
-
+        nlohmann::json GetDialog() const;
+        
     private:
         
         float m_WalkDuration = 0.75f;
@@ -25,5 +28,13 @@ class NPC : public MainEntity{
         bool m_CanWalk = true;
         void ChooseRandomMovement();
         void StopMoving();
+        void LoadNPC(std::string& npcType);
+        std::string GetNPC(const std::string& npcName);
+        nlohmann::json m_Dialogue;
+        std::string m_Name;
+        std::string m_Class;
+        std::string m_BattleSprite;
+        
+
 };      
 

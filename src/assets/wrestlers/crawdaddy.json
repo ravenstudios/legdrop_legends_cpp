@@ -1,0 +1,87 @@
+{
+  "id": "crawdaddy",
+  "name": "Crawdaddy",
+  "class": "Brawler",
+  "sprite": "cradaddy2_16x16-Sheet.png",
+  "battle_sprite": "crawdaddy_32x32-Sheet.png",
+  "song": "crawdaddy_theme.mp3",
+  "max_frame": 20,
+  "can_walk": false,
+  "stats": {
+    "level": 1,
+    "exp": 0,
+    "speed": 60,
+    "power": 60,
+    "defense": 45,
+    "technique": 35,
+    "charisma": 30,
+    "luck": 5,
+    "powder_rate": 25,
+    "exp_to_give": 100
+  },
+  "moveset": {
+    "Attacks": [
+      {
+        "name": "Claw Swipe",
+        "power": 12,
+        "cost": 3,
+        "type": "attack"
+      },
+      {
+        "name": "Shell Slam",
+        "power": 18,
+        "cost": 10,
+        "type": "attack"
+      }
+    ],
+    "Items": [],
+    "Tag Partner": [
+      {
+        "name": "Tag Partner",
+        "type": "tag",
+        "message": "Player tagged"
+      }
+    ],
+    "Run": [
+      {
+        "name": "Run",
+        "type": "run",
+        "message": "Player tried running"
+      }
+    ]
+  },
+  "dialog": {
+    "start": {
+      "text": "Crawdaddy clicks his claws menacingly.",
+      "next": "options"
+    },
+    "options": {
+      "options": {
+        "1": {
+          "text": "Let's wrestle.",
+          "next": "fight"
+        },
+        "2": {
+          "text": "I'll pass.",
+          "next": "no_fight"
+        },
+        "3": {
+          "text": "Who are you?",
+          "next": "who"
+        }
+      }
+    },
+    "who": {
+      "text": "Crawdaddy: 'Name's Crawdaddy. King of the Swamp Slams.'",
+      "next": "options"
+    },
+    "fight": {
+      "text": "Crawdaddy: 'Time to boil some trouble!'",
+      "action": "start_battle"
+    },
+    "no_fight": {
+      "text": "Crawdaddy: 'Then scurry away, little guppy.'",
+      "action": "end_dialogue"
+    }
+  }
+}

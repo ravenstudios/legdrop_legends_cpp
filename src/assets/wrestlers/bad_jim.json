@@ -1,0 +1,87 @@
+{
+  "id": "bad_jim",
+  "name": "Bad Jim",
+  "class": "Brawler",
+  "sprite": "bad jim-Sheet.png",
+  "battle_sprite": "bad_jim_32x32-Sheet.png",
+  "song": "bad_jim_theme.mp3",
+  "max_frame": 27,
+  "can_walk": false,
+  "stats": {
+    "level": 1,
+    "exp": 0,
+    "speed": 60,
+    "power": 60,
+    "defense": 45,
+    "technique": 35,
+    "charisma": 30,
+    "luck": 5,
+    "powder_rate": 25,
+    "exp_to_give": 100
+  },
+  "moveset": {
+    "Attacks": [
+      {
+        "name": "Bad Kick",
+        "power": 12,
+        "cost": 3,
+        "type": "attack"
+      },
+      {
+        "name": "Bad Punch",
+        "power": 18,
+        "cost": 10,
+        "type": "attack"
+      }
+    ],
+    "Items": [],
+    "Tag Partner": [
+      {
+        "name": "Tag Partner",
+        "type": "tag",
+        "message": "Player tagged"
+      }
+    ],
+    "Run": [
+      {
+        "name": "Run",
+        "type": "run",
+        "message": "Player tried running"
+      }
+    ]
+  },
+  "dialog": {
+    "start": {
+      "text": "Bad Jim stands there looking bad.",
+      "next": "options"
+    },
+    "options": {
+      "options": {
+        "1": {
+          "text": "I'm badder.",
+          "next": "fight"
+        },
+        "2": {
+          "text": "Too bad for my taste.",
+          "next": "no_fight"
+        },
+        "3": {
+          "text": "Who are you?",
+          "next": "who"
+        }
+      }
+    },
+    "who": {
+      "text": "Bad Jim: 'Bad Jim. Born bad, live bad, die bad!! Wait... maybe die good?'",
+      "next": "options"
+    },
+    "fight": {
+      "text": "Bad Jim: 'I'm bad to the bone, and now it's time to break yours!'",
+      "action": "start_battle"
+    },
+    "no_fight": {
+      "text": "Bad Jim: 'Come on, man! I need to fill my bad card.'",
+      "action": "end_dialogue"
+    }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "id": "clown",
+  "name": "Clown",
+  "class": "Trickster",
+  "sprite": "clown_16x16-Sheet.png",
+  "battle_sprite": "clown_32x32.png",
+  "song": "clown_theme.mp3",
+  "max_frame": 1,
+  "can_walk": false,
+  "stats": {
+    "level": 1,
+    "exp": 0,
+    "speed": 60,
+    "power": 40,
+    "defense": 30,
+    "technique": 55,
+    "charisma": 70,
+    "luck": 20,
+    "powder_rate": 15,
+    "exp_to_give": 100
+  },
+  "moveset": {
+    "Attacks": [
+      {
+        "name": "Pie Bomb",
+        "power": 10,
+        "cost": 3,
+        "type": "attack"
+      },
+      {
+        "name": "Seltzer Spray",
+        "power": 8,
+        "cost": 2,
+        "type": "attack"
+      },
+      {
+        "name": "Balloon Slam",
+        "power": 15,
+        "cost": 7,
+        "type": "attack"
+      }
+    ],
+    "Items": [],
+    "Tag Partner": [
+      {
+        "name": "Tag Partner",
+        "type": "tag",
+        "message": "Player tagged"
+      }
+    ],
+    "Run": [
+      {
+        "name": "Run",
+        "type": "run",
+        "message": "Player tried running"
+      }
+    ]
+  },
+  "dialog": {
+    "start": {
+      "text": "A clown pops out of nowhere, honking his nose!",
+      "next": "options"
+    },
+    "options": {
+      "options": {
+        "1": {
+          "text": "You look ridiculous. Fight me.",
+          "next": "fight"
+        },
+        "2": {
+          "text": "I'm not in the mood for this.",
+          "next": "no_fight"
+        },
+        "3": {
+          "text": "What's your deal?",
+          "next": "who"
+        }
+      }
+    },
+    "who": {
+      "text": "Clown: 'They call me Giggles. But I fight dirty.' *honk*",
+      "next": "options"
+    },
+    "fight": {
+      "text": "Clown: 'Time to paint the mat with your tears!'",
+      "action": "start_battle"
+    },
+    "no_fight": {
+      "text": "Clown: 'Boooo! You're no fun!'",
+      "action": "end_dialogue"
+    }
+  }
+}

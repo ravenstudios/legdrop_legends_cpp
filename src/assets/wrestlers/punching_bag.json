@@ -1,0 +1,73 @@
+{
+  "id": "punching_bag",
+  "name": "Punching Bag",
+  "class": "Training",
+  "sprite": "16x16_blank.png",
+  "battle_sprite": "Brother16x16-Sheet.png",
+  "song": "brother_theme.mp3",
+  "max_frame": 0,
+  "can_walk": false,
+  "stats": {
+    "level": 1,
+    "exp": 0,
+    "speed": 10,
+    "power": 10,
+    "defense": 80,
+    "technique": 5,
+    "charisma": 0,
+    "luck": 0,
+    "powder_rate": 0,
+    "exp_to_give": 100
+  },
+  "moveset": {
+    "Attacks": [
+      {
+        "name": "Do Nothing",
+        "power": 0,
+        "cost": 0,
+        "type": "attack"
+      }
+    ],
+    "Items": [],
+    "Tag Partner": [
+      {
+        "name": "Tag Partner",
+        "type": "tag",
+        "message": "Player tagged"
+      }
+    ],
+    "Run": [
+      {
+        "name": "Run",
+        "type": "run",
+        "message": "Player tried running"
+      }
+    ]
+  },
+  "dialog": {
+    "start": {
+      "text": "The Punching Bag just wobbles silently.",
+      "next": "options"
+    },
+    "options": {
+      "options": {
+        "1": {
+          "text": "Punch it.",
+          "next": "fight"
+        },
+        "2": {
+          "text": "Walk away.",
+          "next": "no_fight"
+        }
+      }
+    },
+    "fight": {
+      "text": "You throw a punch at the bag. It barely moves.",
+      "action": "start_battle"
+    },
+    "no_fight": {
+      "text": "You leave the bag alone. It continues wobbling.",
+      "action": "end_dialogue"
+    }
+  }
+}

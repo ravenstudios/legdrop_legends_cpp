@@ -3,44 +3,13 @@
 #include "../Map.h"
 
 #include <string>
-#include <unordered_map>
 
 
 
-std::string GetNPCImagePath(const std::string& npcName){
-    static const std::unordered_map<std::string, std::string> npcImages = {
-        {"player", "manager-Sheet.png"},
-        {"crawdaddy", "cradaddy2_16x16-Sheet.png"},
-        {"brother", "Brother16x16-Sheet.png"},
-        {"clown", "clown_16x16-Sheet.png"},
-        {"angel", "Angel16x16-Sheet.png"},
-        {"mr_murica", "Mr Murica-Sheet.png"},
-        {"jukebox", "jukebox.png"},
-        {"bad_jim", "bad jim-Sheet.png"},
-        {"nurse", "Nurse-Sheet.png"},
-        {"clerk", "clerk-Sheet.png"},
-        {"punching_bag", "16x16_blank.png"}
-
-
-    };
-
-    auto found = npcImages.find(npcName);
-
-    if (found == npcImages.end())
-    {
-        return "src/assets/images/16x16_blank.png";
-    }
-    std::string path = "src/assets/images/" + found->second;
-    return path;
-}
-
-
-MainEntity::MainEntity(const char* npcType, float x, float y)
+MainEntity::MainEntity(const char* imagePath, float x, float y)
     : m_AnimationTimer(m_AnimationSpeed)
 {
-    LOG(npcType);
-    std::string imagePath = GetNPCImagePath(npcType);
-    m_Texture = LoadTexture(imagePath.c_str());
+    m_Texture = LoadTexture(imagePath);
     m_Rect.x = x;
     m_Rect.y = y;
     m_Rect.width = BLOCK_SIZE;

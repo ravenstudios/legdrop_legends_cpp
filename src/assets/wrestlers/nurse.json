@@ -1,0 +1,53 @@
+{
+  "id": "nurse",
+  "name": "Nurse",
+  "sprite": "Nurse-Sheet.png",
+  "can_walk": false,
+    "song": "",
+  "class": "",
+  "battle_sprite": "",
+  "max_frame": "",
+  "dialog": {
+    "start": {
+      "text": "Nurse: Hello! I'm the nurse. What do you need help with?",
+      "next": "options"
+    },
+    "options": {
+      "options": {
+        "1": {
+          "text": "I'm injured.",
+          "next": "heal"
+        },
+        "2": {
+          "text": "Are you single?",
+          "next": "single"
+        },
+        "3": {
+          "text": "Does this cost money?",
+          "next": "cost"
+        },
+        "4": {
+          "text": "Thanks, I'll be going now.",
+          "next": "leave"
+        }
+      }
+    },
+    "heal": {
+      "text": "Nurse: Just relax and we'll get you fixed up.",
+      "action": "heal",
+      "next": "options"
+    },
+    "single": {
+      "text": "Nurse: Aww, that's so cute, but aren't you just a kid?",
+      "next": "options"
+    },
+    "cost": {
+      "text": "Nurse: No. We hope to be able to say we helped heal the next superstar.",
+      "next": "options"
+    },
+    "leave": {
+      "text": "Nurse: Be careful. Doing high spots on trampolines can cause injuries.",
+      "action": "end_dialogue"
+    }
+  }
+}

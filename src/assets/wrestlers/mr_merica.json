@@ -1,0 +1,102 @@
+{
+  "id": "mr_murica",
+  "name": "Mr Murica",
+  "class": "Brawler",
+  "sprite": "Mr Murica-Sheet.png",
+  "battle_sprite": "mr_murica32x32-Sheet.png",
+  "song": "mr_murica_theme.mp3",
+  "max_frame": 40,
+  "can_walk": false,
+  "stats": {
+    "level": 1,
+    "exp": 0,
+    "speed": 50,
+    "power": 51,
+    "defense": 53,
+    "technique": 56,
+    "charisma": 50,
+    "luck": 10,
+    "powder_rate": 30,
+    "exp_to_give": 100
+  },
+  "moveset": {
+    "Attacks": [
+      {
+        "name": "Leg Drop",
+        "power": 10,
+        "cost": 2,
+        "type": "attack"
+      },
+      {
+        "name": "Clothesline",
+        "power": 15,
+        "cost": 16,
+        "type": "attack"
+      }
+    ],
+    "Items": [
+      {
+        "name": "Bandaid - HP+25",
+        "hp": 25,
+        "type": "restore_hp",
+        "message": "Player used Bandaid",
+        "qty": 3
+      },
+      {
+        "name": "Beer - MP+10",
+        "mp": 25,
+        "type": "restore_mp",
+        "message": "Player used Beer",
+        "qty": 3
+      }
+    ],
+    "Tag Partner": [
+      {
+        "name": "Tag Partner",
+        "type": "tag",
+        "message": "Player tagged"
+      }
+    ],
+    "Run": [
+      {
+        "name": "Run",
+        "type": "run",
+        "message": "Player tried running"
+      }
+    ]
+  },
+  "dialog": {
+    "start": {
+      "text": "MURICA!! LOVE IT OR LEAVE IT.",
+      "next": "options"
+    },
+    "options": {
+      "options": {
+        "1": {
+          "text": "I'm here to fight. Let's do this.",
+          "next": "fight"
+        },
+        "2": {
+          "text": "Not lookin' for trouble.",
+          "next": "no_fight"
+        },
+        "3": {
+          "text": "Who are you, anyway?",
+          "next": "who"
+        }
+      }
+    },
+    "who": {
+      "text": "Mr. Murica: 'I'm Mr. Murica. I love this country and fight for her.'",
+      "next": "options"
+    },
+    "fight": {
+      "text": "Mr. Murica: 'I'm gonna beat you like we beat Gerry in WW2!'",
+      "action": "start_battle"
+    },
+    "no_fight": {
+      "text": "Mr. Murica: 'Salute the flag as you walk away.'",
+      "action": "end_dialogue"
+    }
+  }
+}

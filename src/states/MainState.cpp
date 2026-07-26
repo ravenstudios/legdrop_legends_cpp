@@ -32,8 +32,9 @@ void MainState::Draw(){
     BeginMode2D(m_Camera);
     m_Map.Draw();
     m_Player.Draw();
-    m_DialogWindow.Draw();
+    
     EndMode2D();
+    m_DialogWindow.Draw();
 }
 
 
