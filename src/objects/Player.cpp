@@ -12,7 +12,6 @@ Player::Player(float x, float y)
 void Player::Update(Map* map){
     m_Map = map;
     MainEntity::Update(map);
-    Input();
     Walk();
     CheckDoorCollision();
 
@@ -21,21 +20,26 @@ void Player::Update(Map* map){
 
 void Player::Draw(){
     MainEntity::Draw();
-    if(m_IsTalking){
-      DrawRectangle(m_TalkHitBox.x, m_TalkHitBox.y, m_TalkHitBox.width, m_TalkHitBox.height, RED);
-    }
+    // if(m_IsTalking){
+    //   DrawRectangle(m_TalkHitBox.x, m_TalkHitBox.y, m_TalkHitBox.width, m_TalkHitBox.height, RED);
+    // }
 }
 
-void Player::Input(){
-    m_Directions.up = IsKeyDown(KEY_W);
-    m_Directions.down = IsKeyDown(KEY_S);
-    m_Directions.left = IsKeyDown(KEY_A);
-    m_Directions.right = IsKeyDown(KEY_D);
-    if(IsKeyPressed(KEY_SPACE)){
-      Talk();
-    }
-
+void Player::Input(InputState inputState){
+      m_Directions.up = inputState.up;
+      m_Directions.down = inputState.down;
+      m_Directions.left = inputState.left;
+      m_Directions.right = inputState.right;
 }
+
+void Player::ClearInput(){
+      m_Directions.up = false;
+      m_Directions.down = false;
+      m_Directions.left = false;
+      m_Directions.right = false;
+      m_TalkHitBox = {};
+}
+
 
 void Player::Walk(){
   if (m_Directions.up){
@@ -80,11 +84,11 @@ void Player::Talk(){
   for (const auto& npc : m_Map->GetNPCs()) {
     if (CheckCollisionRecs(m_TalkHitBox, npc->GetRect())) {
         m_IsTalking = true;
-         
-        LOG("talking");
+        m_CurrentNPC = npc.get();
+        return;
     }
   }
-
+  m_CurrentNPC = nullptr;
 }
 
 
@@ -130,3 +134,12 @@ Rectangle Player::GetTalkHitBox(){
   }
   return {0, 0, 0, 0};
 }
+
+
+NPC* Player::GetCurrentNPC(){
+  return m_CurrentNPC;
+}
+
+ bool Player::GetInDialog() const{
+  return m_InDialog;
+ }

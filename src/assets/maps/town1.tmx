@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="44" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="48">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="44" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="49">
  <editorsettings>
   <export target="../../../../../Documents/python_projects/skateboarding_game_python/assets/maps/town1.tmx" format="tmx"/>
  </editorsettings>
@@ -305,6 +305,12 @@
    <properties>
     <property name="can_walk" type="bool" value="true"/>
     <property name="npc_type" value="mr_murica"/>
+   </properties>
+  </object>
+  <object id="48" x="559.639" y="93.0025">
+   <properties>
+    <property name="can_walk" type="bool" value="false"/>
+    <property name="npc_type" value="clown"/>
    </properties>
   </object>
  </objectgroup>

@@ -1,5 +1,7 @@
 #pragma once
 #include "MainEntity.h"
+#include "NPC.h"
+#include "../core/Input.h"
 
 
 
@@ -10,18 +12,24 @@ class Player : public MainEntity{
         Player(float x, float y);
         void Update(Map* map) override;
         void Draw() override;
-        void Input();
-        void Walk();
+        void Input(InputState inputState);
+        bool GetInDialog() const;
         void Talk();
-        void CheckDoorCollision();
+        void ClearInput();
+       
         Rectangle GetTalkHitBox();
-
+        NPC* GetCurrentNPC();
 
     private:
+        void Walk();
+        void CheckDoorCollision();
         Vector2 m_LastPOS;
         bool m_IsTalking = false;
         bool m_InDialog = false;
         Rectangle m_TalkHitBox;
         Map* m_Map;
+        NPC* m_CurrentNPC;
+
+
 
 };

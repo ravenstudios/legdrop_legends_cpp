@@ -50,7 +50,7 @@
         },
         "clinic.tmx": {
             "scale": 2.845052083333333,
-            "selectedLayer": 4,
+            "selectedLayer": 6,
             "viewCenter": {
                 "x": 96.13180778032039,
                 "y": 167.83524027459956
@@ -88,6 +88,7 @@
         },
         "store.tmx": {
             "expandedObjectLayers": [
+                8,
                 7,
                 6
             ],
@@ -137,11 +138,11 @@
                 7,
                 6
             ],
-            "scale": 1.47,
-            "selectedLayer": 6,
+            "scale": 2.4623,
+            "selectedLayer": 8,
             "viewCenter": {
-                "x": 581.9727891156463,
-                "y": 92.85714285714286
+                "x": 546.4403200259919,
+                "y": 81.02180887787841
             }
         },
         "town1.tmx#Town1_tileset": {
