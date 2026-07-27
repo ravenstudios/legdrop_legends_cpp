@@ -11,8 +11,9 @@ StateManager::StateManager()
     m_MainState(this),
     m_BattleState(this),
     m_CurrentState(&m_MainState)
+    
 {
-
+SwitchToBattleState();
     
 }
 

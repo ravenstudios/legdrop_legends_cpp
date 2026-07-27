@@ -3,9 +3,12 @@
 
 Player::Player()
     : MainEntity("src/assets/images/manager-Sheet.png"),
-    m_CurrentWrestler(NPC(0, 0, "bad_jim", false)) 
+    m_CurrentWrestler(NPC(0, 0, "bad_jim", false)),
+    TEST_WRESTLER(NPC(0, 0, "crawdaddy", false))
+    
 {
   m_BattleImagePath = "src/assets/images/crawdaddy_32x32-Sheet.png";
+  m_CurrentNPC = &TEST_WRESTLER;
 }
 
 

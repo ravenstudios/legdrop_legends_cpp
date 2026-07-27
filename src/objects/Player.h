@@ -30,6 +30,7 @@ class Player : public MainEntity{
         Rectangle m_TalkHitBox;
         Map* m_Map;
         NPC* m_CurrentNPC;
+        NPC TEST_WRESTLER;
         NPC m_CurrentWrestler;
 
 
