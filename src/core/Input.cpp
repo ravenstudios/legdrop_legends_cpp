@@ -13,6 +13,8 @@ void Input::Update(){
 
     m_InputState.upPressed = IsKeyPressed(KEY_W);
     m_InputState.downPressed = IsKeyPressed(KEY_S);
+    m_InputState.leftPressed = IsKeyPressed(KEY_A);
+    m_InputState.rightPressed = IsKeyPressed(KEY_D);
     m_InputState.action = IsKeyPressed(KEY_SPACE);
     m_InputState.cancel = IsKeyPressed(KEY_Z);
 }

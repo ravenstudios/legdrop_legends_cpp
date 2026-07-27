@@ -43,8 +43,8 @@ struct Data{
     int maxHp = 100;
     int maxMp = 50;
     Stats stats; 
-    std::vector<Attack> m_Attacks; 
-    std::vector<Item> m_Items;
+    std::vector<Attack> attacks; 
+    std::vector<Item> items;
 };
 
 

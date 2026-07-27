@@ -7,6 +7,7 @@
 #include "BattleHealthBar.h"
 #include "BattleDialog.h"
 #include "BattleMenu.h"
+#include "../core/Input.h"
 
 
 class BattleUI{
@@ -16,6 +17,7 @@ class BattleUI{
         void Update();
         void Draw();
         void StartBattle(NPC* npc);
+        void UpdateInput(InputState* inputState);
 
 
     private:

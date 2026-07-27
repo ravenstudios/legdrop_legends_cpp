@@ -31,3 +31,8 @@ void Battle::StartBattle(NPC* npc){
     m_NPC = npc;
     m_BattleUI.StartBattle(npc);
 }
+
+
+void Battle::UpdateInput(InputState* inputState){
+    m_BattleUI.UpdateInput(inputState);
+}

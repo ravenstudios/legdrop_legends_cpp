@@ -23,9 +23,7 @@ void BattleState::Update(){
 }
 
 void BattleState::UpdateInput(InputState* inputState){
-    if(inputState->action){
-        m_StateManagerPtr->SwitchToMainState();
-    }
+    m_Battle.UpdateInput(inputState);
 }
     
 

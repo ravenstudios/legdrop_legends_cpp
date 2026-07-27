@@ -191,7 +191,7 @@ void NPC::LoadNPC(std::string& npcType){
         std::string type = attack["type"];
 
         Attack a{name, power, cost, type};
-       m_Data.m_Attacks.emplace_back(a);
+       m_Data.attacks.emplace_back(a);
     }
 
     auto& items = data["items"];
@@ -203,7 +203,7 @@ void NPC::LoadNPC(std::string& npcType){
         int qty = item["qty"];
 
         Item i{name, hp, type, message, qty};
-        m_Data.m_Items.emplace_back(i);
+        m_Data.items.emplace_back(i);
     }
 
     }

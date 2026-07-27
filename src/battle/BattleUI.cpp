@@ -87,3 +87,8 @@ void BattleUI::StartBattle(NPC* npc){
     m_CpuFrame = 0;
     m_CpuAnimationTimer.Reset();
 }
+
+
+void BattleUI::UpdateInput(InputState* inputState){
+    m_BattleMenu.UpdateInput(inputState);
+}
