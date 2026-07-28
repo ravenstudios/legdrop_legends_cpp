@@ -14,7 +14,7 @@ void BattleMenu::Update(){
 }
 
 
-void BattleMenu::Action(){
+BattleMenuAction BattleMenu::Action(){
     switch (m_MenuLevel){
         case MenuLevel::Main:
             switch (m_selectedIndex){
@@ -28,6 +28,8 @@ void BattleMenu::Action(){
                     m_MenuLevel = MenuLevel::Bag;
                     m_selectedIndex = 0;
                     m_InBagMenu = true;
+                    LOG("items");
+                    LoadItems();
                     break;
 
                 case 2:
@@ -38,6 +40,7 @@ void BattleMenu::Action(){
 
                 case 3:
                     LOG("Run");
+                    return BattleMenuAction::Run;
                     break;
             }
             break;
@@ -68,6 +71,7 @@ void BattleMenu::Action(){
         case MenuLevel::Tag:
             break;
     }
+    return BattleMenuAction::None;
 }
 
 
@@ -82,24 +86,27 @@ void BattleMenu::MenuBack(){
 }
 
 
-void BattleMenu::UpdateInput(InputState* inputState){
+BattleMenuAction BattleMenu::UpdateInput(InputState* inputState){
     if(inputState->upPressed && (m_selectedIndex == 2 || m_selectedIndex == 3))m_selectedIndex -= 2;
     if(inputState->downPressed && (m_selectedIndex == 0 || m_selectedIndex == 1))m_selectedIndex += 2;
     if(inputState->leftPressed && (m_selectedIndex == 1 || m_selectedIndex == 3))m_selectedIndex--;
     if(inputState->rightPressed && (m_selectedIndex == 0 || m_selectedIndex == 2))m_selectedIndex++;
-    if(inputState->action)Action();
+    if(inputState->action){
+        BattleMenuAction action = Action();
+        if(action == BattleMenuAction::Run)return BattleMenuAction::Run;
+    }
     if(inputState->cancel)MenuBack();
+    return BattleMenuAction::None;
 }
 
 void BattleMenu::Draw(){
     if(m_InBagMenu){
-        LOG("items");
-        LoadItems();
         m_InTagMenu = false;
         DrawRectangleRec(m_BagRect, MAGENTA);
-
+        LOG(m_Items.size());
         for (int i = 0; i < m_Items.size(); i ++){
-            DrawText(m_Items[i].name.c_str(), m_BagRect.x, m_BagRect.y * m_FontSize * i, m_FontSize, BLACK);
+            LOG(i);
+            DrawText(m_Items[i].name.c_str(), m_BagRect.x, m_BagRect.y + m_FontSize * i, m_FontSize, BLACK);
         }
         
         return;
@@ -153,5 +160,5 @@ void BattleMenu::LoadItems(){
     for (size_t i = 0; i < items.size() && i < items.size(); i++) {
         m_Items.emplace_back(items[i]);
     }
-    
-}
+   
+}   

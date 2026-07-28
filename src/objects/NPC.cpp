@@ -157,7 +157,7 @@ void NPC::LoadNPC(std::string& npcType){
     try{
         file >> data;
     
-
+    LOG(data["name"]);
     std::string sprite = "src/assets/images/" + data["sprite"].get<std::string>();
     m_Texture = LoadTexture(sprite.c_str());
     std::string battleSprite = "src/assets/images/" + data["battle_sprite"].get<std::string>();
@@ -182,7 +182,7 @@ void NPC::LoadNPC(std::string& npcType){
     m_Data.stats.powder_rate = static_cast<int>(jStats["powder_rate"]);
     m_Data.stats.exp_to_give = static_cast<int>(jStats["exp_to_give"]);
 
-    auto& attacks = data["moveset"]["Attacks"];
+    auto& attacks = data["attacks"];
 
     for (const auto& attack : attacks){
         std::string name = attack["name"];
@@ -193,16 +193,19 @@ void NPC::LoadNPC(std::string& npcType){
         Attack a{name, power, cost, type};
        m_Data.attacks.emplace_back(a);
     }
-
+LOG("*************************************######################## itemss");
     auto& items = data["items"];
     for (const auto& item : items){   
+
         std::string name = item["name"];
-        int hp = item["hp"];
+        LOG(name);
+        int hp = item.value("hp", 0);
+        int mp = item.value("mp", 0);
         std::string type = item["type"];
         std::string message = item["message"];
         int qty = item["qty"];
 
-        Item i{name, hp, type, message, qty};
+        Item i{name, hp, mp, type, message, qty};
         m_Data.items.emplace_back(i);
     }
 

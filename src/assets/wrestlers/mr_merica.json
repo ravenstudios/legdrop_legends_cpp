@@ -19,8 +19,8 @@
     "powder_rate": 30,
     "exp_to_give": 100
   },
-  "moveset": {
-    "Attacks": [
+ 
+    "attacks": [
       {
         "name": "Leg Drop",
         "power": 10,
@@ -34,7 +34,7 @@
         "type": "attack"
       }
     ],
-    "Items": [
+    "items": [
       {
         "name": "Bandaid - HP+25",
         "hp": 25,
@@ -50,21 +50,7 @@
         "qty": 3
       }
     ],
-    "Tag Partner": [
-      {
-        "name": "Tag Partner",
-        "type": "tag",
-        "message": "Player tagged"
-      }
-    ],
-    "Run": [
-      {
-        "name": "Run",
-        "type": "run",
-        "message": "Player tried running"
-      }
-    ]
-  },
+   
   "dialog": {
     "start": {
       "text": "MURICA!! LOVE IT OR LEAVE IT.",

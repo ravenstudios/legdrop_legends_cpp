@@ -24,8 +24,8 @@
     "exp_to_give": 0
   },
 
-  "moveset": {
-    "Attacks": [
+
+    "attacks": [
       {
         "name": "",
         "power": 0,
@@ -34,7 +34,7 @@
       }
     ],
 
-    "Items": [
+    "items": [
       {
         "name": "",
         "hp": 0,
@@ -45,22 +45,7 @@
       }
     ],
 
-    "Tag Partner": [
-      {
-        "name": "Tag Partner",
-        "type": "tag",
-        "message": ""
-      }
-    ],
-
-    "Run": [
-      {
-        "name": "Run",
-        "type": "run",
-        "message": ""
-      }
-    ]
-  },
+   
 
   "dialog": {
     "start": {

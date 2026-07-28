@@ -19,8 +19,8 @@
     "powder_rate": 15,
     "exp_to_give": 100
   },
-  "moveset": {
-    "Attacks": [
+
+    "attacks": [
       {
         "name": "Pie Bomb",
         "power": 10,
@@ -40,22 +40,8 @@
         "type": "attack"
       }
     ],
-    "Items": [],
-    "Tag Partner": [
-      {
-        "name": "Tag Partner",
-        "type": "tag",
-        "message": "Player tagged"
-      }
-    ],
-    "Run": [
-      {
-        "name": "Run",
-        "type": "run",
-        "message": "Player tried running"
-      }
-    ]
-  },
+    "items": [],
+    
   "dialog": {
     "start": {
       "text": "A clown pops out of nowhere, honking his nose!",

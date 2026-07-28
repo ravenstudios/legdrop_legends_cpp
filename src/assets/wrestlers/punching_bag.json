@@ -19,8 +19,8 @@
     "powder_rate": 0,
     "exp_to_give": 100
   },
-  "moveset": {
-    "Attacks": [
+
+    "attacks": [
       {
         "name": "Do Nothing",
         "power": 0,
@@ -28,22 +28,8 @@
         "type": "attack"
       }
     ],
-    "Items": [],
-    "Tag Partner": [
-      {
-        "name": "Tag Partner",
-        "type": "tag",
-        "message": "Player tagged"
-      }
-    ],
-    "Run": [
-      {
-        "name": "Run",
-        "type": "run",
-        "message": "Player tried running"
-      }
-    ]
-  },
+    "items": [],
+   
   "dialog": {
     "start": {
       "text": "The Punching Bag just wobbles silently.",

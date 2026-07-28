@@ -18,22 +18,23 @@
     "powder_rate": 30,
     "exp_to_give": 100
   },
-  "moveset": {
-    "Attacks": [
-      {
-        "name": "Leg Drop",
-        "power": 10,
-        "cost": 2,
-        "type": "attack"
-      },
-      {
-        "name": "Clothesline",
-        "power": 15,
-        "cost": 16,
-        "type": "attack"
-      }
-    ],
-    "Items": [
+  
+  "attacks": [
+    {
+      "name": "Leg Drop",
+      "power": 10,
+      "cost": 2,
+      "type": "attack"
+    },
+    {
+      "name": "Clothesline",
+      "power": 15,
+      "cost": 16,
+      "type": "attack"
+    }
+  ],
+    
+  "items": [
       {
         "name": "Bandaid - HP+25",
         "hp": 25,
@@ -49,21 +50,7 @@
         "qty": 3
       }
     ],
-    "Tag Partner": [
-      {
-        "name": "Tag Partner",
-        "type": "tag",
-        "message": "Player tagged"
-      }
-    ],
-    "Run": [
-      {
-        "name": "Run",
-        "type": "run",
-        "message": "Player tried running"
-      }
-    ]
-  },
+
   "dialog": {
     "start": {
       "text": "Brother stares you down.",

@@ -3,6 +3,9 @@
 #include "../objects/NPC.h"
 #include "BattleUI.h"
 #include "../core/Input.h"
+#include "BattleMenuAction.h"
+
+
 
 class Battle{
     public:
@@ -10,7 +13,7 @@ class Battle{
         void Update();
         void Draw();
         void StartBattle(NPC* npc);
-        void UpdateInput(InputState* inputState);
+        BattleMenuAction UpdateInput(InputState* inputState);
         
 
 

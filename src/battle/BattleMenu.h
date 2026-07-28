@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include "../core/Input.h"
+#include "BattleMenuAction.h"
 
 enum class MenuLevel{
     Main,
@@ -20,8 +21,8 @@ class BattleMenu{
         BattleMenu(Rectangle rect, Player* player);
         void Update();
         void Draw();
-        void UpdateInput(InputState* inputState);
-        void Action();
+        BattleMenuAction UpdateInput(InputState* inputState);
+        BattleMenuAction Action();
         void MenuBack();
 
 

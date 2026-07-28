@@ -30,6 +30,7 @@ struct Attack{
 struct Item{
     std::string name;
     int hp;
+    int mp;
     std::string type;
     std::string message;
     int qty;

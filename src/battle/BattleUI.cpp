@@ -89,6 +89,6 @@ void BattleUI::StartBattle(NPC* npc){
 }
 
 
-void BattleUI::UpdateInput(InputState* inputState){
-    m_BattleMenu.UpdateInput(inputState);
+BattleMenuAction BattleUI::UpdateInput(InputState* inputState){
+    return m_BattleMenu.UpdateInput(inputState);
 }

@@ -19,37 +19,37 @@
     "powder_rate": 25,
     "exp_to_give": 100
   },
-  "moveset": {
-    "Attacks": [
-      {
-        "name": "Bad Kick",
-        "power": 12,
-        "cost": 3,
-        "type": "attack"
-      },
-      {
-        "name": "Bad Punch",
-        "power": 18,
-        "cost": 10,
-        "type": "attack"
-      }
-    ],
-    "Items": [],
-    "Tag Partner": [
-      {
-        "name": "Tag Partner",
-        "type": "tag",
-        "message": "Player tagged"
-      }
-    ],
-    "Run": [
-      {
-        "name": "Run",
-        "type": "run",
-        "message": "Player tried running"
-      }
-    ]
-  },
+
+  "attacks": [
+    {
+      "name": "Bad Kick",
+      "power": 12,
+      "cost": 3,
+      "type": "attack"
+    },
+    {
+      "name": "Bad Punch",
+      "power": 18,
+      "cost": 10,
+      "type": "attack"
+    }
+  ],
+  "items": [
+    {
+      "name": "Bandaid - HP+25",
+      "hp": 25,
+      "type": "restore_hp",
+      "message": "Player used Bandaid",
+      "qty": 3
+    },
+    {
+      "name": "Beer - MP+10",
+      "mp": 25,
+      "type": "restore_mp",
+      "message": "Player used Beer",
+      "qty": 3
+    }
+  ],
   "dialog": {
     "start": {
       "text": "Bad Jim stands there looking bad.",
