@@ -7,3 +7,8 @@ enum class BattleMenuAction{
     Tag,
     Run
 };
+
+struct BattleCommand {
+    BattleMenuAction type = BattleMenuAction::None;
+    int selectionIndex;
+};

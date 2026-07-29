@@ -21,15 +21,15 @@ class BattleMenu{
         BattleMenu(Rectangle rect, Player* player);
         void Update();
         void Draw();
-        BattleMenuAction UpdateInput(InputState* inputState);
-        BattleMenuAction Action();
+        BattleCommand UpdateInput(InputState* inputState);
+        BattleCommand Action();
         void MenuBack();
 
 
 
     private:
         Player* m_Player = nullptr;
-        
+
         Rectangle m_Rect={};
         NPC* m_NPC = nullptr;
         std::vector<std::string> m_MainOptions{"Fight", "Bag", "Tag", "Run"};

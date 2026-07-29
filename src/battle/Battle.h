@@ -6,6 +6,13 @@
 #include "BattleMenuAction.h"
 
 
+enum class BattleResult {
+    Ongoing,
+    Escaped,
+    PlayerWon,
+    PlayerLost
+};
+
 
 class Battle{
     public:
@@ -13,8 +20,8 @@ class Battle{
         void Update();
         void Draw();
         void StartBattle(NPC* npc);
-        BattleMenuAction UpdateInput(InputState* inputState);
-        
+        BattleResult UpdateInput(InputState* inputState);
+        bool Run();
 
 
     private:
@@ -22,4 +29,4 @@ class Battle{
         NPC* m_NPC = nullptr;
         BattleUI m_BattleUI;
 
-};  
+};

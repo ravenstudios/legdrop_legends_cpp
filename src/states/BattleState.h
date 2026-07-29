@@ -10,6 +10,7 @@
 class StateManager;
 
 
+
 class BattleState : public State{
     public:
         BattleState(StateManager* stateManager);
@@ -22,5 +23,5 @@ class BattleState : public State{
         StateManager* m_StateManagerPtr;
         Player* m_Player;
         Battle m_Battle;
-       
+
 };

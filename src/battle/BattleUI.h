@@ -18,7 +18,7 @@ class BattleUI{
         void Update();
         void Draw();
         void StartBattle(NPC* npc);
-        BattleMenuAction UpdateInput(InputState* inputState);
+        BattleCommand UpdateInput(InputState* inputState);
 
 
     private:
@@ -36,7 +36,7 @@ class BattleUI{
         int m_CpuMaxFrames;
         void Animate();
 
-        
+
         static constexpr float m_SpriteSize = 32.0;
         // *************HealthBar*********************
         static constexpr float hbW = BLOCK_SIZE * 6;
@@ -44,7 +44,7 @@ class BattleUI{
 
         static constexpr float phbX = BLOCK_SIZE;
         static constexpr float phbY = BLOCK_SIZE;
-        
+
         static constexpr float chbX = GAME_WIDTH - hbW - BLOCK_SIZE;
         static constexpr float chbY = BLOCK_SIZE * 2  + m_SpriteSize * 6;
 
@@ -52,11 +52,11 @@ class BattleUI{
         Rectangle m_CpuHealthBarRect{chbX, chbY, hbW, hbH};
         BattleHealthBar m_PlayerHealthBar;
         BattleHealthBar m_CpuHealthBar;
-        
+
 
         // *************Sprite************************
-        
-        
+
+
         static constexpr float ph = m_SpriteSize * 8;
         static constexpr float pw = m_SpriteSize * 8;
         static constexpr float px = BLOCK_SIZE * 2;
@@ -66,7 +66,7 @@ class BattleUI{
         static constexpr float cw = m_SpriteSize * 6;
         static constexpr float cx = GAME_WIDTH - cw - BLOCK_SIZE * 2;
         static constexpr float cy = BLOCK_SIZE;
-        
+
         Rectangle m_PlayerSpriteRect{px, py, pw, ph};
         Rectangle m_CPUSpriteRect{cx, cy, cw, ch};
 
@@ -75,7 +75,7 @@ class BattleUI{
         static constexpr float dw = GAME_WIDTH /2;
         static constexpr float dx = 0;
         static constexpr float dy = GAME_HEIGHT - dh;
-        
+
         Rectangle m_DialogRect{dx, dy, dw, dh};
         BattleDialog m_BattleDialog;
 
@@ -84,7 +84,7 @@ class BattleUI{
         static constexpr float mw = GAME_WIDTH / 2;
         static constexpr float mx = GAME_WIDTH / 2;
         static constexpr float my = GAME_HEIGHT - dh;
-        
+
         Rectangle m_MenuRect{mx, my, mw, mh};
         BattleMenu m_BattleMenu;
-};  
+};

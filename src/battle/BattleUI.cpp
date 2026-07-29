@@ -21,7 +21,7 @@ BattleUI::~BattleUI(){
     UnloadTexture(m_PlayerTexture);
     if (m_NPCTexture.id != 0) {
         UnloadTexture(m_NPCTexture);
-    }   
+    }
 }
 
 
@@ -72,7 +72,7 @@ void BattleUI::StartBattle(NPC* npc){
     if(!npc){
          LOG("NPC not loaded");
         return;
-    } 
+    }
     LOG("NPC loaded");
     if(m_NPCTexture.id != 0){
         UnloadTexture(m_NPCTexture);
@@ -89,6 +89,6 @@ void BattleUI::StartBattle(NPC* npc){
 }
 
 
-BattleMenuAction BattleUI::UpdateInput(InputState* inputState){
+BattleCommand BattleUI::UpdateInput(InputState* inputState){
     return m_BattleMenu.UpdateInput(inputState);
 }
