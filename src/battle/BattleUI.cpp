@@ -92,3 +92,7 @@ void BattleUI::StartBattle(NPC* npc){
 BattleCommand BattleUI::UpdateInput(InputState* inputState){
     return m_BattleMenu.UpdateInput(inputState);
 }
+
+void BattleUI::SetMessage(std::string msg){
+  m_BattleDialog.SetMessage(msg);
+}

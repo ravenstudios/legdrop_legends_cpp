@@ -20,13 +20,19 @@ class Battle{
         void Update();
         void Draw();
         void StartBattle(NPC* npc);
-        BattleResult UpdateInput(InputState* inputState);
-        bool Run();
+        void UpdateInput(InputState* inputState);
+        BattleResult GetBattleResult();
+
 
 
     private:
         Player* m_Player;
         NPC* m_NPC = nullptr;
         BattleUI m_BattleUI;
+        void Run();
+        void Bag(int index);
+        void Attack(int index);
+        void Tag(int index);
+        BattleResult m_BattleResult = BattleResult::Ongoing;
 
 };

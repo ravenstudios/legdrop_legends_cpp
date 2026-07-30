@@ -16,6 +16,10 @@ void BattleDialog::Update(){
 void BattleDialog::Draw(){
     int fontSize = 20;
     DrawRectangleRec(m_Rect, RED);
-    DrawText("Dialog Box", m_Rect.x, m_Rect.y, fontSize, BLACK);
+    DrawText(m_message.c_str(), m_Rect.x, m_Rect.y, fontSize, BLACK);
 }
 
+
+void BattleDialog::SetMessage(std::string msg){
+  m_message = msg;
+}

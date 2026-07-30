@@ -1,6 +1,8 @@
 #include "Battle.h"
 #include "../Constants.h"
-
+#include <string>
+#include <vector>
+#include "../objects/NPC.h"
 
 Battle::Battle(Player* player)
     :m_Player(player),
@@ -27,7 +29,7 @@ void Battle::StartBattle(NPC* npc){
         LOG("Start battle failed");
         return;
     }
-
+    m_BattleResult = BattleResult::Ongoing;
     m_NPC = npc;
     m_BattleUI.StartBattle(npc);
 }
@@ -39,14 +41,50 @@ void Battle::StartBattle(NPC* npc){
 // };
 
 // returns to battleState.
-BattleResult Battle::UpdateInput(InputState* inputState){
+void Battle::UpdateInput(InputState* inputState){
     BattleCommand battleCommand = m_BattleUI.UpdateInput(inputState);
-    if(battleCommand.type == BattleMenuAction::Run){
-      return BattleResult::Escaped;
+    switch(battleCommand.type){
+      case BattleMenuAction::Attack:
+        Attack(battleCommand.selectionIndex);
+        break;
+      case BattleMenuAction::Item:
+        Bag(battleCommand.selectionIndex);
+        break;
+      case BattleMenuAction::Tag:
+        Tag(battleCommand.selectionIndex);
+        break;
+      case BattleMenuAction::Run:
+        Run();
+        break;
+      default:
+        break;
     }
-    return BattleResult::Ongoing;
+
+
+    if(battleCommand.type == BattleMenuAction::Run){
+
+    }
+
 }
 
-bool Battle::Run(){
-  return true;
+void Battle::Run(){
+  m_BattleResult = BattleResult::Escaped;
+}
+
+void Battle::Bag(int index){
+  LOG("Bag");
+}
+
+void Battle::Attack(int index){
+  LOG("Attack");
+  const auto& attacks = m_Player->GetCurrentWrestler()->GetData().attacks;
+  m_BattleUI.SetMessage(attacks[index].name);
+}
+
+void Battle::Tag(int index){
+  LOG("Tag");
+}
+
+BattleResult Battle::GetBattleResult(){
+  return m_BattleResult;
 }

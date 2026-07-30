@@ -20,12 +20,13 @@ void BattleState::Draw(){
 
 void BattleState::Update(){
     m_Battle.Update();
+    if(m_Battle.GetBattleResult() == BattleResult::Escaped){
+      m_StateManagerPtr->SwitchToMainState();
+    }
 }
 
 void BattleState::UpdateInput(InputState* inputState){
-    if(m_Battle.UpdateInput(inputState) == BattleResult::Escaped){
-      m_StateManagerPtr->SwitchToMainState();
-    }
+    m_Battle.UpdateInput(inputState);
 }
 
 

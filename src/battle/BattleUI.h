@@ -9,6 +9,7 @@
 #include "BattleMenu.h"
 #include "../core/Input.h"
 #include "BattleMenuAction.h"
+#include <string>
 
 
 class BattleUI{
@@ -19,7 +20,7 @@ class BattleUI{
         void Draw();
         void StartBattle(NPC* npc);
         BattleCommand UpdateInput(InputState* inputState);
-
+        void SetMessage(std::string msg);
 
     private:
         Player* m_Player;
