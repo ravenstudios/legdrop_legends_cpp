@@ -86,6 +86,8 @@ void BattleUI::StartBattle(NPC* npc){
     m_CpuMaxFrames =  m_NPC->GetBattleSpriteMaxFrames();
     m_CpuFrame = 0;
     m_CpuAnimationTimer.Reset();
+    m_BattleDialog.SetMessage("");
+    m_BattleMenu.StartBattle();
 }
 
 

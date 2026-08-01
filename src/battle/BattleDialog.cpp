@@ -22,4 +22,5 @@ void BattleDialog::Draw(){
 
 void BattleDialog::SetMessage(std::string msg){
   m_message = msg;
+  Draw();
 }

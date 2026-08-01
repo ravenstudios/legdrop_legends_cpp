@@ -24,6 +24,7 @@ class BattleMenu{
         BattleCommand UpdateInput(InputState* inputState);
         BattleCommand Action();
         void MenuBack();
+        void StartBattle();
 
 
 

@@ -28,3 +28,7 @@ void Timer::Reset(){
 void Timer::SetPause(bool p){
     m_IsPaused = p;
 }
+
+float Timer::GetmTimeRemaining(){
+    return m_TimeRemaining;
+}

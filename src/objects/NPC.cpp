@@ -254,3 +254,14 @@ int NPC::GetBattleSpriteMaxFrames() const{
 const Data& NPC::GetData() const{
     return m_Data;
 }
+
+
+void NPC::AdjustHP(int hp){
+    m_Data.hp += hp;
+}
+
+
+void NPC::AdjustMP(int mp){
+    m_Data.mp += mp;
+}
+

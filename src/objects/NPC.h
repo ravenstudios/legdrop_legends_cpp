@@ -56,6 +56,8 @@ class NPC : public MainEntity{
         nlohmann::json GetDialog() const;
         int GetBattleSpriteMaxFrames() const;
         const Data& GetData() const;
+        void AdjustHP(int hp);
+        void AdjustMP(int mp);
         
     private:
         

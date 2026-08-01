@@ -191,3 +191,9 @@ void BattleMenu::LoadItems(){
     }
 
 }
+
+
+void BattleMenu::StartBattle(){
+    LOG("START BATTLE MENU");
+    MenuBack();
+}

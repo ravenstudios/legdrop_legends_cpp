@@ -20,7 +20,7 @@ void BattleState::Draw(){
 
 void BattleState::Update(){
     m_Battle.Update();
-    if(m_Battle.GetBattleResult() == BattleResult::Escaped){
+    if(m_Battle.GetBattleResult() != BattleResult::Ongoing){
       m_StateManagerPtr->SwitchToMainState();
     }
 }
