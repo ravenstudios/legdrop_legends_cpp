@@ -13,7 +13,7 @@ StateManager::StateManager()
     m_CurrentState(&m_MainState)
     
 {
-SwitchToBattleState();
+
     
 }
 

@@ -29,8 +29,6 @@ void Battle::Update(){
 
 
 void Battle::Draw(){
-  LOG("turn");
-  LOG(static_cast<int>(m_currentTurn));
     m_BattleUI.Draw();
 }
 

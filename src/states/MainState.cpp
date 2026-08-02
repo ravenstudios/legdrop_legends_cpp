@@ -27,18 +27,22 @@ void MainState::Update(){
     m_Player->Update(&m_Map);
     Camera();
     // UpdateInput(InputState inputState);
-    GetAction();
+    // GetAction();
 }
 
 
-void MainState::GetAction(){
-    std::string action = m_DialogWindow.GetAction();
-    if(action == "start_battle"){
-        m_DialogWindow.ClearAction();
-        m_CurrentInputMode = InputMode::World;
-        m_StageManagerPtr->SwitchToBattleState();
-    }
-}
+// void MainState::GetAction(){
+//     std::string action = m_DialogWindow.GetAction();
+//     if(action == "start_battle"){
+//         m_DialogWindow.ClearAction();
+//         m_CurrentInputMode = InputMode::World;
+//         m_StageManagerPtr->SwitchToBattleState();
+//     }
+//     if(action == "heal"){
+//         LOG("heal action");
+//         action = "";
+//     }
+// }
 
 
 void MainState::Draw(){
@@ -122,12 +126,28 @@ void MainState::WorldInput(InputState* inputState){
 }
 
 void MainState::DialogInput(InputState* inputState){
-    m_DialogWindow.Input(inputState);
+    DialogAction dialogAction = m_DialogWindow.Input(inputState);
 
-    if(m_DialogWindow.GetCanExit()){
+    if(dialogAction == DialogAction::Exit){
         m_CurrentInputMode = InputMode::World;
         NPC* npc = m_Player->GetCurrentNPC();
         if(npc)npc->SetInDialog(false);
-        
     }
+    
+    if(dialogAction == DialogAction::Battle){
+        m_DialogWindow.ClearAction();
+        m_CurrentInputMode = InputMode::World;
+        m_StageManagerPtr->SwitchToBattleState();
+    }
+    if(dialogAction == DialogAction::Heal){
+        LOG("heal action");
+        NPC* wrestler = m_Player->GetCurrentWrestler();
+        Data data = wrestler->GetData();
+        wrestler->AdjustHP(data.maxHp);
+        wrestler->AdjustMP(data.maxMp);
+        // for(const &wrestler : wrestlers){
+            // when roster is added
+        // }
+    }
+
 }

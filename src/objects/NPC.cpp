@@ -263,11 +263,13 @@ const Data& NPC::GetData() const{
 
 void NPC::AdjustHP(int hp){
     m_Data.hp += hp;
+    if(m_Data.hp > m_Data.maxHp) m_Data.hp = m_Data.maxHp;
 }
 
 
 void NPC::AdjustMP(int mp){
     m_Data.mp += mp;
+    if(m_Data.mp > m_Data.maxMp) m_Data.mp = m_Data.maxMp;
 }
 
 void NPC::AdjustItemQty(int index, int qty){

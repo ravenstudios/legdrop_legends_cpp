@@ -10,11 +10,7 @@ void DialogWindow::Update(){
 
 
 void DialogWindow::Draw(){
-    if (!m_CanDraw){
-        return;
-    }
-
-    
+    if(!m_CanDraw) return;
 
     DrawRectangleRec(m_Rect, m_Color);
 
@@ -23,14 +19,9 @@ void DialogWindow::Draw(){
 
     int availableWidth = static_cast<int>(m_Rect.width) - padding * 2;
 
-    std::vector<std::string> textLines =
-        WrapText(
-            m_CurrentText,
-            availableWidth,
-            fontSize
-        );
+    std::vector<std::string> textLines = WrapText(m_CurrentText, availableWidth, fontSize);
 
-    for (const std::string& line : textLines){
+    for(const std::string& line : textLines){
         DrawText(line.c_str(), textX, currentY, fontSize, BLACK);
         currentY += fontSize + lineSpacing;
     }
@@ -39,22 +30,15 @@ void DialogWindow::Draw(){
 
     for (int i = 0; i < static_cast<int>(m_DialogOptions.size()); i++){
         const DialogueOption& option = m_DialogOptions[i];
-
-        std::vector<std::string> optionLines =
-            WrapText(
-                option.text,
-                availableWidth - 20,
-                fontSize
-            );
-
+        std::vector<std::string> optionLines = WrapText(option.text, availableWidth - 20, fontSize);
         int optionStartY = currentY;
 
-        for (const std::string& line : optionLines){
+        for(const std::string& line : optionLines){
             DrawText(line.c_str(), textX + 10, currentY, fontSize, BLACK);
             currentY += fontSize + lineSpacing;
         }
 
-        if (i == m_SelectionIndex){
+        if(i == m_SelectionIndex){
             Rectangle selectionRect = {
                 static_cast<float>(textX),
                 static_cast<float>(optionStartY - 3),
@@ -71,66 +55,66 @@ void DialogWindow::Draw(){
 }
 
 
-void DialogWindow::Input(InputState* inputState){
-    if (!m_CanDraw){
-        return;
-    }
+DialogAction DialogWindow::Input(InputState* inputState){
+    DialogAction result = DialogAction::None;
+    if (!m_CanDraw) return DialogAction::None;
 
-    if (!m_DialogOptions.empty()){
-        if (inputState->upPressed){
+    if(!m_DialogOptions.empty()){
+        if(inputState->upPressed){
             m_SelectionIndex--;
 
-            if (m_SelectionIndex < 0){
-                m_SelectionIndex =
-                    static_cast<int>(m_DialogOptions.size()) - 1;
+            if(m_SelectionIndex < 0){
+                m_SelectionIndex = static_cast<int>(m_DialogOptions.size()) - 1;
             }
         }
 
-        if (inputState->downPressed){
+        if(inputState->downPressed){
             m_SelectionIndex++;
-
-            if (m_SelectionIndex >= static_cast<int>(m_DialogOptions.size())){
-                m_SelectionIndex = 0;
-            }
+            if (m_SelectionIndex >= static_cast<int>(m_DialogOptions.size())) m_SelectionIndex = 0;
         }
 
-        if (inputState->action){
+        if(inputState->action){
             std::string nextNode = m_DialogOptions[m_SelectionIndex].next;
             LoadNode(nextNode);
         }
 
-        return;
+        return DialogAction::None;
+
     }
 
-    if (inputState->action){
-        if (!m_Dialogue.contains(m_CurrentNode)){
+    if(inputState->action){
+        if(!m_Dialogue.contains(m_CurrentNode)){
             LOG("Current dialogue node does not exist");
-            return;
+            return DialogAction::None;
         }
 
         const nlohmann::json& node = m_Dialogue.at(m_CurrentNode);
 
-        if (node.contains("next")){
-            std::string nextNode = node.at("next").get<std::string>();
-            LoadNode(nextNode);
-            return;
+        
+        if(node.contains("action")){
+            std::string action = node.at("action").get<std::string>();
+            // return HandleNodeAction(action);
+            result = HandleNodeAction(action);
         }
 
-        if (node.contains("action")){
-            std::string action = node.at("action").get<std::string>();
-            HandleNodeAction(action);
+        if(node.contains("next")){
+            std::string nextNode = node.at("next").get<std::string>();
+            LoadNode(nextNode);
+            // return DialogAction::None;
         }
     }
+    // return DialogAction::None;
+    return result;
 }
 
 
 void DialogWindow::Start(Player* player, NPC* npc){
-    if (player == nullptr){
+    if(player == nullptr){
         LOG("DialogWindow received null Player");
         return;
     }
 
-    if (npc == nullptr){
+    if(npc == nullptr){
         LOG("DialogWindow received null NPC");
         return;
     }
@@ -138,10 +122,6 @@ void DialogWindow::Start(Player* player, NPC* npc){
     m_CanDraw = true;
     m_CanExit = false;
     m_SelectionIndex = 0;
-
-    // m_Rect.x = player->GetRect().x;
-    // m_Rect.y = player->GetRect().y;
-
     LoadDialog(npc->GetDialog());
 }
 
@@ -161,7 +141,7 @@ void DialogWindow::LoadDialog(const nlohmann::json& dialogue){
     m_SelectionIndex = 0;
     m_NumOfOptions = 0;
 
-    if (!m_Dialogue.contains("start")){
+    if(!m_Dialogue.contains("start")){
         LOG("Dialogue is missing a start node");
         m_CanDraw = false;
         return;
@@ -172,7 +152,7 @@ void DialogWindow::LoadDialog(const nlohmann::json& dialogue){
 
 
 void DialogWindow::LoadNode(const std::string& nodeName){
-    if (!m_Dialogue.contains(nodeName)){
+    if(!m_Dialogue.contains(nodeName)){
         LOG(("Dialogue node not found: " + nodeName).c_str());
         return;
     }
@@ -185,12 +165,12 @@ void DialogWindow::LoadNode(const std::string& nodeName){
     const nlohmann::json& node = m_Dialogue.at(nodeName);
 
   
-    if (node.contains("text")){
+    if(node.contains("text")){
         m_CurrentText = node.at("text").get<std::string>();
     }
 
 
-    if (node.contains("options")){
+    if(node.contains("options")){
         const nlohmann::json& options = node.at("options");
 
         for(const auto& [id, option] : options.items()){
@@ -203,69 +183,52 @@ void DialogWindow::LoadNode(const std::string& nodeName){
 }
 
 
-void DialogWindow::HandleNodeAction(const std::string& action){
-    if (action == "end_dialogue"){
+DialogAction DialogWindow::HandleNodeAction(const std::string& action){
+    if(action == "end_dialogue"){
         m_CanDraw = false;
         m_CanExit = true;
-        return;
+        return DialogAction::Exit;
     }
 
-    if (action == "start_battle"){
+    if(action == "start_battle"){
         LOG("Start battle");
-
         m_CanDraw = false;
         m_CanExit = true;
-
         m_Action = "start_battle";
+        return DialogAction::Battle;
+    }
 
-
-        return;
+    if(action == "heal"){
+        LOG("heal");
+        return DialogAction::Heal;
     }
 
     LOG(("Unknown dialogue action: " + action).c_str());
+    return DialogAction::None;
 }
 
-std::vector<std::string> DialogWindow::WrapText(const std::string& text,
-    int maxWidth,
-    int fontSize
-)
-{
+std::vector<std::string> DialogWindow::WrapText(const std::string& text, int maxWidth, int fontSize){
     std::vector<std::string> lines;
 
     std::stringstream stream(text);
     std::string word;
     std::string currentLine;
 
-    while (stream >> word)
-    {
+    while (stream >> word){
         std::string testLine;
 
-        if (currentLine.empty())
-        {
-            testLine = word;
-        }
-        else
-        {
-            testLine = currentLine + " " + word;
-        }
+        if(currentLine.empty()) testLine = word;
+        else testLine = currentLine + " " + word;
 
-        if (MeasureText(testLine.c_str(), fontSize) <= maxWidth)
-        {
-            currentLine = testLine;
-        }
-        else
-        {
-            if (!currentLine.empty())
-            {
-                lines.push_back(currentLine);
-            }
+        if(MeasureText(testLine.c_str(), fontSize) <= maxWidth) currentLine = testLine;
 
+        else{
+            if(!currentLine.empty())lines.push_back(currentLine);
             currentLine = word;
         }
     }
 
-    if (!currentLine.empty())
-    {
+    if (!currentLine.empty()){
         lines.push_back(currentLine);
     }
 

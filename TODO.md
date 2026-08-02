@@ -8,7 +8,7 @@
 - [ ] Grid movment
 - [ ] Battle animations
 - [ ] Battle calculations
-- [ ] 
-- [ ]
-- [ ]
+- [ ] Npc's can walk through player
+- [ ] Add roster
+- [ ] Heal roster
 - [ ]

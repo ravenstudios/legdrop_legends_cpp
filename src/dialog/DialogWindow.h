@@ -17,12 +17,18 @@ struct DialogueOption{
     std::string next;
 };
 
+enum class DialogAction{
+    None,
+    Battle,
+    Exit,
+    Heal
+};
 
 class DialogWindow{
     public:
         void Update();
         void Draw();
-        void Input(InputState* inputState);
+        DialogAction Input(InputState* inputState);
         void Start(Player* player, NPC* npc);
         bool GetCanExit() const;
         std::string GetAction() const;
@@ -57,7 +63,7 @@ class DialogWindow{
 
         void LoadDialog(const nlohmann::json& dialogue);
         void LoadNode(const std::string& nodeName);
-        void HandleNodeAction(const std::string& action);
+        DialogAction HandleNodeAction(const std::string& action);
         std::vector<std::string> WrapText(const std::string& text, int maxWidth, int fontSize);
         std::string m_Action;
 };

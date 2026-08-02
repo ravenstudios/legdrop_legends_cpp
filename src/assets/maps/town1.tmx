@@ -276,7 +276,7 @@
   </object>
  </objectgroup>
  <objectgroup id="6" name="Player Spawn Point">
-  <object id="20" x="573.842" y="85.084" width="16" height="16">
+  <object id="20" x="280.62" y="74.1186" width="16" height="16">
    <properties>
     <property name="spawn_point" type="object" value="0"/>
    </properties>
