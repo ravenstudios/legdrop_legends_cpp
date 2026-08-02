@@ -265,3 +265,6 @@ void NPC::AdjustMP(int mp){
     m_Data.mp += mp;
 }
 
+void NPC::AdjustItemQty(int index, int qty){
+    m_Data.items[index].qty += qty;
+}

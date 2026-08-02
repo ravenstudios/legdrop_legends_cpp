@@ -58,6 +58,7 @@ class NPC : public MainEntity{
         const Data& GetData() const;
         void AdjustHP(int hp);
         void AdjustMP(int mp);
+        void AdjustItemQty(int index, int qty);
         
     private:
         
@@ -79,9 +80,7 @@ class NPC : public MainEntity{
         void LoadNPC(std::string& npcType);
         std::string GetNPC(const std::string& npcName);
         nlohmann::json m_Dialogue;
-        // std::string m_Name;
-        // std::string m_Class;
-        // std::string m_BattleSprite;
+        
 
         int m_BattleSpriteMaxFrames;
          

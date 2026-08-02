@@ -8,7 +8,7 @@
 Battle::Battle(Player* player)
     :m_Player(player),
     m_BattleUI(player),
-    m_TurnTimer(m_TurnDelay)
+    m_TurnTimer(k_TurnDelay)
     
 
 {
@@ -78,6 +78,22 @@ void Battle::Run(){
 
 void Battle::Bag(int index){
   LOG("Bag");
+  m_CurrentWrestler = m_Player->GetCurrentWrestler();
+  Data currentWrestlerData = m_CurrentWrestler->GetData();
+
+  const auto& items = currentWrestlerData.items;
+  Item item = items[index];
+  std::string s = item.message;
+
+  if(item.qty > 0){
+    if(item.type == "restore_hp") m_CurrentWrestler->AdjustHP(item.hp);
+    if(item.type == "restore_mp") m_CurrentWrestler->AdjustMP(item.mp);
+    m_BattleUI.SetMessage(s);
+    
+    m_CurrentWrestler->AdjustItemQty(index, -1);
+    StartCpuTurn();
+  }
+  
 }
 
 
@@ -164,4 +180,10 @@ void Battle::CpuTurn(){
     
     m_BattleResult = BattleResult::PlayerLost;
   }
+}
+
+
+void Battle::StartCpuTurn(){
+  m_TurnTimer.SetPause(false);
+  m_currentTurn = Turn::Cpu;
 }

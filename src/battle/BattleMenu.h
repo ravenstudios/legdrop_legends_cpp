@@ -44,7 +44,9 @@ class BattleMenu{
         std::vector<Item> m_Items = {};
         void LoadItems();
         int m_FontSize = BLOCK_SIZE / 2;
-        Rectangle m_BagRect{400, 400, 400, 400};
-        Rectangle m_TagRect{400, 400, 400, 400};
+        int m_ItemIndex = 0;
+        void DrawItems();
+        void DrawTag();
+        void DrawMoves();
 
 };

@@ -41,12 +41,14 @@ class Battle{
         void Bag(int index);
         void Attack(int index);
         void Tag(int index);
-        BattleResult m_BattleResult = BattleResult::Ongoing;
         void BattleOver();
-        Turn m_currentTurn = Turn::Player;
         void CpuTurn();
-        float m_TurnDelay = 3;
+        void StartCpuTurn();
+        BattleResult m_BattleResult = BattleResult::Ongoing;
+        Turn m_currentTurn = Turn::Player;
+        static constexpr float k_TurnDelay = 3;
         Timer m_TurnTimer;
+        
        
 
 };
