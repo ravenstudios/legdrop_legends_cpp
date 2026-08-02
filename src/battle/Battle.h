@@ -45,7 +45,8 @@ class Battle{
         void BattleOver();
         Turn m_currentTurn = Turn::Player;
         void CpuTurn();
-        Timer m_TurnTimer;
         float m_TurnDelay = 3;
+        Timer m_TurnTimer;
+       
 
 };

@@ -95,7 +95,6 @@ void Battle::Attack(int index){
     m_BattleUI.SetMessage(attack.name);
     m_CurrentOpponent->AdjustHP(-attack.power);
     m_CurrentWrestler->AdjustMP(-attack.cost);
-    std::string s = "Dealt " + std::to_string(attack.power) +  " damage!";
     std::string s = {
       currentOpponentData.name + 
       " Used " + attack.name + ", Dealt " + 
