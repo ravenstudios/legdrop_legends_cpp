@@ -5,7 +5,8 @@ enum class BattleMenuAction{
     Attack,
     Item,
     Tag,
-    Run
+    Run,
+    Powder
 };
 
 struct BattleCommand {

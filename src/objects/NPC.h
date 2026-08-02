@@ -40,9 +40,10 @@ struct Data{
     std::string name;
     std::string type;
     int hp = 50;
-    int mp = 25;
+    int mp = 6;
     int maxHp = 100;
     int maxMp = 50;
+    int powderRate = 20;
     Stats stats; 
     std::vector<Attack> attacks; 
     std::vector<Item> items;
@@ -59,6 +60,7 @@ class NPC : public MainEntity{
         void AdjustHP(int hp);
         void AdjustMP(int mp);
         void AdjustItemQty(int index, int qty);
+        bool CanAttack();
         
     private:
         

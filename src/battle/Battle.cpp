@@ -29,6 +29,8 @@ void Battle::Update(){
 
 
 void Battle::Draw(){
+  LOG("turn");
+  LOG(static_cast<int>(m_currentTurn));
     m_BattleUI.Draw();
 }
 
@@ -61,6 +63,9 @@ void Battle::UpdateInput(InputState* inputState){
       case BattleMenuAction::Run:
         Run();
         break;
+      case BattleMenuAction::Powder:
+        Powder(m_Player->GetCurrentWrestler());
+        break;
       default:
         break;
     }
@@ -71,21 +76,36 @@ void Battle::UpdateInput(InputState* inputState){
 }
 
 
+void Battle::Powder(NPC* npc){
+  int powderRate = npc->GetData().powderRate;
+  npc->AdjustMP(powderRate);
+  std::string s = npc->GetData().name + " took a powder and recovered " + std::to_string(powderRate) + " MP";
+  m_BattleUI.SetMessage(s);
+  if(m_currentTurn == Turn::Cpu){
+    m_currentTurn = Turn::Player;
+  }
+  else StartCpuTurn();
+}
+
+
 void Battle::Run(){
   m_BattleResult = BattleResult::Escaped;
 }
 
 
 void Battle::Bag(int index){
-  LOG("Bag");
   m_CurrentWrestler = m_Player->GetCurrentWrestler();
   Data currentWrestlerData = m_CurrentWrestler->GetData();
 
   const auto& items = currentWrestlerData.items;
+
+  if (items.empty()) return;
+
   Item item = items[index];
   std::string s = item.message;
-
+  
   if(item.qty > 0){
+    
     if(item.type == "restore_hp") m_CurrentWrestler->AdjustHP(item.hp);
     if(item.type == "restore_mp") m_CurrentWrestler->AdjustMP(item.mp);
     m_BattleUI.SetMessage(s);
@@ -112,7 +132,7 @@ void Battle::Attack(int index){
     m_CurrentOpponent->AdjustHP(-attack.power);
     m_CurrentWrestler->AdjustMP(-attack.cost);
     std::string s = {
-      currentOpponentData.name + 
+      currentWrestlerData.name + 
       " Used " + attack.name + ", Dealt " + 
       std::to_string(attack.power) +  " damage!"};
 
@@ -152,34 +172,50 @@ void Battle::BattleOver(){
 
 
 void Battle::CpuTurn(){
+  LOG("start cpu turn");
+
   if(m_currentTurn == Turn::Player) return;
 
   m_CurrentWrestler = m_Player->GetCurrentWrestler();
-  m_CurrentOpponent = m_Player->GetCurrentNPC(); 
+  m_CurrentOpponent = m_Player->GetCurrentNPC();
 
-  Data currentWrestlerData = m_CurrentWrestler->GetData();
-  Data currentOpponentData = m_CurrentOpponent->GetData();
-
-  const auto& attacks = currentOpponentData.attacks;
-  int index = GetRandomValue(0, attacks.size() - 1);
-  const auto attack = attacks[index];
-  if(currentOpponentData.mp >= attack.cost){
-    std::string s = {
-      currentOpponentData.name + 
-      " Used " + attack.name + ", Dealt " + 
-      std::to_string(attack.power) +  " damage!"};
-    m_BattleUI.SetMessage(s);
-    m_CurrentWrestler->AdjustHP(-attack.power);
-    m_CurrentOpponent->AdjustMP(-attack.cost);
-    m_BattleUI.SetMessage(s);
-    m_currentTurn = Turn::Player;
+  if(!m_CurrentOpponent->CanAttack()){
+    Powder(m_CurrentOpponent);
+    return;
   }
+
+  const Data& opponentData = m_CurrentOpponent->GetData();
+  const auto& attacks = opponentData.attacks;
+
+  ::Attack attack;
+
+  do{
+    int index = GetRandomValue(0, static_cast<int>(attacks.size()) - 1);
+    attack = attacks[index];
+  }
+  
+  while(opponentData.mp < attack.cost);
+
+  std::string message =
+      opponentData.name +
+      " used " + attack.name +
+      ", dealt " +
+      std::to_string(attack.power) +
+      " damage!";
+
+  m_CurrentWrestler->AdjustHP(-attack.power);
+  m_CurrentOpponent->AdjustMP(-attack.cost);
+  m_BattleUI.SetMessage(message);
 
   if(m_CurrentWrestler->GetData().hp <= 0){
-    m_BattleUI.SetMessage("Player Lost");
-    
-    m_BattleResult = BattleResult::PlayerLost;
+      m_BattleUI.SetMessage("Player Lost");
+      m_BattleResult = BattleResult::PlayerLost;
+      return;
   }
+
+  m_currentTurn = Turn::Player;
+
+  LOG("end cpu turn");
 }
 
 

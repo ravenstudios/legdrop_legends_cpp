@@ -157,58 +157,63 @@ void NPC::LoadNPC(std::string& npcType){
     try{
         file >> data;
     
-    LOG(data["name"]);
-    std::string sprite = "src/assets/images/" + data["sprite"].get<std::string>();
-    m_Texture = LoadTexture(sprite.c_str());
-    std::string battleSprite = "src/assets/images/" + data["battle_sprite"].get<std::string>();
-    m_BattleImagePath = battleSprite;
-    m_BattleSpriteMaxFrames = data["max_frame"];
+        LOG(data["sprite"]);
+        std::string sprite = "src/assets/images/" + data["sprite"].get<std::string>();
+        m_Texture = LoadTexture(sprite.c_str());
+        LOG("texture");
+        std::string battleSprite = "src/assets/images/" + data["battle_sprite"].get<std::string>();
+        LOG("battle sprite");
+        m_BattleImagePath = battleSprite;
+        m_BattleSpriteMaxFrames = data["max_frame"];
+            LOG("max frame");
+        m_Dialogue = data["dialog"];
+        m_Data.name = data["name"];
+        m_Data.type = data["class"];
+        
 
-    m_Dialogue = data["dialog"];
-    m_Data.name = data["name"];
-    m_Data.type = data["class"];
-    
+        if (data.contains("stats")){
+            auto& jStats = data["stats"];
+            m_Data.stats.level       = static_cast<int>(jStats["level"]);
+            m_Data.stats.exp         = static_cast<int>(jStats["exp"]);
+            m_Data.stats.speed       = static_cast<int>(jStats["speed"]);
+            m_Data.stats.power       = static_cast<int>(jStats["power"]);
+            m_Data.stats.defense     = static_cast<int>(jStats["defense"]);
+            m_Data.stats.technique   = static_cast<int>(jStats["technique"]);
+            m_Data.stats.charisma    = static_cast<int>(jStats["charisma"]);
+            m_Data.stats.luck        = static_cast<int>(jStats["luck"]);
+            m_Data.stats.powder_rate = static_cast<int>(jStats["powder_rate"]);
+            m_Data.stats.exp_to_give = static_cast<int>(jStats["exp_to_give"]);
+        }
 
-    auto& jStats = data["stats"];
+        if (data.contains("attacks")){
+            auto& attacks = data["attacks"];
 
-    m_Data.stats.level       = static_cast<int>(jStats["level"]);
-    m_Data.stats.exp         = static_cast<int>(jStats["exp"]);
-    m_Data.stats.speed       = static_cast<int>(jStats["speed"]);
-    m_Data.stats.power       = static_cast<int>(jStats["power"]);
-    m_Data.stats.defense     = static_cast<int>(jStats["defense"]);
-    m_Data.stats.technique   = static_cast<int>(jStats["technique"]);
-    m_Data.stats.charisma    = static_cast<int>(jStats["charisma"]);
-    m_Data.stats.luck        = static_cast<int>(jStats["luck"]);
-    m_Data.stats.powder_rate = static_cast<int>(jStats["powder_rate"]);
-    m_Data.stats.exp_to_give = static_cast<int>(jStats["exp_to_give"]);
+            for (const auto& attack : attacks){
+                std::string name = attack["name"];
+                int power = attack["power"];
+                int cost = attack["cost"];
+                std::string type = attack["type"];
 
-    auto& attacks = data["attacks"];
+                Attack a{name, power, cost, type};
+            m_Data.attacks.emplace_back(a);
+            }
+        }
+        if (data.contains("items")){
+            auto& items = data["items"];
+            for (const auto& item : items){   
 
-    for (const auto& attack : attacks){
-        std::string name = attack["name"];
-        int power = attack["power"];
-        int cost = attack["cost"];
-        std::string type = attack["type"];
+                std::string name = item["name"];
+                LOG(name);
+                int hp = item.value("hp", 0);
+                int mp = item.value("mp", 0);
+                std::string type = item["type"];
+                std::string message = item["message"];
+                int qty = item["qty"];
 
-        Attack a{name, power, cost, type};
-       m_Data.attacks.emplace_back(a);
-    }
-LOG("*************************************######################## itemss");
-    auto& items = data["items"];
-    for (const auto& item : items){   
-
-        std::string name = item["name"];
-        LOG(name);
-        int hp = item.value("hp", 0);
-        int mp = item.value("mp", 0);
-        std::string type = item["type"];
-        std::string message = item["message"];
-        int qty = item["qty"];
-
-        Item i{name, hp, mp, type, message, qty};
-        m_Data.items.emplace_back(i);
-    }
-
+                Item i{name, hp, mp, type, message, qty};
+                m_Data.items.emplace_back(i);
+            }
+        }
     }
     catch (const json::parse_error& e){
         LOG(e.what());
@@ -267,4 +272,15 @@ void NPC::AdjustMP(int mp){
 
 void NPC::AdjustItemQty(int index, int qty){
     m_Data.items[index].qty += qty;
+    if(m_Data.items[index].qty <= 0) m_Data.items.erase(m_Data.items.begin() + index);
+}
+
+
+bool NPC::CanAttack(){
+    for (const Attack& attack : m_Data.attacks){
+        if (m_Data.mp >= attack.cost){
+            return true;
+        }
+    }
+    return false;
 }

@@ -23,5 +23,6 @@ class BattleState : public State{
         StateManager* m_StateManagerPtr;
         Player* m_Player;
         Battle m_Battle;
+        
 
 };

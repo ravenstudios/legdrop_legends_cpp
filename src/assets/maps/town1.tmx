@@ -307,7 +307,7 @@
     <property name="npc_type" value="mr_murica"/>
    </properties>
   </object>
-  <object id="48" x="559.639" y="93.0025">
+  <object id="48" x="523.9" y="121.837">
    <properties>
     <property name="can_walk" type="bool" value="false"/>
     <property name="npc_type" value="clown"/>

@@ -37,6 +37,7 @@ class Battle{
         NPC* m_CurrentWrestler = nullptr;
         NPC* m_CurrentOpponent = nullptr;
         BattleUI m_BattleUI;
+        void Powder(NPC* npc);
         void Run();
         void Bag(int index);
         void Attack(int index);
