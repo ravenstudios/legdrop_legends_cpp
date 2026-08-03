@@ -31,19 +31,15 @@ BattleCommand BattleMenu::Action(){
                 case 1:
                     m_MenuLevel = MenuLevel::Bag;
                     m_selectedIndex = 0;
-                    m_InBagMenu = true;
-                    LOG("items");
-                    LoadItems();
+        
                     break;
 
                 case 2:
                     m_MenuLevel = MenuLevel::Tag;
                     m_selectedIndex = 0;
-                    m_InTagMenu = true;
                     break;
 
                 case 3:
-                    LOG("Run");
                     MenuBack();
                     return BattleCommand {
                         .type = BattleMenuAction::Run,
@@ -79,35 +75,37 @@ BattleCommand BattleMenu::Action(){
             break;
 
         case MenuLevel::Tag:
+            int i = m_TagIndex;
             MenuBack();
             return BattleCommand {
               .type = BattleMenuAction::Tag,
-              .selectionIndex = 3
+              .selectionIndex = i
             };
             break;
     }
     return BattleCommand {
         .type = BattleMenuAction::None,
-        .selectionIndex = 3
+        .selectionIndex = 0
     };
  
 }
 
 
 void BattleMenu::MenuBack(){
-    
     m_MenuLevel = MenuLevel::Main;
-    m_InTagMenu = false;
-    m_InBagMenu = false;
-    m_Options = m_MainOptions;
-    
+    m_ItemIndex = 0;
+    m_TagIndex = 0;
+    m_selectedIndex = 0;
 }
 
 // returns to Battle::UpdateInput
 BattleCommand BattleMenu::UpdateInput(InputState* inputState){
     if(inputState->upPressed){
-        if(m_InBagMenu){
-            if(m_ItemIndex >0)m_ItemIndex--;
+        if(m_MenuLevel == MenuLevel::Bag){
+            if(m_ItemIndex >0) m_ItemIndex--;
+        }
+        if(m_MenuLevel == MenuLevel::Tag){
+            if(m_TagIndex >0) m_TagIndex--;
         }
         else{
             if(m_selectedIndex == 2 || m_selectedIndex == 3) m_selectedIndex -= 2;
@@ -115,13 +113,19 @@ BattleCommand BattleMenu::UpdateInput(InputState* inputState){
     }
 
     if(inputState->downPressed){
-        if(m_InBagMenu){
+        if(m_MenuLevel == MenuLevel::Bag){
             if(m_ItemIndex < m_Player->GetCurrentWrestler()->GetData().items.size() - 1) m_ItemIndex++;
+        }
+        if(m_MenuLevel == MenuLevel::Tag){
+            if(m_TagIndex < m_Player->GetRoster().size() - 1) m_TagIndex++;
         }
         else{
             if(m_selectedIndex == 0 || m_selectedIndex == 1)m_selectedIndex += 2;
         }
     }
+
+    
+    
     if(inputState->leftPressed && (m_selectedIndex == 1 || m_selectedIndex == 3))m_selectedIndex--;
     if(inputState->rightPressed && (m_selectedIndex == 0 || m_selectedIndex == 2))m_selectedIndex++;
     if(inputState->action){
@@ -179,13 +183,13 @@ void BattleMenu::DrawMain(){
 
 
 void BattleMenu::DrawItems(){
-    m_InTagMenu = false;
     DrawRectangleRec(m_Rect, MAGENTA);
-    for (int i = 0; i < m_Items.size(); i ++){
-        std::string s = m_Items[i].name + "   QTY:" + std::to_string(m_Items[i].qty);
+    std::vector<Item> items = m_Player->GetCurrentWrestler()->GetData().items;
+    for (int i = 0; i < items.size(); i ++){
+        std::string s = items[i].name + "   QTY:" + std::to_string(items[i].qty);
         DrawText(s.c_str(), m_Rect.x, m_Rect.y + m_FontSize * i, m_FontSize, BLACK);
     }
-    if(!m_Items.empty()){
+    if(!items.empty()){
         DrawRectangleLines(m_Rect.x, m_Rect.y + m_FontSize * m_ItemIndex, m_Rect.width,  m_FontSize, BLACK);
 
     }
@@ -193,12 +197,14 @@ void BattleMenu::DrawItems(){
 
 
 void BattleMenu::DrawTag(){
-    m_InBagMenu = false;
     DrawRectangleRec(m_Rect, SKYBLUE);
+    std::vector<NPC>& wrestlers = m_Player->GetRoster();
 
+    for (int i = 0; i < wrestlers.size(); i ++){
+        DrawText(wrestlers[i].GetData().name.c_str(), m_Rect.x, m_Rect.y + m_FontSize * i, m_FontSize, BLACK);
+    }
+    DrawRectangleLines(m_Rect.x, m_Rect.y + m_FontSize * m_TagIndex, m_Rect.width,  m_FontSize, BLACK);
 }
-
-
 
 
 void BattleMenu::DrawMoves(){
@@ -224,25 +230,6 @@ void BattleMenu::DrawMoves(){
     }
     
     DrawRectangleLinesEx(m_Rects[m_selectedIndex], 3, BLACK);
-}
-
-
-
-
-void BattleMenu::LoadMoves(){
-    
-
-}
-
-
-void BattleMenu::LoadItems(){
-   
-    m_Items.clear();
-    std::vector<Item> items = m_Player->GetCurrentWrestler()->GetData().items;
-    for (size_t i = 0; i < items.size() && i < items.size(); i++) {
-        if(items[i].qty > 0)m_Items.emplace_back(items[i]);
-    }
-
 }
 
 

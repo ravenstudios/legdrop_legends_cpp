@@ -67,9 +67,9 @@ void Battle::UpdateInput(InputState* inputState){
       default:
         break;
     }
-    if(battleCommand.type == BattleMenuAction::Run){
+    // if(battleCommand.type == BattleMenuAction::Run){
 
-    }
+    // }
 
 }
 
@@ -135,8 +135,8 @@ void Battle::Attack(int index){
       std::to_string(attack.power) +  " damage!"};
 
     m_BattleUI.SetMessage(s);
-    m_TurnTimer.SetPause(false);
-    m_currentTurn = Turn::Cpu;
+    m_BattleUI.StartAttackAnimation(NPCToAnimate::Player);
+    StartCpuTurn();
     
   }
 
@@ -155,7 +155,11 @@ void Battle::Attack(int index){
 
 
 void Battle::Tag(int index){
-  LOG("Tag");
+  m_Player->SetCurrentWrestler(index);
+  m_BattleUI.SetPlayerTexture(m_Player->GetCurrentWrestler());
+  std::string s = "Tagged in " + m_Player->GetCurrentWrestler()->GetData().name;
+  m_BattleUI.SetMessage(s);
+  StartCpuTurn();
 }
 
 
@@ -210,7 +214,7 @@ void Battle::CpuTurn(){
       m_BattleResult = BattleResult::PlayerLost;
       return;
   }
-
+  m_BattleUI.StartAttackAnimation(NPCToAnimate::Cpu);
   m_currentTurn = Turn::Player;
 
   LOG("end cpu turn");

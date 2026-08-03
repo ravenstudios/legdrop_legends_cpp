@@ -12,7 +12,6 @@ Map::Map(const char* path){
 
 
 bool Map::LoadMap(const char* path){
-  LOG(path);
     m_Layers.clear();
     m_BlockingRects.clear();
     m_Doors.clear();
@@ -21,7 +20,6 @@ bool Map::LoadMap(const char* path){
     XMLDocument doc;
 
     if (doc.LoadFile(m_Path) != XML_SUCCESS){
-        LOG("Failed to load map");
         LOG(doc.ErrorStr());
         return false;
     }
@@ -136,7 +134,6 @@ MapSize Map::GetMapSize() const{
 }
 
 void Map::LoadObjects(XMLElement* map){
-    LOG("**************************** LOAD OBJECTS*************************");
     XMLElement* objectGroup = map->FirstChildElement("objectgroup");
 
     while (objectGroup)
@@ -148,7 +145,6 @@ void Map::LoadObjects(XMLElement* map){
         }
 
         if (name && std::string(name) == "Player Spawn Point"){
-            LOG("******************* LOADED SP***********************************");
             XMLElement* object = objectGroup->FirstChildElement("object");
             m_PlayerSpawnPoint.x = object->FloatAttribute("x") * SCALE;
             m_PlayerSpawnPoint.y = object->FloatAttribute("y") * SCALE;
@@ -206,7 +202,6 @@ void Map::LoadDoors(XMLElement* objectGroup){
 
                 if (name && std::string(name) == "map_file"){
                     d.path = property->Attribute("value");
-                    LOG(d.path);
                 }
                 if (name && std::string(name) == "entrance"){
                     d.isEntrance = true;
@@ -216,8 +211,6 @@ void Map::LoadDoors(XMLElement* objectGroup){
                     d.isEntrance = false;
                     d.isExit = true;
                 }
-
-
 
                 property = property->NextSiblingElement("property");
             }

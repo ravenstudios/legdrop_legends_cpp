@@ -34,24 +34,22 @@ class BattleMenu{
 
         Rectangle m_Rect={};
         NPC* m_NPC = nullptr;
-        std::vector<std::string> m_MainOptions{"Attack", "Bag", "Tag", "Run"};
-        std::vector<std::string> m_Options = m_MainOptions;
+        
+        std::vector<std::string> m_Options{"Attack", "Bag", "Tag", "Run"};
         
         int m_selectedIndex = 0;
         int m_ItemIndex = 0;
+        int m_TagIndex = 0;
         MenuLevel m_MenuLevel = MenuLevel::Main;
-        bool m_InBagMenu = false;
-        bool m_InTagMenu = false;
-        void LoadMoves();
         std::vector<Item> m_Items = {};
-        void LoadItems();
+
         int m_FontSize = BLOCK_SIZE / 2;
         
         void DrawMain();
         void DrawItems();
         void DrawTag();
         void DrawMoves();
-        bool CanAttack();
+
 
         static constexpr int pad = BLOCK_SIZE / 6;
 

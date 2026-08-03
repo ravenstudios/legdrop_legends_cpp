@@ -11,6 +11,11 @@
 #include "BattleMenuAction.h"
 #include <string>
 
+enum class NPCToAnimate{
+    Player,
+    Cpu
+};
+
 
 class BattleUI{
     public:
@@ -21,6 +26,10 @@ class BattleUI{
         void StartBattle(NPC* npc);
         BattleCommand UpdateInput(InputState* inputState);
         void SetMessage(std::string msg);
+        void SetPlayerTexture(NPC* currentWrestler);
+        void SetNPCTexture(NPC* npc);
+        void StartAttackAnimation(NPCToAnimate npc);
+        void StartHitAnimation(NPCToAnimate npc);
 
     private:
         Player* m_Player;
@@ -36,7 +45,21 @@ class BattleUI{
         int m_PlayerMaxFrames;
         int m_CpuMaxFrames;
         void Animate();
+        void AnimateAttack();
+        void AnimateHit(); 
 
+        bool m_CanAnimateAttack = false;
+        bool m_CanAnimateHit = false;
+        bool m_ReverseAttackAnimation = false;
+        int m_AttackAnimationSpeed = 25;
+        int m_MaxShakeFrames = 20;
+        int m_CurrentShakeFrame = 0;
+        float m_AttackAnimationDestX = 200;
+        float m_AttackAnimationDestY = 200;
+        int m_ShakeIntensity = 3;
+
+        NPCToAnimate m_NPCToAnimateAttack;
+        NPCToAnimate m_NPCToAnimateHit;
 
         static constexpr float m_SpriteSize = 32.0;
         // *************HealthBar*********************
@@ -70,6 +93,10 @@ class BattleUI{
 
         Rectangle m_PlayerSpriteRect{px, py, pw, ph};
         Rectangle m_CPUSpriteRect{cx, cy, cw, ch};
+        Rectangle m_OriginalPlayerSpriteRect = m_PlayerSpriteRect;
+        Rectangle m_OriginalCPUSpriteRect = m_CPUSpriteRect;
+        Rectangle m_DestPlayerSpriteRect{px + m_AttackAnimationDestX, py - m_AttackAnimationDestY, pw, ph};
+        Rectangle m_DestCPUSpriteRect{cx - m_AttackAnimationDestX, cy + m_AttackAnimationDestY, cw, ch};
 
          // *************Dialog************************
         static constexpr float dh = BLOCK_SIZE * 3.5;

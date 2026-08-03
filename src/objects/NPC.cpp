@@ -148,7 +148,6 @@ void NPC::LoadNPC(std::string& npcType){
 
     std::ifstream file(GetNPC(npcType));
     if (!file.is_open()){
-        LOG("Failed to open NPC json");
         return;
     }
 
@@ -157,15 +156,11 @@ void NPC::LoadNPC(std::string& npcType){
     try{
         file >> data;
     
-        LOG(data["sprite"]);
         std::string sprite = "src/assets/images/" + data["sprite"].get<std::string>();
         m_Texture = LoadTexture(sprite.c_str());
-        LOG("texture");
         std::string battleSprite = "src/assets/images/" + data["battle_sprite"].get<std::string>();
-        LOG("battle sprite");
         m_BattleImagePath = battleSprite;
         m_BattleSpriteMaxFrames = data["max_frame"];
-            LOG("max frame");
         m_Dialogue = data["dialog"];
         m_Data.name = data["name"];
         m_Data.type = data["class"];
@@ -203,7 +198,6 @@ void NPC::LoadNPC(std::string& npcType){
             for (const auto& item : items){   
 
                 std::string name = item["name"];
-                LOG(name);
                 int hp = item.value("hp", 0);
                 int mp = item.value("mp", 0);
                 std::string type = item["type"];

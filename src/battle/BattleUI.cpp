@@ -16,6 +16,15 @@ BattleUI::BattleUI(Player* player)
 }
 
 
+void BattleUI::SetPlayerTexture(NPC* currentWrestler){
+    m_PlayerTexture = LoadTexture(currentWrestler->GetBattleImagePath().c_str());
+    m_PlayerMaxFrames = currentWrestler->GetBattleSpriteMaxFrames();
+}
+
+void BattleUI::SetNPCTexture(NPC* npc){
+    m_NPCTexture = LoadTexture(npc->GetBattleImagePath().c_str());
+    m_CpuMaxFrames = npc->GetBattleSpriteMaxFrames();
+}
 
 BattleUI::~BattleUI(){
     UnloadTexture(m_PlayerTexture);
@@ -35,6 +44,14 @@ void BattleUI::Update(){
 
 
 void BattleUI::Draw(){
+    if(m_CanAnimateAttack){
+        AnimateAttack();
+    }
+
+    if(m_CanAnimateHit){
+        AnimateHit();
+    }
+
     Rectangle source{m_SpriteSize * m_PlayerFrame, 0.0f, m_SpriteSize, m_SpriteSize};
     DrawTexturePro(m_PlayerTexture, source, m_PlayerSpriteRect, Vector2{0.0f, 0.0f}, 0.0f, WHITE);
     if(m_NPC){
@@ -46,6 +63,84 @@ void BattleUI::Draw(){
     m_BattleDialog.Draw();
     m_BattleMenu.Draw();
 }
+
+void BattleUI::AnimateAttack(){
+    if(m_NPCToAnimateAttack == NPCToAnimate::Player){
+        if(!m_ReverseAttackAnimation){
+                m_PlayerSpriteRect.x += m_AttackAnimationSpeed;
+                m_PlayerSpriteRect.y -= m_AttackAnimationSpeed;
+            
+            if(m_PlayerSpriteRect.x >= m_DestPlayerSpriteRect.x && m_PlayerSpriteRect.y <= m_DestPlayerSpriteRect.y ){
+                m_ReverseAttackAnimation = true;
+            }
+        }
+        else{
+            m_PlayerSpriteRect.x -= m_AttackAnimationSpeed;
+            m_PlayerSpriteRect.y += m_AttackAnimationSpeed;
+
+            if(m_PlayerSpriteRect.x <= m_OriginalPlayerSpriteRect.x && m_PlayerSpriteRect.y >= m_OriginalPlayerSpriteRect.y ){
+                m_ReverseAttackAnimation = false;
+                m_CanAnimateAttack = false;
+                m_NPCToAnimateHit = NPCToAnimate::Cpu;
+                m_CanAnimateHit = true;
+                m_PlayerSpriteRect = m_OriginalPlayerSpriteRect;
+            }
+        }
+    }
+    else{
+        if(!m_ReverseAttackAnimation){
+                m_CPUSpriteRect.x -= m_AttackAnimationSpeed;
+                m_CPUSpriteRect.y += m_AttackAnimationSpeed;
+            
+            if(m_CPUSpriteRect.x <= m_DestCPUSpriteRect.x && m_CPUSpriteRect.y >= m_DestCPUSpriteRect.y ){
+                m_ReverseAttackAnimation = true;
+            }
+        }
+        else{
+            m_CPUSpriteRect.x += m_AttackAnimationSpeed;
+            m_CPUSpriteRect.y -= m_AttackAnimationSpeed;
+
+            if(m_CPUSpriteRect.x >= m_OriginalCPUSpriteRect.x && m_CPUSpriteRect.y <= m_OriginalCPUSpriteRect.y ){
+                m_ReverseAttackAnimation = false;
+                m_CanAnimateAttack = false;
+                m_NPCToAnimateHit = NPCToAnimate::Player;
+                m_CanAnimateHit = true;
+                m_CPUSpriteRect = m_OriginalCPUSpriteRect;
+            }
+        }
+    }    
+}
+
+
+void BattleUI::AnimateHit(){
+    if(m_NPCToAnimateHit == NPCToAnimate::Player){
+        if(m_CurrentShakeFrame < m_MaxShakeFrames){
+        
+            m_PlayerSpriteRect.x += GetRandomValue(-m_ShakeIntensity, m_ShakeIntensity);
+            m_PlayerSpriteRect.y += GetRandomValue(-m_ShakeIntensity, m_ShakeIntensity);
+            m_CurrentShakeFrame++;
+        }
+        else{
+            m_PlayerSpriteRect = m_OriginalPlayerSpriteRect;
+            m_CanAnimateHit = false;
+            m_CurrentShakeFrame = 0;
+        }
+    }
+    else{
+        if(m_CurrentShakeFrame < m_MaxShakeFrames){
+        
+            m_CPUSpriteRect.x += GetRandomValue(-m_ShakeIntensity, m_ShakeIntensity);
+            m_CPUSpriteRect.y += GetRandomValue(-m_ShakeIntensity, m_ShakeIntensity);
+            m_CurrentShakeFrame++;
+        }
+        else{
+            m_CPUSpriteRect = m_OriginalCPUSpriteRect;
+            m_CanAnimateHit = false;
+            m_CurrentShakeFrame = 0;
+        }
+    }
+} 
+
 
 
 void BattleUI::Animate(){
@@ -98,3 +193,11 @@ BattleCommand BattleUI::UpdateInput(InputState* inputState){
 void BattleUI::SetMessage(std::string msg){
   m_BattleDialog.SetMessage(msg);
 }
+
+
+void BattleUI::StartAttackAnimation(NPCToAnimate npc){
+    m_NPCToAnimateAttack = npc;
+    m_CanAnimateAttack = true;   
+}
+
+

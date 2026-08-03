@@ -20,6 +20,8 @@ class Player : public MainEntity{
         Rectangle GetTalkHitBox();
         NPC* GetCurrentNPC();
         NPC* GetCurrentWrestler();
+        std::vector<NPC>& GetRoster();
+        void SetCurrentWrestler(int index);
 
     private:
         void Walk();
@@ -29,9 +31,12 @@ class Player : public MainEntity{
         bool m_InDialog = false;
         Rectangle m_TalkHitBox;
         Map* m_Map;
-        NPC* m_CurrentNPC;
-        NPC TEST_WRESTLER;
+        NPC* m_CurrentNPC = nullptr;
+        
+        int m_RosterIndex = 0;
+        std::vector<NPC> m_Roster{};
         NPC m_CurrentWrestler;
+        
 
 
 
