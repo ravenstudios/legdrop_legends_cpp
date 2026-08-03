@@ -18,6 +18,7 @@ class MainEntity{
         MainEntity(const char* npcType, float x, float y);
         MainEntity(const char* npcType);
         ~MainEntity();
+        
         virtual void Update(Map* map) = 0;
         virtual void Draw();
         Rectangle GetRect();
@@ -29,6 +30,7 @@ class MainEntity{
         void SetMaxFrames(int maxFrames);
         void SetInDialog(bool b);
         std::string GetBattleImagePath() const;
+        Texture2D GetTexture() const;
 
     private:
 

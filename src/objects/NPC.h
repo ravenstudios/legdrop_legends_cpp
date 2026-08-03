@@ -44,6 +44,7 @@ struct Data{
     int maxHp = 100;
     int maxMp = 50;
     int powderRate = 20;
+    int level = 0;
     Stats stats; 
     std::vector<Attack> attacks; 
     std::vector<Item> items;

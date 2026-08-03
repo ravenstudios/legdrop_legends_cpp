@@ -145,9 +145,14 @@ void MainState::DialogInput(InputState* inputState){
         Data data = wrestler->GetData();
         wrestler->AdjustHP(data.maxHp);
         wrestler->AdjustMP(data.maxMp);
-        // for(const &wrestler : wrestlers){
-            // when roster is added
-        // }
+
+        const auto& roster = m_Player->GetRoster();
+    
+        for (int i = 0; i < roster.size(); i++){
+            NPC& npc = *roster[i];
+            npc.AdjustHP(data.maxHp);
+            npc.AdjustMP(data.maxMp);
+        }
     }
 
 }

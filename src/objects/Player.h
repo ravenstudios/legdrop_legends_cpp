@@ -20,7 +20,7 @@ class Player : public MainEntity{
         Rectangle GetTalkHitBox();
         NPC* GetCurrentNPC();
         NPC* GetCurrentWrestler();
-        std::vector<NPC>& GetRoster();
+        std::vector<std::unique_ptr<NPC>>& GetRoster();
         void SetCurrentWrestler(int index);
 
     private:
@@ -34,8 +34,8 @@ class Player : public MainEntity{
         NPC* m_CurrentNPC = nullptr;
         
         int m_RosterIndex = 0;
-        std::vector<NPC> m_Roster{};
-        NPC m_CurrentWrestler;
+        std::vector<std::unique_ptr<NPC>> m_Roster;
+        std::unique_ptr<NPC> m_CurrentWrestler;
         
 
 

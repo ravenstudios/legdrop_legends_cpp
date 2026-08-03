@@ -198,10 +198,11 @@ void BattleMenu::DrawItems(){
 
 void BattleMenu::DrawTag(){
     DrawRectangleRec(m_Rect, SKYBLUE);
-    std::vector<NPC>& wrestlers = m_Player->GetRoster();
+    // std::vector<NPC>& wrestlers = m_Player->GetRoster();
+    const auto& roster = m_Player->GetRoster();
 
-    for (int i = 0; i < wrestlers.size(); i ++){
-        DrawText(wrestlers[i].GetData().name.c_str(), m_Rect.x, m_Rect.y + m_FontSize * i, m_FontSize, BLACK);
+    for (int i = 0; i < roster.size(); i ++){
+        DrawText(roster[i]->GetData().name.c_str(), m_Rect.x, m_Rect.y + m_FontSize * i, m_FontSize, BLACK);
     }
     DrawRectangleLines(m_Rect.x, m_Rect.y + m_FontSize * m_TagIndex, m_Rect.width,  m_FontSize, BLACK);
 }

@@ -11,4 +11,4 @@
 - [ ] Npc's can walk through player
 - [ ] Add roster
 - [ ] Heal roster
-- [ ]
+- [ ] Move items to player not each npc

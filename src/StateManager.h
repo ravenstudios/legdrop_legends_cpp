@@ -4,6 +4,7 @@
 #include "states/BattleState.h"
 #include "core/Input.h"
 #include "objects/Player.h"
+#include "states/PauseState.h"
 
 class StateManager{
     public:
@@ -27,7 +28,7 @@ class StateManager{
         State* m_CurrentState = nullptr;
         State* m_ParrentState = nullptr;
         BattleState m_BattleState;
-       
+        PauseState m_PauseState;
 
 
 };

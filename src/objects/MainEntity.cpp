@@ -137,3 +137,7 @@ std::string MainEntity::GetBattleImagePath() const{
     return m_BattleImagePath;
 
 }
+
+Texture2D MainEntity::GetTexture() const{
+    return m_Texture;
+}

@@ -10,6 +10,7 @@ StateManager::StateManager()
     m_player(),
     m_MainState(this),
     m_BattleState(this),
+    m_PauseState(this),
     m_CurrentState(&m_MainState)
     
 {
@@ -55,6 +56,17 @@ void StateManager::SwitchToPauseState(){
 void StateManager::UpdateInput(){
     m_InputState = m_Input.GetInputState();
     
+    if(IsKeyPressed(KEY_P)){
+        if(m_CurrentState == &m_MainState){
+            m_ParrentState = &m_MainState;
+            m_CurrentState = &m_PauseState;
+        }
+        else{
+            m_CurrentState = m_ParrentState;
+        }
+        
+
+    }
     m_CurrentState->UpdateInput(&m_InputState);
 }
 

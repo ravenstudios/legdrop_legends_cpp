@@ -3,17 +3,15 @@
 
 Player::Player()
     : MainEntity("src/assets/images/manager-Sheet.png"),
-    m_Roster{
-      NPC(0, 0, "brother", false),
-      NPC(0, 0, "mr_murica", false),
-      NPC(0, 0, "crawdaddy", false)
-    },
-    m_CurrentWrestler(NPC(0, 0, "bad_jim", false))
+    
+    m_CurrentWrestler(std::make_unique<NPC>(0, 0, "bad_jim", false))
     
     
     
 {
-  
+  m_Roster.emplace_back(std::make_unique<NPC>(0, 0, "brother", false));
+  m_Roster.emplace_back(std::make_unique<NPC>(0, 0, "mr_murica", false));
+  m_Roster.emplace_back(std::make_unique<NPC>(0, 0, "crawdaddy", false));
 }
 
 
@@ -154,10 +152,10 @@ NPC* Player::GetCurrentNPC(){
  }
 
   NPC* Player::GetCurrentWrestler(){
-    return &m_CurrentWrestler;
+    return m_CurrentWrestler.get();
   }
 
-  std::vector<NPC>& Player::GetRoster(){
+  std::vector<std::unique_ptr<NPC>>& Player::GetRoster(){
     return m_Roster;
   }
 
