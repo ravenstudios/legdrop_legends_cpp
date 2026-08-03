@@ -21,7 +21,8 @@ enum class DialogAction{
     None,
     Battle,
     Exit,
-    Heal
+    Heal,
+    Store
 };
 
 class DialogWindow{

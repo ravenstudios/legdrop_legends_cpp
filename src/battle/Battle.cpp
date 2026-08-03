@@ -53,7 +53,7 @@ void Battle::UpdateInput(InputState* inputState){
         Attack(battleCommand.selectionIndex);
         break;
       case BattleMenuAction::Item:
-        Bag(battleCommand.selectionIndex);
+        UseItem(battleCommand.selectionIndex);
         break;
       case BattleMenuAction::Tag:
         Tag(battleCommand.selectionIndex);
@@ -91,27 +91,16 @@ void Battle::Run(){
 }
 
 
-void Battle::Bag(int index){
+void Battle::UseItem(int index){
   m_CurrentWrestler = m_Player->GetCurrentWrestler();
   Data currentWrestlerData = m_CurrentWrestler->GetData();
-
-  const auto& items = currentWrestlerData.items;
-
+  const auto& items = m_Player->GetItems();
   if (items.empty()) return;
-
-  Item item = items[index];
-  std::string s = item.message;
-  
-  if(item.qty > 0){
-    
-    if(item.type == "restore_hp") m_CurrentWrestler->AdjustHP(item.hp);
-    if(item.type == "restore_mp") m_CurrentWrestler->AdjustMP(item.mp);
-    m_BattleUI.SetMessage(s);
-    
-    m_CurrentWrestler->AdjustItemQty(index, -1);
-    StartCpuTurn();
-  }
-  
+  InventoryItem inventoryItem = items[index];
+  std::string s = inventoryItem.item->message;
+  m_BattleUI.SetMessage(s);
+  m_Player->UseItem(index);
+  StartCpuTurn();
 }
 
 

@@ -2,14 +2,30 @@
 
 PauseUI::PauseUI(Player* player)
     :m_Player(player),
-    m_PauseRoster(player)
+    m_PauseRoster(player),
+    m_PauseItems(player)
 {
 
 }
 
 
 void PauseUI::Update(){
-    m_PauseRoster.Update();
+    switch (m_MenuLevel){
+        case PauseMenu::MenuLevel::Main:
+            DrawMain();
+            break;
+        case PauseMenu::MenuLevel::Settings:
+            break;
+        case PauseMenu::MenuLevel::Items:
+            m_PauseItems.Update();
+            break;
+        case PauseMenu::MenuLevel::Roster:
+            m_PauseRoster.Update();
+            break;
+        
+        default:
+            break;
+        }
 }
 
 void PauseUI::Action(){
@@ -47,18 +63,18 @@ void PauseUI::Action(){
 
 
 void PauseUI::Draw(){
+    DrawRectangleRec(m_Rect, BLACK);
     switch (m_MenuLevel){
         case PauseMenu::MenuLevel::Main:
             DrawMain();
             break;
         case PauseMenu::MenuLevel::Settings:
-            DrawSettings();
             break;
         case PauseMenu::MenuLevel::Items:
-            DrawItems();
+            m_PauseItems.Draw();
             break;
         case PauseMenu::MenuLevel::Roster:
-            DrawRoster();
+            m_PauseRoster.Draw();
             break;
         
         default:
@@ -77,25 +93,42 @@ void PauseUI::DrawMain(){
 }
 
 
-void PauseUI::DrawSettings(){
 
-}
-
-
-void PauseUI::DrawItems(){
-
-}
-
-
-void PauseUI::DrawRoster(){
-    m_PauseRoster.Draw();
-}
 
 
 
 
 
 void PauseUI::UpdateInput(InputState* inputState){
+    if(inputState->cancel){
+        MenuBack();
+    }
+
+    switch (m_MenuLevel){
+        case PauseMenu::MenuLevel::Main:
+            MainUpdateInput(inputState);
+            break;
+        case PauseMenu::MenuLevel::Settings:
+            break;
+        case PauseMenu::MenuLevel::Items:{
+            MenuAction menuAction = m_PauseItems.UpdateInput(inputState);
+            if(menuAction.menuLevel == PauseMenu::MenuLevel::Items){
+                UseItem(menuAction.selectedIndex);
+                break;
+            }
+        }
+            break;
+        case PauseMenu::MenuLevel::Roster:
+            m_PauseRoster.UpdateInput(inputState);
+            break;
+        
+        default:
+            break;
+        }
+}
+
+
+void PauseUI::MainUpdateInput(InputState* inputState){
     if(inputState->upPressed){
         if(m_SelectionIndex > 0) m_SelectionIndex--;
     }
@@ -108,12 +141,17 @@ void PauseUI::UpdateInput(InputState* inputState){
         Action();
     }
 
-    if(inputState->cancel){
-        MenuBack();
-    }
+    
 }
+
 
 void PauseUI::MenuBack(){
     m_MenuLevel = PauseMenu::MenuLevel::Main;
     m_SelectionIndex = 0;
+}
+
+
+void PauseUI::UseItem(int index){
+    m_Player->UseItem(index);
+
 }

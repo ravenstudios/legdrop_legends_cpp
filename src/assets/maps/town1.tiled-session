@@ -172,6 +172,7 @@
     "openFiles": [
     ],
     "project": "town1.tiled-project",
+    "property.type": "string",
     "recentFiles": [
         "backyard.tsx",
         "Town1_tileset.tsx",

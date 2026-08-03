@@ -39,7 +39,7 @@ class Battle{
         BattleUI m_BattleUI;
         void Powder(NPC* npc);
         void Run();
-        void Bag(int index);
+        void UseItem(int index);
         void Attack(int index);
         void Tag(int index);
         void BattleOver();

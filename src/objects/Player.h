@@ -2,7 +2,7 @@
 #include "MainEntity.h"
 #include "NPC.h"
 #include "../core/Input.h"
-
+#include "Items.h"
 
 
 class Map;
@@ -16,12 +16,19 @@ class Player : public MainEntity{
         bool GetInDialog() const;
         void Talk();
         void ClearInput();
+        void UseItem(int index);
        
         Rectangle GetTalkHitBox();
         NPC* GetCurrentNPC();
         NPC* GetCurrentWrestler();
         std::vector<std::unique_ptr<NPC>>& GetRoster();
         void SetCurrentWrestler(int index);
+        const std::vector<InventoryItem>& GetItems() const;
+        void AdjustItemQty(int index, int qty);
+        const int GetMoney() const;
+        void AdjustMoney(int money);
+        void AddItem(const ItemData* item, int qty);
+
 
     private:
         void Walk();
@@ -36,7 +43,11 @@ class Player : public MainEntity{
         int m_RosterIndex = 0;
         std::vector<std::unique_ptr<NPC>> m_Roster;
         std::unique_ptr<NPC> m_CurrentWrestler;
-        
+        std::vector<InventoryItem> m_Items{
+            {&bandaid, 3},
+            {&beer, 2}
+        };
+        int m_Money = 100;
 
 
 

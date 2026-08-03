@@ -5,6 +5,7 @@
 #include "core/Input.h"
 #include "objects/Player.h"
 #include "states/PauseState.h"
+#include "states/StoreState.h"
 
 class StateManager{
     public:
@@ -15,6 +16,7 @@ class StateManager{
         void SwitchToBattleState();
         void SwitchToMainState();
         void SwitchToPauseState();
+        void SwitchToStoreState();
         void UpdateInput();
         Player* GetPlayer();
         
@@ -29,6 +31,7 @@ class StateManager{
         State* m_ParrentState = nullptr;
         BattleState m_BattleState;
         PauseState m_PauseState;
+        StoreState m_StoreState;
 
 
 };

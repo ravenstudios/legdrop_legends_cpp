@@ -3,36 +3,32 @@
 #include "../Constants.h"
 #include "../core/Input.h"
 #include "../objects/Player.h"
-#include <string>
 #include <vector>
-#include "PauseRoster.h"
-#include "PauseItems.h"
+#include <string>
 #include "MenuAction.h"
 
-
-class PauseUI{
+class StoreUI{
     public:
-        PauseUI(Player* player);
+        StoreUI(Player* player);
         void Update();
         void Draw();
-        void UpdateInput(InputState* inputState);
-        
+        StoreMenu::MenuAction UpdateInput(InputState* inputState);
 
     private:
         Player* m_Player;
-        std::vector<std::string> m_MainOptions{"Settings", "Items", "Roster"};
+        int m_SelectionIndex = 0;
+        int m_BuySelectionIndex = 0;
+        int m_SellSelectionIndex = 0;
+        std::vector<std::string> m_MainOptions{"Buy", "Sell", "Exit"};
+        static constexpr float m_SpriteSize = BLOCK_SIZE / 4;
         static constexpr int m_FontSize = 20;
         static constexpr float m_w = GAME_WIDTH / 2;
         static constexpr float m_h = GAME_HEIGHT / 2;
         Rectangle m_Rect = {GAME_WIDTH / 2 - m_w / 2, GAME_HEIGHT / 2 - m_h / 2, m_w, m_h};
-        int m_SelectionIndex = 0;
-        PauseMenu::MenuLevel m_MenuLevel = PauseMenu::MenuLevel::Main;
-        void Action();
-        PauseRoster m_PauseRoster;
-        PauseItems m_PauseItems;
-        
-        void MainUpdateInput(InputState* inputState);
+        StoreMenu::MenuLevel m_MenuLevel = StoreMenu::MenuLevel::Main;
+        StoreMenu::MenuAction Action();
         void DrawMain();
         void MenuBack();
-        void UseItem(int index);
-};
+        void DrawBuy();
+        void DrawSell();
+};  

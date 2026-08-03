@@ -30,7 +30,8 @@
     },
     "store": {
       "text": "Clerk: Yeah, man. Here's what we got.",
-      "action": "store"
+      "action": "store",
+       "next": "options"
     },
     "good": {
       "text": "Clerk: I think so, but my bump card is full.",
@@ -40,5 +41,20 @@
       "text": "Clerk: Remember, man... tuck your chin.",
       "action": "end_dialogue"
     }
-  }
+  },
+
+  "items": [
+    {
+      "name": "Beer",
+      "price": 35
+    },
+    {
+      "name": "Bandaid",
+      "price": 60
+    },
+    {
+      "name": "Blade",
+      "price": 20
+    }
+  ]
 }

@@ -37,6 +37,7 @@ std::string getString(const NPC& npc){
 }
 
 void PauseRoster::Draw(){
+    DrawRectangleRec(m_Rect, BLACK);
     const auto& roster = m_Player->GetRoster();
     int gap = BLOCK_SIZE / 2;
     

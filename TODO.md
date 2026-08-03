@@ -2,13 +2,21 @@
 
 - [ ] Add battle music
 - [ ] Add status effects
-- [ ] Battle menu
-- [ ] Tag system
+- [X] Battle menu
+- [X] Tag system
 - [ ] Store
 - [ ] Grid movment
-- [ ] Battle animations
+- [X] Battle animations
 - [ ] Battle calculations
 - [ ] Npc's can walk through player
-- [ ] Add roster
-- [ ] Heal roster
+- [X] Add roster
+- [X] Heal roster
 - [ ] Move items to player not each npc
+- [X] Refractor player to use items not other classes calling adjust hp/mp and adjust qty
+- [ ] Refractor dialog to use dialog manager
+- [ ] Save and load system and add menu option
+- [ ] Have Motels and Hotles to save, and heal
+- [ ] Clinic revies KO and removes status effects
+- [ ] Promos mechanic
+- [ ] Fans can buy merch to earn more money based off of some stat that promos can affect
+- [ ] 

@@ -3,15 +3,11 @@
 
 Player::Player()
     : MainEntity("src/assets/images/manager-Sheet.png"),
-    
     m_CurrentWrestler(std::make_unique<NPC>(0, 0, "bad_jim", false))
-    
-    
-    
 {
   m_Roster.emplace_back(std::make_unique<NPC>(0, 0, "brother", false));
   m_Roster.emplace_back(std::make_unique<NPC>(0, 0, "mr_murica", false));
-  m_Roster.emplace_back(std::make_unique<NPC>(0, 0, "crawdaddy", false));
+  m_Roster.emplace_back(std::make_unique<NPC>(0, 0, "crawdaddy", false)); 
 }
 
 
@@ -147,22 +143,68 @@ NPC* Player::GetCurrentNPC(){
   return m_CurrentNPC;
 }
 
- bool Player::GetInDialog() const{
-  return m_InDialog;
- }
+bool Player::GetInDialog() const{
+return m_InDialog;
+}
 
-  NPC* Player::GetCurrentWrestler(){
-    return m_CurrentWrestler.get();
+NPC* Player::GetCurrentWrestler(){
+  return m_CurrentWrestler.get();
+}
+
+std::vector<std::unique_ptr<NPC>>& Player::GetRoster(){
+  return m_Roster;
+}
+
+void Player::SetCurrentWrestler(int index){
+  if(index >= m_Roster.size()){
+    LOG("index out of bounds");
+    return;
+  }
+  std::swap(m_CurrentWrestler, m_Roster[index]); 
+}
+
+
+void Player::AdjustItemQty(int index, int qty){
+  LOG(index);
+  m_Items[index].qty += qty;
+  if(m_Items[index].qty <= 0) m_Items.erase(m_Items.begin() + index);
+}
+
+const std::vector<InventoryItem>& Player::GetItems() const{
+  return m_Items;
+}
+
+
+void Player::UseItem(int index){
+  auto item = m_Items[index];
+  if(item.item->type == "restore_hp"){
+    m_CurrentWrestler->AdjustHP(item.item->hp);
+    AdjustItemQty(index, -1);
+  }
+  if(item.item->type == "restore_mp"){
+    m_CurrentWrestler->AdjustMP(item.item->mp);
+    AdjustItemQty(index, -1);
+  }
+}
+
+const int Player::GetMoney() const{
+  return m_Money;
+}
+
+
+void Player::AdjustMoney(int money){
+  m_Money += money;
+}
+
+
+void Player::AddItem(const ItemData* item, int qty){
+  for(auto& inventoryItem : m_Items){
+      if (inventoryItem.item == item){
+          inventoryItem.qty += qty;
+          return;
+      }
   }
 
-  std::vector<std::unique_ptr<NPC>>& Player::GetRoster(){
-    return m_Roster;
-  }
+  m_Items.emplace_back(InventoryItem{item, qty});
+}
 
-  void Player::SetCurrentWrestler(int index){
-    if(index >= m_Roster.size()){
-      LOG("index out of bounds");
-      return;
-    }
-    std::swap(m_CurrentWrestler, m_Roster[index]); 
-  }

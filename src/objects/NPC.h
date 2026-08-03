@@ -3,6 +3,7 @@
 #include <string>
 #include <nlohmann/json.hpp>
 #include <vector>
+#include "../objects/Items.h"
 
 class Map;
 
@@ -27,14 +28,7 @@ struct Attack{
 };
 
 
-struct Item{
-    std::string name;
-    int hp;
-    int mp;
-    std::string type;
-    std::string message;
-    int qty;
-};
+
 
 struct Data{
     std::string name;
@@ -47,7 +41,6 @@ struct Data{
     int level = 0;
     Stats stats; 
     std::vector<Attack> attacks; 
-    std::vector<Item> items;
 };
 
 
@@ -60,8 +53,9 @@ class NPC : public MainEntity{
         const Data& GetData() const;
         void AdjustHP(int hp);
         void AdjustMP(int mp);
-        void AdjustItemQty(int index, int qty);
+        
         bool CanAttack();
+        const std::vector<InventoryItem>& GetItems() const;
         
     private:
         
@@ -71,7 +65,7 @@ class NPC : public MainEntity{
         Timer m_WaitTimer;
 
         Vector2 m_MoveDirection{0.0f, 0.0f};
-
+        std::vector<InventoryItem> m_Items;
         
         float m_Speed = 2;
         float RandomWalkDuration();
@@ -87,8 +81,8 @@ class NPC : public MainEntity{
 
         int m_BattleSpriteMaxFrames;
          
-        int m_HP;
-        int m_MP;
+        // int m_HP;
+        // int m_MP;
         Data m_Data;
 
 };      

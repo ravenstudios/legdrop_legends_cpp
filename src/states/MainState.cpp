@@ -154,5 +154,8 @@ void MainState::DialogInput(InputState* inputState){
             npc.AdjustMP(data.maxMp);
         }
     }
+    if(dialogAction == DialogAction::Store){
+        m_StageManagerPtr->SwitchToStoreState();
+    }
 
 }

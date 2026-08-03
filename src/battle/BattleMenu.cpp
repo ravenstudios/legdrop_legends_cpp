@@ -45,7 +45,6 @@ BattleCommand BattleMenu::Action(){
                         .type = BattleMenuAction::Run,
                         .selectionIndex = 0
                     };
-                    break;
             }
             break;
 
@@ -61,27 +60,24 @@ BattleCommand BattleMenu::Action(){
                 .type = BattleMenuAction::Attack,
                 .selectionIndex = m_selectedIndex
             };
-            
-            break;
-
                 
-        case MenuLevel::Bag:
+        case MenuLevel::Bag:{
+            BattleCommand command{
+                    .type = BattleMenuAction::Item,
+                    .selectionIndex = m_ItemIndex
+                };
             MenuBack();
-            return BattleCommand {
-                        .type = BattleMenuAction::Item,
-                        .selectionIndex = m_ItemIndex
-                    };
-            
-            break;
+            return command;
+        }
 
-        case MenuLevel::Tag:
-            int i = m_TagIndex;
-            MenuBack();
-            return BattleCommand {
-              .type = BattleMenuAction::Tag,
-              .selectionIndex = i
+        case MenuLevel::Tag:{
+            BattleCommand command{
+                .type = BattleMenuAction::Tag,
+                .selectionIndex = m_TagIndex
             };
-            break;
+            MenuBack();
+            return command;
+        }
     }
     return BattleCommand {
         .type = BattleMenuAction::None,
@@ -114,7 +110,7 @@ BattleCommand BattleMenu::UpdateInput(InputState* inputState){
 
     if(inputState->downPressed){
         if(m_MenuLevel == MenuLevel::Bag){
-            if(m_ItemIndex < m_Player->GetCurrentWrestler()->GetData().items.size() - 1) m_ItemIndex++;
+            if(m_ItemIndex < m_Player->GetItems().size() - 1) m_ItemIndex++;
         }
         if(m_MenuLevel == MenuLevel::Tag){
             if(m_TagIndex < m_Player->GetRoster().size() - 1) m_TagIndex++;
@@ -184,12 +180,12 @@ void BattleMenu::DrawMain(){
 
 void BattleMenu::DrawItems(){
     DrawRectangleRec(m_Rect, MAGENTA);
-    std::vector<Item> items = m_Player->GetCurrentWrestler()->GetData().items;
-    for (int i = 0; i < items.size(); i ++){
-        std::string s = items[i].name + "   QTY:" + std::to_string(items[i].qty);
+    std::vector<InventoryItem> inventoryItems = m_Player->GetItems();
+    for (int i = 0; i < inventoryItems.size(); i ++){
+        std::string s = inventoryItems[i].item->name + "   QTY:" + std::to_string(inventoryItems[i].qty);
         DrawText(s.c_str(), m_Rect.x, m_Rect.y + m_FontSize * i, m_FontSize, BLACK);
     }
-    if(!items.empty()){
+    if(!inventoryItems.empty()){
         DrawRectangleLines(m_Rect.x, m_Rect.y + m_FontSize * m_ItemIndex, m_Rect.width,  m_FontSize, BLACK);
 
     }

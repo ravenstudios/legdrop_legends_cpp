@@ -5,34 +5,26 @@
 #include "../objects/Player.h"
 #include <string>
 #include <vector>
-#include "PauseRoster.h"
-#include "PauseItems.h"
+#include "../objects/Items.h"
 #include "MenuAction.h"
 
 
-class PauseUI{
+class PauseItems{
     public:
-        PauseUI(Player* player);
+        PauseItems(Player* player);
         void Update();
         void Draw();
-        void UpdateInput(InputState* inputState);
+        MenuAction UpdateInput(InputState* inputState);
         
 
     private:
         Player* m_Player;
-        std::vector<std::string> m_MainOptions{"Settings", "Items", "Roster"};
+        static constexpr float m_SpriteSize = BLOCK_SIZE / 4;
         static constexpr int m_FontSize = 20;
         static constexpr float m_w = GAME_WIDTH / 2;
         static constexpr float m_h = GAME_HEIGHT / 2;
         Rectangle m_Rect = {GAME_WIDTH / 2 - m_w / 2, GAME_HEIGHT / 2 - m_h / 2, m_w, m_h};
         int m_SelectionIndex = 0;
-        PauseMenu::MenuLevel m_MenuLevel = PauseMenu::MenuLevel::Main;
-        void Action();
-        PauseRoster m_PauseRoster;
-        PauseItems m_PauseItems;
         
-        void MainUpdateInput(InputState* inputState);
-        void DrawMain();
-        void MenuBack();
-        void UseItem(int index);
+   
 };

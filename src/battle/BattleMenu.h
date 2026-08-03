@@ -7,6 +7,7 @@
 #include <string>
 #include "../core/Input.h"
 #include "BattleMenuAction.h"
+#include "../objects/Items.h"
 
 enum class MenuLevel{
     Main,
@@ -41,7 +42,7 @@ class BattleMenu{
         int m_ItemIndex = 0;
         int m_TagIndex = 0;
         MenuLevel m_MenuLevel = MenuLevel::Main;
-        std::vector<Item> m_Items = {};
+        std::vector<InventoryItem> m_Items = {};
 
         int m_FontSize = BLOCK_SIZE / 2;
         

@@ -3,19 +3,10 @@
 #include <unordered_map>
 #include <string>
 #include <tinyxml2.h>
-
 #include <fstream>
 
 
-
-
-
-
-
-
-
-NPC::NPC(float x, float y, std::string npcType, bool canWalk)
-    
+NPC::NPC(float x, float y, std::string npcType, bool canWalk)  
     : MainEntity("", x, y),
    
     m_WalkTimer(m_WalkDuration),
@@ -31,45 +22,40 @@ NPC::NPC(float x, float y, std::string npcType, bool canWalk)
 }
 
 
-
 void NPC::Update(Map* map){
     MainEntity::Update(map);
-    if (!m_CanWalk){
+    if(!m_CanWalk){
         StopMoving();
-        // Animate();
-        
+
         return;
     }
 
-    
-
     float deltaTime = GetFrameTime();
-    
     m_WalkTimer.Update(deltaTime);
     m_WaitTimer.Update(deltaTime);
 
-    if (m_IsWalking){
+    if(m_IsWalking){
         m_CanAnimate = true;
-        if (m_Directions.up){
+        if(m_Directions.up){
             m_Direction = 1;
             Move(0, -m_Speed);
         }
-        if (m_Directions.right){
+        if(m_Directions.right){
             m_Direction = 2;
             Move(m_Speed, 0);
         }
-        if (m_Directions.down){
+        if(m_Directions.down){
             m_Direction = 0;
             Move(0, m_Speed);
         }
-        if (m_Directions.left){
+        if(m_Directions.left){
             m_Direction = 3;
             Move(-m_Speed, 0);
         }
 
         m_AnimationTimer.SetPause(false);
 
-        if (m_WalkTimer.Finished()){
+        if(m_WalkTimer.Finished()){
             m_IsWalking = false;
             StopMoving();
             m_WaitTimer.SetDuration(RandomWalkDuration());
@@ -77,7 +63,7 @@ void NPC::Update(Map* map){
         }
     }
     else{
-        if (m_WaitTimer.Finished()){
+        if(m_WaitTimer.Finished()){
             ChooseRandomMovement();
 
             m_IsWalking = true;
@@ -147,7 +133,7 @@ void NPC::LoadNPC(std::string& npcType){
     using json = nlohmann::json;
 
     std::ifstream file(GetNPC(npcType));
-    if (!file.is_open()){
+    if(!file.is_open()){
         return;
     }
 
@@ -166,7 +152,7 @@ void NPC::LoadNPC(std::string& npcType){
         m_Data.type = data["class"];
         
 
-        if (data.contains("stats")){
+        if(data.contains("stats")){
             auto& jStats = data["stats"];
             m_Data.stats.level       = static_cast<int>(jStats["level"]);
             m_Data.stats.exp         = static_cast<int>(jStats["exp"]);
@@ -180,7 +166,20 @@ void NPC::LoadNPC(std::string& npcType){
             m_Data.stats.exp_to_give = static_cast<int>(jStats["exp_to_give"]);
         }
 
-        if (data.contains("attacks")){
+        
+        if(data.contains("items")){
+            const auto& items = data["items"];
+
+
+            for (const auto& item : items){
+                const ItemData* itemData = getItemFromString(item["name"].get<std::string>());
+                if(itemData){
+                    m_Items.emplace_back(InventoryItem{itemData, 0, item["price"].get<int>()});
+                }
+            }
+        }
+
+        if(data.contains("attacks")){
             auto& attacks = data["attacks"];
 
             for (const auto& attack : attacks){
@@ -193,21 +192,7 @@ void NPC::LoadNPC(std::string& npcType){
             m_Data.attacks.emplace_back(a);
             }
         }
-        if (data.contains("items")){
-            auto& items = data["items"];
-            for (const auto& item : items){   
-
-                std::string name = item["name"];
-                int hp = item.value("hp", 0);
-                int mp = item.value("mp", 0);
-                std::string type = item["type"];
-                std::string message = item["message"];
-                int qty = item["qty"];
-
-                Item i{name, hp, mp, type, message, qty};
-                m_Data.items.emplace_back(i);
-            }
-        }
+        
     }
     catch (const json::parse_error& e){
         LOG(e.what());
@@ -231,8 +216,7 @@ std::string NPC::GetNPC(const std::string& npcName){
 
     auto found = npcImages.find(npcName);
 
-    if (found == npcImages.end())
-    {
+    if(found == npcImages.end()){
         return "src/assets/wrestlers/brother.json";
     }
     std::string path = "src/assets/wrestlers/" + found->second;
@@ -240,7 +224,7 @@ std::string NPC::GetNPC(const std::string& npcName){
 }
 
 
-nlohmann::json NPC::GetDialog()const {
+nlohmann::json NPC::GetDialog() const{
     return m_Dialogue;
 }
 
@@ -266,17 +250,16 @@ void NPC::AdjustMP(int mp){
     if(m_Data.mp > m_Data.maxMp) m_Data.mp = m_Data.maxMp;
 }
 
-void NPC::AdjustItemQty(int index, int qty){
-    m_Data.items[index].qty += qty;
-    if(m_Data.items[index].qty <= 0) m_Data.items.erase(m_Data.items.begin() + index);
-}
-
 
 bool NPC::CanAttack(){
-    for (const Attack& attack : m_Data.attacks){
-        if (m_Data.mp >= attack.cost){
+    for(const Attack& attack : m_Data.attacks){
+        if(m_Data.mp >= attack.cost){
             return true;
         }
     }
     return false;
+}
+
+const std::vector<InventoryItem>& NPC::GetItems() const{
+  return m_Items;
 }

@@ -34,22 +34,6 @@
       "type": "attack"
     }
   ],
-  "items": [
-    {
-      "name": "Bandaid - HP+25",
-      "hp": 25,
-      "type": "restore_hp",
-      "message": "Player used Bandaid",
-      "qty": 1
-    },
-    {
-      "name": "Beer - MP+10",
-      "mp": 25,
-      "type": "restore_mp",
-      "message": "Player used Beer",
-      "qty": 1
-    }
-  ],
   "dialog": {
     "start": {
       "text": "Bad Jim stands there looking bad.",

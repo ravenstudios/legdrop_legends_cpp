@@ -40,8 +40,6 @@
         "type": "attack"
       }
     ],
-    "items": [],
-    
   "dialog": {
     "start": {
       "text": "A clown pops out of nowhere, honking his nose!",

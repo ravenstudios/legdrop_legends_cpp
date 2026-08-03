@@ -103,7 +103,6 @@ DialogAction DialogWindow::Input(InputState* inputState){
             // return DialogAction::None;
         }
     }
-    // return DialogAction::None;
     return result;
 }
 
@@ -201,6 +200,11 @@ DialogAction DialogWindow::HandleNodeAction(const std::string& action){
     if(action == "heal"){
         LOG("heal");
         return DialogAction::Heal;
+    }
+
+    if(action == "store"){
+        LOG("store");
+        return DialogAction::Store;
     }
 
     LOG(("Unknown dialogue action: " + action).c_str());
