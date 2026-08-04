@@ -198,12 +198,10 @@ DialogAction DialogWindow::HandleNodeAction(const std::string& action){
     }
 
     if(action == "heal"){
-        LOG("heal");
         return DialogAction::Heal;
     }
 
     if(action == "store"){
-        LOG("store");
         return DialogAction::Store;
     }
 

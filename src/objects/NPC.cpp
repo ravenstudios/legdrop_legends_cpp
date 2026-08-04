@@ -150,7 +150,7 @@ void NPC::LoadNPC(std::string& npcType){
         m_Dialogue = data["dialog"];
         m_Data.name = data["name"];
         m_Data.type = data["class"];
-        
+        m_SongFile = data["song"];
 
         if(data.contains("stats")){
             auto& jStats = data["stats"];
@@ -262,4 +262,8 @@ bool NPC::CanAttack(){
 
 const std::vector<InventoryItem>& NPC::GetItems() const{
   return m_Items;
+}
+
+std::string NPC::GetSongFile(){
+    return m_SongFile;
 }

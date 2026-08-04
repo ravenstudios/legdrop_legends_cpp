@@ -5,14 +5,15 @@
 
 
 StateManager::StateManager()
-
-    :m_Input(),
+    :m_SoundManager(),
+    m_Input(),
     m_player(),
     m_MainState(this),
     m_BattleState(this),
     m_PauseState(this),
     m_CurrentState(&m_MainState),
     m_StoreState(this)
+    
     
 {
 
@@ -28,6 +29,9 @@ void StateManager::Draw(){
 void StateManager::Update(){
     UpdateInput();
     m_CurrentState->Update();
+    m_SoundManager.Update();
+
+    
 }
 
 
@@ -47,6 +51,7 @@ void StateManager::SwitchToBattleState(){
 void StateManager::SwitchToMainState(){
     LOG("switch main");
     m_CurrentState = &m_MainState;
+    m_MainState.BackFromOtherState();
 }
 
 
@@ -80,4 +85,9 @@ void StateManager::UpdateInput(){
 
 Player* StateManager::GetPlayer(){
     return &m_player;
+}
+
+
+SoundManager& StateManager::GetSoundManager(){
+    return m_SoundManager;
 }

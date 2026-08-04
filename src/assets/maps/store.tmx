@@ -108,7 +108,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="9" name="song">
+ <objectgroup id="9" name="music">
   <object id="14" x="91.7043" y="62.6338">
    <properties>
     <property name="song_file" value="store.mp3"/>

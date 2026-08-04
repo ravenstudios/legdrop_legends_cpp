@@ -104,11 +104,13 @@ void Player::CheckDoorCollision(){
               m_LastPOS = {m_Rect.x, m_Rect.y + BLOCK_SIZE};
               m_Map->LoadMap(path.c_str());
               SetSpawnPoint(m_Map->GetPlayerSpawnPoint());
+              m_MapChanged = true;
               return;
           }
           if(door.isExit){
               m_Map->LoadMap(path.c_str());
               SetSpawnPoint(m_LastPOS);
+              m_MapChanged = true;
               return;
           }
       }
@@ -208,3 +210,10 @@ void Player::AddItem(const ItemData* item, int qty){
   m_Items.emplace_back(InventoryItem{item, qty});
 }
 
+
+
+bool Player::GetMapChanged(){
+  bool changed = m_MapChanged;
+  m_MapChanged = false;
+  return changed;
+}

@@ -22,6 +22,7 @@ class MainState : public State{
         void Update() override;
         void Draw() override;
         void UpdateInput(InputState* inputState) override;
+        void BackFromOtherState();
         
     private:
         StateManager* m_StageManagerPtr;
@@ -37,6 +38,6 @@ class MainState : public State{
         void DialogInput(InputState* inputState);
         void BattleInput(InputState* inputState);
         void MenuInput(InputState* inputState);
-        
-};
+        void LoadMusic();
 
+};

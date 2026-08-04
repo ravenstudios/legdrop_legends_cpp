@@ -56,9 +56,11 @@ class NPC : public MainEntity{
         
         bool CanAttack();
         const std::vector<InventoryItem>& GetItems() const;
+
+        std::string GetSongFile();
         
     private:
-        
+        std::string m_SongFile = "";
         float m_WalkDuration = 0.75f;
         float m_WaitDuration = 1.5f;
         Timer m_WalkTimer;
@@ -77,6 +79,7 @@ class NPC : public MainEntity{
         void LoadNPC(std::string& npcType);
         std::string GetNPC(const std::string& npcName);
         nlohmann::json m_Dialogue;
+        
         
 
         int m_BattleSpriteMaxFrames;

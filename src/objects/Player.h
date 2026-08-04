@@ -28,6 +28,7 @@ class Player : public MainEntity{
         const int GetMoney() const;
         void AdjustMoney(int money);
         void AddItem(const ItemData* item, int qty);
+        bool GetMapChanged();
 
 
     private:
@@ -48,6 +49,7 @@ class Player : public MainEntity{
             {&beer, 2}
         };
         int m_Money = 100;
+        bool m_MapChanged = false;
 
 
 

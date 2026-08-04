@@ -30,6 +30,7 @@ class Map{
         std::vector<Door> GetDoors();
         Vector2 GetPlayerSpawnPoint();
         const std::vector<std::unique_ptr<NPC>>& GetNPCs() const;
+        const std::string GetSongFile() const;
 
 
     private:
@@ -38,6 +39,7 @@ class Map{
         int m_MapHeight;
         int m_TileWidth;
         int m_TileHeight;
+        std::string m_SongFile;
         std::vector<Layer> m_Layers;
         std::vector<Rectangle> m_BlockingRects;
         std::vector<Door> m_Doors;
@@ -48,6 +50,7 @@ class Map{
         void LoadDoors(tinyxml2::XMLElement* objectGroup);
         void LoadBlocking(tinyxml2::XMLElement* objectGroup);
         void LoadNPCs(tinyxml2::XMLElement* objectGroup);
+        void LoadSongFile();
 
 
 };

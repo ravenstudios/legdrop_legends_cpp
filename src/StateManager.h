@@ -6,6 +6,7 @@
 #include "objects/Player.h"
 #include "states/PauseState.h"
 #include "states/StoreState.h"
+#include "core/SoundManager.h"
 
 class StateManager{
     public:
@@ -19,10 +20,13 @@ class StateManager{
         void SwitchToStoreState();
         void UpdateInput();
         Player* GetPlayer();
+        SoundManager& GetSoundManager();
+
         
 
 
     private:
+        SoundManager m_SoundManager;
         InputState m_InputState;
         Input m_Input;
         Player m_player;
@@ -32,6 +36,7 @@ class StateManager{
         BattleState m_BattleState;
         PauseState m_PauseState;
         StoreState m_StoreState;
+        
 
 
 };

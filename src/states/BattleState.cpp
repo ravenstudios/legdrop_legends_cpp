@@ -8,7 +8,8 @@ BattleState::BattleState(StateManager* stateManager)
     m_Player(stateManager->GetPlayer()),
     m_Battle(m_Player)
 {
-
+    
+    
 }
 
 
@@ -33,4 +34,11 @@ void BattleState::UpdateInput(InputState* inputState){
 
 void BattleState::StartBattle(NPC* npc){
     m_Battle.StartBattle(npc);
+    SoundManager& soundManager =  m_StateManagerPtr->GetSoundManager();
+    std::string songFile = m_Player->GetCurrentNPC()->GetSongFile();
+
+    if(songFile != ""){
+        soundManager.LoadFile(songFile);
+        soundManager.Play();
+    }
 }

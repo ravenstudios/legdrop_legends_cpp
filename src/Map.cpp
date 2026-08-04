@@ -1,7 +1,7 @@
 #include "Map.h"
 #include "Constants.h"
 #include <sstream>
- #include <filesystem>
+#include <filesystem>
 
 
 using namespace tinyxml2;
@@ -17,6 +17,7 @@ bool Map::LoadMap(const char* path){
     m_Doors.clear();
     m_NPCs.clear();
     m_Path = path;
+    m_SongFile.clear();  
     XMLDocument doc;
 
     if (doc.LoadFile(m_Path) != XML_SUCCESS){
@@ -139,6 +140,16 @@ void Map::LoadObjects(XMLElement* map){
     while (objectGroup)
     {
         const char* name = objectGroup->Attribute("name");
+
+        if (name && std::string(name) == "music") {
+            XMLElement* object = objectGroup->FirstChildElement("object");
+            XMLElement* properties = object->FirstChildElement("properties");
+            XMLElement* property = properties->FirstChildElement("property");
+            const char* propertyName = property->Attribute("name");
+            if (propertyName && std::string(propertyName) == "song_file") {
+                m_SongFile = property->Attribute("value");
+            }
+        }
 
         if (name && std::string(name) == "Blocking"){
             LoadBlocking(objectGroup);
@@ -277,3 +288,10 @@ std::vector<Door> Map::GetDoors(){
 const std::vector<std::unique_ptr<NPC>>& Map::GetNPCs() const {
     return m_NPCs;
 }
+
+
+const std::string Map::GetSongFile() const{
+    return m_SongFile;
+}
+
+

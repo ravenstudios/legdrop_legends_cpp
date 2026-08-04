@@ -27,7 +27,6 @@ void StoreUI::Update(){
 }
 
 StoreMenu::MenuAction StoreUI::Action(){
-    LOG("action");
     switch (m_MenuLevel){
         case StoreMenu::MenuLevel::Main:
             switch (m_SelectionIndex){

@@ -19,6 +19,8 @@ MainState::MainState(StateManager* stateManager)
     m_Camera.offset = {GAME_WIDTH / 2.0f, GAME_HEIGHT / 2.0f};
     m_Camera.rotation = 0.0f;
     m_Camera.zoom = 1.0f;
+
+    LoadMusic();
 }
 
 
@@ -26,23 +28,25 @@ void MainState::Update(){
     m_Map.Update();
     m_Player->Update(&m_Map);
     Camera();
-    // UpdateInput(InputState inputState);
-    // GetAction();
+
+    if (m_Player->GetMapChanged()){
+        LoadMusic();
+    }
 }
 
 
-// void MainState::GetAction(){
-//     std::string action = m_DialogWindow.GetAction();
-//     if(action == "start_battle"){
-//         m_DialogWindow.ClearAction();
-//         m_CurrentInputMode = InputMode::World;
-//         m_StageManagerPtr->SwitchToBattleState();
-//     }
-//     if(action == "heal"){
-//         LOG("heal action");
-//         action = "";
-//     }
-// }
+void MainState::BackFromOtherState(){
+    LoadMusic();
+}
+
+
+void MainState::LoadMusic(){
+    SoundManager& soundManager =
+            m_StageManagerPtr->GetSoundManager();
+
+        soundManager.LoadFile(m_Map.GetSongFile());
+        soundManager.Play();
+}
 
 
 void MainState::Draw(){

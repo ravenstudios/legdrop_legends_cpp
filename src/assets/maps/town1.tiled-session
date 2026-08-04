@@ -33,7 +33,7 @@
                 10
             ],
             "scale": 1.8967013888888886,
-            "selectedLayer": 6,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 142.6160183066362,
                 "y": 160.01464530892451
@@ -49,8 +49,11 @@
             "scaleInDock": 1
         },
         "clinic.tmx": {
+            "expandedObjectLayers": [
+                8
+            ],
             "scale": 2.845052083333333,
-            "selectedLayer": 6,
+            "selectedLayer": 8,
             "viewCenter": {
                 "x": 96.13180778032039,
                 "y": 167.83524027459956
@@ -71,7 +74,7 @@
                 4
             ],
             "scale": 4.267578125,
-            "selectedLayer": 6,
+            "selectedLayer": 8,
             "viewCenter": {
                 "x": 64.08787185354691,
                 "y": 103.92311212814647
@@ -141,8 +144,8 @@
             "scale": 2.4623,
             "selectedLayer": 8,
             "viewCenter": {
-                "x": 546.4403200259919,
-                "y": 81.02180887787841
+                "x": 294.6432197538886,
+                "y": 126.50773666896804
             }
         },
         "town1.tmx#Town1_tileset": {
