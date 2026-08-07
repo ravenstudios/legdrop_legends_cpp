@@ -1,17 +1,17 @@
 # TODO
 
-- [ ] Add battle music
+- [X] Add battle music
 - [ ] Add status effects
 - [X] Battle menu
 - [X] Tag system
-- [ ] Store
-- [ ] Grid movment
+- [X] Store
+- [X] Grid movment
 - [X] Battle animations
 - [ ] Battle calculations
-- [ ] Npc's can walk through player
+- [X] Npc's can walk through player
 - [X] Add roster
 - [X] Heal roster
-- [ ] Move items to player not each npc
+- [X] Move items to player not each npc
 - [X] Refractor player to use items not other classes calling adjust hp/mp and adjust qty
 - [ ] Refractor dialog to use dialog manager
 - [ ] Save and load system and add menu option
@@ -19,4 +19,4 @@
 - [ ] Clinic revies KO and removes status effects
 - [ ] Promos mechanic
 - [ ] Fans can buy merch to earn more money based off of some stat that promos can affect
-- [ ] 
+- [ ] Map and battle visual transisitions

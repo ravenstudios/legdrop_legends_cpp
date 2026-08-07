@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="44" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="51">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="44" height="14" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="52">
  <editorsettings>
   <export target="../../../../../Documents/python_projects/skateboarding_game_python/assets/maps/town1.tmx" format="tmx"/>
  </editorsettings>
@@ -219,12 +219,12 @@
   </object>
  </objectgroup>
  <objectgroup color="#f9424d" id="3" name="Blocking">
-  <object id="33" x="241.57" y="6.92841" width="62.8176" height="42.4942">
+  <object id="33" x="240" y="0" width="64" height="48">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="34" x="96.9977" y="3.69515" width="61.8938" height="42.0323">
+  <object id="34" x="96" y="0" width="64" height="48">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
@@ -234,49 +234,50 @@
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="36" x="45.7275" y="30.9469" width="36.0277" height="6.92841">
+  <object id="36" x="48" y="32" width="32" height="16">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="37" x="0.923788" y="30.9469" width="33.7182" height="7.85219">
+  <object id="37" x="0" y="32" width="32" height="16">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="38" x="393.072" y="3.23326" width="45.2656" height="46.6513">
+  <object id="38" x="384" y="0" width="64" height="48">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="39" x="480.831" y="31.8707" width="34.1801" height="10.1617">
+  <object id="39" x="480" y="32" width="32" height="16">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="40" x="653.118" y="30.485" width="38.7991" height="8.77598">
+  <object id="40" x="656" y="32" width="32" height="16">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="41" x="-6.73945" y="208.923" width="727.861" height="20.2184">
+  <object id="41" x="0" y="208.923" width="704" height="16">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="42" x="319.414" y="30.7651" width="34.8369" height="9.04855">
+  <object id="42" x="320" y="32" width="32" height="16">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="43" x="-4.61467" y="-6.92201" width="736.041" height="13.844">
+  <object id="43" x="0" y="0" width="704" height="16">
    <properties>
     <property name="block" type="bool" value="true"/>
    </properties>
   </object>
+  <object id="51" x="560" y="0" width="64" height="48"/>
  </objectgroup>
  <objectgroup id="6" name="Player Spawn Point">
-  <object id="20" x="280.62" y="74.1186" width="16" height="16">
+  <object id="20" x="272" y="80" width="16" height="16">
    <properties>
     <property name="spawn_point" type="object" value="0"/>
    </properties>
@@ -289,32 +290,32 @@
     <property name="npc_type" value="crawdaddy"/>
    </properties>
   </object>
-  <object id="24" x="149.532" y="121.503">
+  <object id="24" x="144" y="112">
    <properties>
     <property name="can_walk" type="bool" value="true"/>
     <property name="npc_type" value="clown"/>
    </properties>
   </object>
-  <object id="25" x="275.161" y="116.589" width="6.33883" height="9.67505">
+  <object id="25" x="272" y="112" width="6.33883" height="9.67505">
    <properties>
     <property name="can_walk" type="bool" value="true"/>
     <property name="npc_type" value="brother"/>
    </properties>
   </object>
-  <object id="47" x="114.562" y="177.571">
+  <object id="47" x="112" y="176">
    <properties>
     <property name="can_walk" type="bool" value="true"/>
     <property name="npc_type" value="mr_murica"/>
    </properties>
   </object>
-  <object id="48" x="523.9" y="121.837">
+  <object id="48" x="512" y="112">
    <properties>
     <property name="can_walk" type="bool" value="false"/>
     <property name="npc_type" value="clown"/>
    </properties>
   </object>
-  <object id="49" x="526.337" y="164.886"/>
-  <object id="50" x="301.344" y="164.074">
+  <object id="49" x="512" y="160"/>
+  <object id="50" x="288" y="160">
    <properties>
     <property name="can_walk" type="bool" value="false"/>
     <property name="npc_type" value="clerk"/>
@@ -326,28 +327,28 @@
    <property name="door" type="bool" value="true"/>
    <property name="map_file" value="test_indoor_map.tmx"/>
   </properties>
-  <object id="7" x="120" y="54" width="16" height="2">
+  <object id="7" x="112" y="48" width="32" height="16">
    <properties>
     <property name="door" type="bool" value="true"/>
     <property name="entrance" type="bool" value="true"/>
     <property name="map_file" value="legdrop_gym.tmx"/>
    </properties>
   </object>
-  <object id="8" x="280" y="54" width="16" height="2">
+  <object id="8" x="272" y="48" width="32" height="16">
    <properties>
     <property name="door" type="bool" value="true"/>
     <property name="entrance" type="bool" value="true"/>
     <property name="map_file" value="clinic.tmx"/>
    </properties>
   </object>
-  <object id="9" x="407.921" y="54" width="16" height="2">
+  <object id="9" x="400" y="48" width="32" height="16">
    <properties>
     <property name="door" type="bool" value="true"/>
     <property name="entrance" type="bool" value="true"/>
     <property name="map_file" value="store.tmx"/>
    </properties>
   </object>
-  <object id="21" x="585" y="48" width="16" height="16">
+  <object id="21" x="576" y="48" width="32" height="16">
    <properties>
     <property name="door" type="bool" value="true"/>
     <property name="entrance" type="bool" value="true"/>

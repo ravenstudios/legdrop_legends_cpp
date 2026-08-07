@@ -13,6 +13,8 @@ StateManager::StateManager()
     m_PauseState(this),
     m_CurrentState(&m_MainState),
     m_StoreState(this)
+
+
     
     
 {
@@ -23,6 +25,7 @@ StateManager::StateManager()
 
 void StateManager::Draw(){
     m_CurrentState->Draw();
+
 }
 
 

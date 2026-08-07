@@ -21,7 +21,7 @@ class MainEntity{
         
         virtual void Update(Map* map) = 0;
         virtual void Draw();
-        Rectangle GetRect();
+        Rectangle GetRect() const;
         void SetCanAnimate(bool b);
         // void Input();
         void Move(float dx, float dy);
@@ -49,6 +49,8 @@ class MainEntity{
         Directions m_Directions;
         bool m_InDialog = false;
         std::string m_BattleImagePath;
-
+        bool m_IsWalking = false;
+        float m_NextX = 0;
+        float m_NextY = 0;
 
 };

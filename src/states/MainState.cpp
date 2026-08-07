@@ -7,11 +7,11 @@
 
 
 MainState::MainState(StateManager* stateManager)
-    : m_Map("src/assets/maps/town1.tmx"),
-      m_Player(stateManager->GetPlayer()),
-      m_DialogWindow(),
-    //   m_Input(),
-      m_StageManagerPtr(stateManager)
+    : m_Player(stateManager->GetPlayer()),
+    m_Map("src/assets/maps/town1.tmx", m_Player),
+    m_DialogWindow(),
+    m_StageManagerPtr(stateManager)
+    
 {
     m_Player->SetSpawnPoint(m_Map.GetPlayerSpawnPoint());
 
@@ -50,12 +50,14 @@ void MainState::LoadMusic(){
 
 
 void MainState::Draw(){
+    
     BeginMode2D(m_Camera);
     m_Map.Draw();
     m_Player->Draw();
-    
+   
     EndMode2D();
     m_DialogWindow.Draw();
+    
 }
 
 

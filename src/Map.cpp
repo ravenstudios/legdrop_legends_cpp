@@ -6,7 +6,9 @@
 
 using namespace tinyxml2;
 
-Map::Map(const char* path){
+Map::Map(const char* path, Player* player)
+    :m_Player(player)
+{
     LoadMap(path);
 }
 
@@ -295,3 +297,6 @@ const std::string Map::GetSongFile() const{
 }
 
 
+const Player* Map::GetPlayer() const{
+    return m_Player;
+}

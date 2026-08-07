@@ -4,6 +4,8 @@
 #include "../Map.h"
 #include "../dialog/DialogWindow.h"
 #include "../core/Input.h"
+#include "../debug/DrawDebugGrid.h"
+#include "../objects/Player.h"
 
 
 class StateManager;
@@ -39,5 +41,6 @@ class MainState : public State{
         void BattleInput(InputState* inputState);
         void MenuInput(InputState* inputState);
         void LoadMusic();
-
+        DrawDebugGrid m_DrawDebugGrid;
+        
 };

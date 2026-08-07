@@ -18,61 +18,56 @@ NPC::NPC(float x, float y, std::string npcType, bool canWalk)
     StopMoving();
     m_WaitTimer.SetDuration(RandomWalkDuration());
     m_WaitTimer.Reset();
+    m_Speed = 3;
     
 }
 
 
 void NPC::Update(Map* map){
     MainEntity::Update(map);
+
     if(!m_CanWalk){
         StopMoving();
-
         return;
     }
 
     float deltaTime = GetFrameTime();
-    m_WalkTimer.Update(deltaTime);
     m_WaitTimer.Update(deltaTime);
 
+    // MainEntity is currently moving toward its target tile
     if(m_IsWalking){
         m_CanAnimate = true;
+        return;
+    }
+
+    m_CanAnimate = false;
+
+    // Finished waiting, choose ONE tile movement
+    if(m_WaitTimer.Finished()){
+        ChooseRandomMovement();
+
         if(m_Directions.up){
             m_Direction = 1;
-            Move(0, -m_Speed);
+            Move(0, -1);
         }
-        if(m_Directions.right){
+        else if(m_Directions.right){
             m_Direction = 2;
-            Move(m_Speed, 0);
+            Move(1, 0);
         }
-        if(m_Directions.down){
+        else if(m_Directions.down){
             m_Direction = 0;
-            Move(0, m_Speed);
+            Move(0, 1);
         }
-        if(m_Directions.left){
+        else if(m_Directions.left){
             m_Direction = 3;
-            Move(-m_Speed, 0);
+            Move(-1, 0);
         }
 
-        m_AnimationTimer.SetPause(false);
+        StopMoving();
 
-        if(m_WalkTimer.Finished()){
-            m_IsWalking = false;
-            StopMoving();
-            m_WaitTimer.SetDuration(RandomWalkDuration());
-            m_WaitTimer.Reset();
-        }
+        m_WaitTimer.SetDuration(RandomWalkDuration());
+        m_WaitTimer.Reset();
     }
-    else{
-        if(m_WaitTimer.Finished()){
-            ChooseRandomMovement();
-
-            m_IsWalking = true;
-            m_WalkTimer.SetDuration(RandomWalkDuration());
-            m_WalkTimer.Reset();
-        }
-    }
-
-    
 }
 
 

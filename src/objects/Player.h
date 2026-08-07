@@ -3,7 +3,8 @@
 #include "NPC.h"
 #include "../core/Input.h"
 #include "Items.h"
-
+class NPC;
+class Map;
 
 class Map;
 

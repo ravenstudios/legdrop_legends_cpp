@@ -5,6 +5,7 @@
 #include <vector>
 #include "../objects/Items.h"
 
+class Player;
 class Map;
 
 struct Stats{
@@ -69,7 +70,7 @@ class NPC : public MainEntity{
         Vector2 m_MoveDirection{0.0f, 0.0f};
         std::vector<InventoryItem> m_Items;
         
-        float m_Speed = 2;
+        // float m_Speed = 2;
         float RandomWalkDuration();
         float RandomWaitDuration();
         bool m_IsWalking = false;
@@ -79,7 +80,7 @@ class NPC : public MainEntity{
         void LoadNPC(std::string& npcType);
         std::string GetNPC(const std::string& npcName);
         nlohmann::json m_Dialogue;
-        
+        Player* m_Player = nullptr;
         
 
         int m_BattleSpriteMaxFrames;

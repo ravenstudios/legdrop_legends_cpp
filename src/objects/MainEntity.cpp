@@ -1,8 +1,8 @@
 #include "MainEntity.h"
 #include "../Constants.h"
 #include "../Map.h"
-
 #include <string>
+#include "Player.h"
 
 
 
@@ -34,41 +34,89 @@ MainEntity::~MainEntity(){
 
 void MainEntity::Update(Map* map){
     m_Map = map;
+
+    if(m_IsWalking){
+
+        if(m_Rect.x < m_NextX){
+            m_Rect.x += m_Speed;
+
+            if(m_Rect.x >= m_NextX){
+                m_Rect.x = m_NextX;
+                m_IsWalking = false;
+            }
+        }
+        else if(m_Rect.x > m_NextX){
+            m_Rect.x -= m_Speed;
+
+            if(m_Rect.x <= m_NextX){
+                m_Rect.x = m_NextX;
+                m_IsWalking = false;
+            }
+        }
+        else if(m_Rect.y < m_NextY){
+            m_Rect.y += m_Speed;
+
+            if(m_Rect.y >= m_NextY){
+                m_Rect.y = m_NextY;
+                m_IsWalking = false;
+            }
+        }
+        else if(m_Rect.y > m_NextY){
+            m_Rect.y -= m_Speed;
+
+            if(m_Rect.y <= m_NextY){
+                m_Rect.y = m_NextY;
+                m_IsWalking = false;
+            }
+        }
+        else{
+            m_IsWalking = false;
+        }
+    }
+
     Animate();
 }
 
 
 void MainEntity::Move(float dx, float dy){
-    if(m_InDialog)return;
-    float nextX = m_Rect.x + dx;
-    float nextY = m_Rect.y + dy;
-    MapSize mapSize = m_Map->GetMapSize();
-    Rectangle nextRect = m_Rect;
-    nextRect.x += dx;
-    nextRect.y += dy;
+    if(m_InDialog) return;
+    if(m_IsWalking) return;
 
-    for (const Rectangle& block : m_Map->GetBlockingRects()){
-        if (CheckCollisionRecs(nextRect, block)){
+    float nextX = m_Rect.x + (dx * BLOCK_SIZE);
+    float nextY = m_Rect.y + (dy * BLOCK_SIZE);
+
+    Rectangle nextRect = m_Rect;
+    nextRect.x = nextX;
+    nextRect.y = nextY;
+
+    // Don't walk into blocking tiles
+    for(const Rectangle& block : m_Map->GetBlockingRects()){
+        if(CheckCollisionRecs(nextRect, block)){
             return;
         }
     }
 
-    for (const auto& npc : m_Map->GetNPCs()) {
-      if(npc.get() == this)continue;
-      if (CheckCollisionRecs(nextRect, npc->GetRect())) {
-          return;
-      }
+    // Don't walk into NPCs
+    for(const auto& npc : m_Map->GetNPCs()){
+        if(npc.get() == this) continue;
+
+        if(CheckCollisionRecs(nextRect, npc->GetRect())){
+            return;
+        }
     }
 
-    if (nextX >= 0 &&
-        nextX + m_Rect.width <= mapSize.w * BLOCK_SIZE){
-        m_Rect.x = nextX;
+    const Player* player = m_Map->GetPlayer();
+    if(player != nullptr && player != this){
+        if(CheckCollisionRecs(nextRect, player->GetRect())){
+            return;
+        }
     }
+    // Movement is valid
 
-    if (nextY >= 0 &&
-        nextY + m_Rect.height <= mapSize.h * BLOCK_SIZE){
-        m_Rect.y = nextY;
-    }
+    if(nextX >= 0 && nextX <= (m_Map->GetMapSize().w * BLOCK_SIZE) - BLOCK_SIZE) m_NextX = nextX;
+    if(nextY >= 0 && nextY <= (m_Map->GetMapSize().h * BLOCK_SIZE) - BLOCK_SIZE) m_NextY = nextY;
+    
+    m_IsWalking = true;
 }
 
 void MainEntity::Draw(){
@@ -92,7 +140,7 @@ void MainEntity::Draw(){
 }
 
 
-Rectangle MainEntity::GetRect(){
+Rectangle MainEntity::GetRect() const {
     return m_Rect;
 }
 
@@ -115,6 +163,10 @@ void MainEntity::SetCanAnimate(bool b){
 void MainEntity::SetSpawnPoint(Vector2 spawnPoint){
     m_Rect.x = spawnPoint.x;
     m_Rect.y = spawnPoint.y;
+    m_NextX = m_Rect.x;
+    m_NextY = m_Rect.y;
+    m_IsWalking = false;
+
 }
 
 

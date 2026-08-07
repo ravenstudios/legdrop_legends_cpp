@@ -74,7 +74,7 @@
                 4
             ],
             "scale": 4.267578125,
-            "selectedLayer": 8,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 64.08787185354691,
                 "y": 103.92311212814647
@@ -96,7 +96,7 @@
                 6
             ],
             "scale": 4.267578125,
-            "selectedLayer": 6,
+            "selectedLayer": 7,
             "viewCenter": {
                 "x": 73.69519450800915,
                 "y": 83.3025171624714
@@ -136,16 +136,11 @@
             "scaleInDock": 1
         },
         "town1.tmx": {
-            "expandedObjectLayers": [
-                3,
-                7,
-                6
-            ],
-            "scale": 2.4623,
-            "selectedLayer": 8,
+            "scale": 3.352,
+            "selectedLayer": 6,
             "viewCenter": {
-                "x": 294.6432197538886,
-                "y": 126.50773666896804
+                "x": 134.69570405727924,
+                "y": 64.28997613365155
             }
         },
         "town1.tmx#Town1_tileset": {

@@ -6,6 +6,7 @@
 #include <string>
 #include "objects/NPC.h"
 #include <memory>
+#include "objects/Player.h"
 
 struct MapSize{
     int w;
@@ -21,7 +22,7 @@ struct Door{
 
 class Map{
     public:
-        Map(const char* path);
+        Map(const char* path, Player* player);
         bool LoadMap(const char* path);
         void Update();
         void Draw();
@@ -31,6 +32,7 @@ class Map{
         Vector2 GetPlayerSpawnPoint();
         const std::vector<std::unique_ptr<NPC>>& GetNPCs() const;
         const std::string GetSongFile() const;
+        const Player* GetPlayer() const;
 
 
     private:
@@ -51,6 +53,7 @@ class Map{
         void LoadBlocking(tinyxml2::XMLElement* objectGroup);
         void LoadNPCs(tinyxml2::XMLElement* objectGroup);
         void LoadSongFile();
+        Player* m_Player = nullptr;
 
 
 };

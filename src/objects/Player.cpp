@@ -47,22 +47,22 @@ void Player::ClearInput(){
 void Player::Walk(){
   if (m_Directions.up){
       m_Direction = 1;
-      Move(0, -m_Speed);
+      Move(0, -1);
       m_AnimationTimer.SetPause(false);
   }
   if (m_Directions.right){
       m_Direction = 2;
-      Move(m_Speed, 0);
+      Move(1, 0);
       m_AnimationTimer.SetPause(false);
   }
   if (m_Directions.down){
       m_Direction = 0;
-      Move(0, m_Speed);
+      Move(0, 1);
       m_AnimationTimer.SetPause(false);
   }
   if (m_Directions.left){
       m_Direction = 3;
-      Move(-m_Speed, 0);
+      Move(-1, 0);
       m_AnimationTimer.SetPause(false);
   }
 
@@ -97,23 +97,25 @@ void Player::Talk(){
 
 void Player::CheckDoorCollision(){
   for (const Door& door : m_Map->GetDoors()){
-      if (CheckCollisionRecs(m_Rect, door.rect)){
-          // LOG(door.path);
-          std::string path = std::string("src/assets/maps/") + door.path;
-          if(door.isEntrance){
-              m_LastPOS = {m_Rect.x, m_Rect.y + BLOCK_SIZE};
-              m_Map->LoadMap(path.c_str());
-              SetSpawnPoint(m_Map->GetPlayerSpawnPoint());
-              m_MapChanged = true;
-              return;
-          }
-          if(door.isExit){
-              m_Map->LoadMap(path.c_str());
-              SetSpawnPoint(m_LastPOS);
-              m_MapChanged = true;
-              return;
-          }
+    if (CheckCollisionRecs(m_Rect, door.rect)){
+        
+      std::string path = std::string("src/assets/maps/") + door.path;
+      if(door.isEntrance){
+        int x = static_cast<int>(door.rect.x / BLOCK_SIZE) * BLOCK_SIZE;
+        int y = static_cast<int>(door.rect.y / BLOCK_SIZE) * BLOCK_SIZE;
+        m_LastPOS = {static_cast<float>(x), static_cast<float>(y) + BLOCK_SIZE};
+        m_Map->LoadMap(path.c_str());
+        SetSpawnPoint(m_Map->GetPlayerSpawnPoint());
+        m_MapChanged = true;
+        return;
       }
+      if(door.isExit){
+        m_Map->LoadMap(path.c_str());
+        SetSpawnPoint(m_LastPOS);
+        m_MapChanged = true;
+        return;
+      }
+    }
   }
 }
 

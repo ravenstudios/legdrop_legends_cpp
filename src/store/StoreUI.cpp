@@ -1,4 +1,5 @@
 #include "StoreUI.h"
+#include "../objects/NPC.h"
 
 StoreUI::StoreUI(Player* player)
     :m_Player(player)

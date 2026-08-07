@@ -5,12 +5,11 @@
 constexpr int TICK_RATE = 60;
 
 constexpr int SCALE = 4;
-constexpr int GAME_WIDTH = 256 * SCALE;
-constexpr int GAME_HEIGHT = 192 * SCALE;
+constexpr int ROWS = 256;
+constexpr int COLS = 192;
+constexpr int GAME_WIDTH = ROWS * SCALE;
+constexpr int GAME_HEIGHT = COLS * SCALE;
 constexpr int BLOCK_SIZE = GAME_WIDTH  / 16;
-constexpr int WORLD_WIDTH = 1500;
-constexpr int WORLD_HEIGHT = 1500;
-
 
 
 template<typename T>

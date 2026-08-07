@@ -8,6 +8,7 @@
 #include "states/StoreState.h"
 #include "core/SoundManager.h"
 
+
 class StateManager{
     public:
         StateManager();
@@ -36,6 +37,7 @@ class StateManager{
         BattleState m_BattleState;
         PauseState m_PauseState;
         StoreState m_StoreState;
+        
         
 
 
