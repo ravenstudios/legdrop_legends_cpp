@@ -35,12 +35,12 @@ void NPC::Update(Map* map){
     m_WaitTimer.Update(deltaTime);
 
     // MainEntity is currently moving toward its target tile
-    if(m_IsWalking){
-        m_CanAnimate = true;
-        return;
-    }
+    // if(m_IsWalking){
+    //     m_CanAnimate = true;
+    //     return;
+    // }
 
-    m_CanAnimate = false;
+    // m_CanAnimate = false;
 
     // Finished waiting, choose ONE tile movement
     if(m_WaitTimer.Finished()){
@@ -106,7 +106,7 @@ void NPC::ChooseRandomMovement(){
 }
 
 void NPC::StopMoving(){
-    m_CanAnimate = false;
+    // m_CanAnimate = false;
     m_Directions.up = false;
     m_Directions.down = false;
     m_Directions.left = false;

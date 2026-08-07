@@ -36,13 +36,14 @@ void MainEntity::Update(Map* map){
     m_Map = map;
 
     if(m_IsWalking){
-
+        m_CanAnimate = true;
         if(m_Rect.x < m_NextX){
             m_Rect.x += m_Speed;
 
             if(m_Rect.x >= m_NextX){
                 m_Rect.x = m_NextX;
                 m_IsWalking = false;
+                m_CanAnimate = false;
             }
         }
         else if(m_Rect.x > m_NextX){
@@ -51,6 +52,7 @@ void MainEntity::Update(Map* map){
             if(m_Rect.x <= m_NextX){
                 m_Rect.x = m_NextX;
                 m_IsWalking = false;
+                m_CanAnimate = false;
             }
         }
         else if(m_Rect.y < m_NextY){
@@ -59,6 +61,7 @@ void MainEntity::Update(Map* map){
             if(m_Rect.y >= m_NextY){
                 m_Rect.y = m_NextY;
                 m_IsWalking = false;
+                m_CanAnimate = false;
             }
         }
         else if(m_Rect.y > m_NextY){
@@ -67,10 +70,12 @@ void MainEntity::Update(Map* map){
             if(m_Rect.y <= m_NextY){
                 m_Rect.y = m_NextY;
                 m_IsWalking = false;
+                m_CanAnimate = false;
             }
         }
         else{
-            m_IsWalking = false;
+            // m_IsWalking = false;
+            m_CanAnimate = false;
         }
     }
 
@@ -81,6 +86,7 @@ void MainEntity::Update(Map* map){
 void MainEntity::Move(float dx, float dy){
     if(m_InDialog) return;
     if(m_IsWalking) return;
+    // m_CanAnimate = true;
 
     float nextX = m_Rect.x + (dx * BLOCK_SIZE);
     float nextY = m_Rect.y + (dy * BLOCK_SIZE);
@@ -157,7 +163,7 @@ void MainEntity::Animate(){
 
 
 void MainEntity::SetCanAnimate(bool b){
-    m_CanAnimate = b;
+    // m_CanAnimate = b;
 }
 
 void MainEntity::SetSpawnPoint(Vector2 spawnPoint){
